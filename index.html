@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f7f8f3">
+  <meta name="description" content="A²-MEAS: an embodied multi-agent framework connecting task reasoning, grounded diagnosis, and continuous robot control through language.">
+  <title>A²-MEAS | Toward the Era of Agentic Embodied Intelligence</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="site.css">
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#overview">Skip to content</a>
+  <header class="site-header">
+    <div class="header-brand">
+      <a class="wordmark" href="#top" aria-label="A squared MEAS, back to top">A<sup>2</sup><span>–</span>MEAS</a>
+        <div class="institution-logos" role="group" aria-label="Research institutions">
+          <img class="institution-logo sjtu-logo" src="assets/logos/sjtu.svg" width="88" height="88" alt="Shanghai Jiao Tong University" decoding="async">
+          <img class="institution-logo autolab-logo" src="assets/logos/autolab.svg" width="405" height="451" alt="AutoLab" decoding="async">
+          <img class="institution-logo anyverse-logo" src="assets/logos/anyverse-dynamics.svg" width="1540" height="439" alt="Anyverse Dynamics" decoding="async">
+        </div>
+    </div>
+    <nav aria-label="Page sections">
+      <a href="#overview">Overview</a>
+      <a href="#method">Method</a>
+      <a href="#real-world">Real-World Demos</a>
+      <a href="#results">Results</a>
+      <a href="#training-efficiency">Efficiency</a>
+      <a href="#contributors">Authors</a>
+    </nav>
+    <details class="mobile-nav">
+      <summary>Sections <span aria-hidden="true">⌄</span></summary>
+      <nav aria-label="Mobile page sections"><a href="#overview">Overview</a><a href="#method">Method</a><a href="#real-world">Real-World Demos</a><a href="#results">Results</a><a href="#training-efficiency">Efficiency</a><a href="#contributors">Authors</a></nav>
+    </details>
+  </header>
+
+  <main>
+    <section class="hero" id="top" aria-labelledby="paper-title">
+      <div class="hero-art" aria-hidden="true">
+        <div class="wave-layer"><div class="wave-track"></div></div>
+        <div class="hero-vignette"></div>
+      </div>
+      <div class="hero-content">
+        <h1 id="paper-title"><span><span class="project-name">A<sup>2</sup>-MEAS:</span> Toward the Era of</span><span>Agentic Embodied Intelligence</span></h1>
+        <div class="affiliations">
+          <p>AutoLab, School of Artificial Intelligence, Shanghai Jiao Tong University</p>
+          <p>Research Lab, Anyverse Dynamics</p>
+        </div>
+        <div class="resource-links">
+          <a class="resource-link" href="To_the_Era_of_Agentic_Embodied_Intelligence.pdf" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a1 1 0 0 0-1 1v16h14V8zM14 3v5h5M9 13h6M9 16h6"/></svg>Paper
+          </a>
+          <a class="resource-link" href="https://github.com/AutoLab-SAI-SJTU/A2MEAS" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18c-4 1-4-2-6-2m12 5v-4a3.5 3.5 0 0 0-1-2.7c3.3-.4 6.7-1.6 6.7-7.3a5.7 5.7 0 0 0-1.5-4 5.3 5.3 0 0 0-.1-4S17.8 1.6 15 3a14 14 0 0 0-7 0C5.2 1.6 3.9 2 3.9 2a5.3 5.3 0 0 0-.1 4 5.7 5.7 0 0 0-1.5 4c0 5.7 3.4 6.9 6.7 7.3A3.5 3.5 0 0 0 8 20v1" transform="translate(1 1) scale(.9)"/></svg>Code & releases
+          </a>
+          <a class="resource-link" href="#citation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h5v6H6c0 3 2 4 4 4M14 7h5v6h-4c0 3 2 4 4 4"/></svg>BibTeX</a>
+        </div>
+      </div>
+      <a class="hero-scroll" href="#research-question">The research question <span aria-hidden="true">↓</span></a>
+    </section>
+
+    <section class="section research-question" id="research-question" aria-labelledby="research-question-title" tabindex="-1">
+      <div class="research-question-content">
+        <p class="section-kicker">THE QUESTION</p>
+        <h2 id="research-question-title">How should reasoning and control be organized to sustain <span>goal-directed behavior</span> over a complete activity?</h2>
+        <p class="research-question-context">Each action should support continued task progress.</p>
+      </div>
+    </section>
+
+    <section class="section overview" id="overview" aria-labelledby="overview-title">
+      <div class="section-heading"><p class="section-kicker">OVERVIEW</p><h2 id="overview-title">From intention to physical action.</h2></div>
+      <p class="section-intro">A<sup>2</sup>-MEAS brings task-level reasoning, grounded diagnosis, and learned control into one embodied system. <strong>MetaBrain</strong> maintains the goal, <strong>diagnostic agents</strong> resolve physical questions, and <strong>A<sup>2</sup>-WLA</strong> turns observations and guidance into continuous actions.</p>
+      <figure class="paper-figure original-figure">
+        <button class="figure-button" data-figure="assets/figures/framework.svg" data-caption="The A²-MEAS framework" aria-label="Enlarge The A²-MEAS framework">
+          <img src="assets/figures/framework.svg" width="1016" height="507" loading="lazy" alt="Original framework diagram: MetaBrain, diagnostic agents, the execution record and A²-WLA.">
+          <span class="enlarge-label" aria-hidden="true">Expand ↗</span>
+        </button>
+        <figcaption>The A²-MEAS framework</figcaption>
+      </figure>
+      <div class="principles" id="framework-stages" role="group" aria-label="Embodied intelligence framework stages">
+        <button class="principle-card is-active" type="button" aria-pressed="true" aria-labelledby="principle-title-1" aria-describedby="principle-copy-1"><span class="principle-number" aria-hidden="true">01</span><span class="principle-title" id="principle-title-1">Reason about the goal</span><span class="principle-copy" id="principle-copy-1">MetaBrain checks progress and describes how the next attempt should change.</span></button>
+        <button class="principle-card" type="button" aria-pressed="false" aria-labelledby="principle-title-2" aria-describedby="principle-copy-2"><span class="principle-number" aria-hidden="true">02</span><span class="principle-title" id="principle-title-2">Ground the diagnosis</span><span class="principle-copy" id="principle-copy-2">Diagnostic agents connect observations, object relations, and interaction history.</span></button>
+        <button class="principle-card" type="button" aria-pressed="false" aria-labelledby="principle-title-3" aria-describedby="principle-copy-3"><span class="principle-number" aria-hidden="true">03</span><span class="principle-title" id="principle-title-3">Correct the action</span><span class="principle-copy" id="principle-copy-3">A learned interface translates corrective context into action adjustments with fixed deployment-time weights.</span></button>
+      </div>
+    </section>
+
+    <section class="section method" id="method" aria-labelledby="method-title">
+      <div class="section-heading"><p class="section-kicker">METHOD</p><h2 id="method-title">Action modeling and grounded correction</h2></div>
+      <article class="method-stage" aria-labelledby="action-model-title">
+        <div class="method-stage-heading"><span class="method-stage-index" aria-hidden="true">01</span><div><h3 id="action-model-title">A<sup>2</sup>-WLA action model</h3><p>A<sup>2</sup>-WLA combines <strong>recent visual history</strong> with <strong>predicted scene features</strong> to generate continuous action chunks. Its history encoder captures observed change, while the latent world model supplies future context alongside the robot state.</p></div></div>
+        <figure class="method-flow flow-action-model" data-method-flow role="group" aria-label="action model modules"><div class="flow-canvas" style="aspect-ratio:1083.5/608.0">
+<img class="flow-connections" src="assets/figures/method/action-model-connections.svg" width="1083.5" height="608.0" alt="Original arrows connecting the modules in the paper diagram." loading="lazy">
+<button type="button" style="left:0.2768804799261652%;top:39.473684210526315%;width:31.37978772496539%;height:27.138157894736842%;" class="flow-module tone-green is-active" data-flow-module="a" data-flow-stage="a" data-figure="assets/figures/method/action-model-a.svg" data-caption="Motion-aware visual history" aria-pressed="true" aria-label="Enlarge module a: Motion-aware visual history"><svg class="flow-plate" viewBox="3 240 340 165" aria-hidden="true" focusable="false"><defs><clipPath id="plate-a" clipPathUnits="userSpaceOnUse"><rect x="3" y="240" width="338" height="164" rx="5" /></clipPath></defs><g clip-path="url(#plate-a)"><rect x="3" y="240" width="338" height="164" rx="5" class="plate-fill" /></g></svg><img src="assets/figures/method/action-model-a.svg" width="340" height="165" loading="lazy" alt="Original paper artwork: Motion-aware visual history."><span class="flow-expand" aria-hidden="true">↗</span></button>
+<button type="button" style="left:0.2768804799261652%;top:76.15131578947368%;width:99.49238578680203%;height:23.190789473684212%;" class="flow-module tone-green is-active" data-flow-module="a-detail" data-flow-stage="a" data-figure="assets/figures/method/action-model-a-detail.svg" data-caption="Motion-aware history encoder — detail" aria-pressed="true" aria-label="Enlarge module a-detail: Motion-aware history encoder — detail"><svg class="flow-plate" viewBox="3 463 1078 141" aria-hidden="true" focusable="false"><defs><clipPath id="plate-a-detail" clipPathUnits="userSpaceOnUse"><rect x="3" y="463" width="1078" height="141" rx="5" /></clipPath></defs><g clip-path="url(#plate-a-detail)"><rect x="3" y="463" width="1078" height="141" rx="5" class="plate-fill" /></g></svg><img src="assets/figures/method/action-model-a-detail.svg" width="1078" height="141" loading="lazy" alt="Original paper artwork: Motion-aware history encoder — detail."><span class="flow-expand" aria-hidden="true">↗</span></button>
+<button type="button" style="left:31.74896169820028%;top:48.68421052631579%;width:14.028610982925704%;height:14.309210526315788%;" class="flow-module tone-orange" data-flow-module="b" data-flow-stage="b" data-figure="assets/figures/method/action-model-b.svg" data-caption="Task interpretation with Qwen3-VL" aria-pressed="false" aria-label="Enlarge module b: Task interpretation with Qwen3-VL"><svg class="flow-plate" viewBox="344 296 152 87" aria-hidden="true" focusable="false"><defs><clipPath id="plate-b" clipPathUnits="userSpaceOnUse"><rect x="349.5" y="301.7" width="141.8" height="76.3" rx="4" /></clipPath></defs><g clip-path="url(#plate-b)"><rect x="349.5" y="301.7" width="141.8" height="76.3" rx="4" class="plate-fill" /></g></svg><img src="assets/figures/method/action-model-b.svg" width="152" height="87" loading="lazy" alt="Original paper artwork: Task interpretation with Qwen3-VL."><span class="flow-expand" aria-hidden="true">↗</span></button>
+<button type="button" style="left:0.2768804799261652%;top:0.4934210526315789%;width:55.83756345177665%;height:39.30921052631579%;" class="flow-module tone-teal" data-flow-module="c" data-flow-stage="c" data-figure="assets/figures/method/action-model-c.svg" data-caption="Multiview future-context prediction" aria-pressed="false" aria-label="Enlarge module c: Multiview future-context prediction"><svg class="flow-plate" viewBox="3 3 605 239" aria-hidden="true" focusable="false"><defs><clipPath id="plate-c" clipPathUnits="userSpaceOnUse"><path d="M134.28 649.77C134.28 653.38 137.21 656.3 140.81 656.3H726.79C730.39 656.3 733.32 653.38 733.32 649.77V430.37C733.32 426.76 730.39 423.83 726.79 423.83H140.81C137.21 423.83 134.28 426.76 134.28 430.37Z" transform="matrix(1,0,0,-1,-127.5,662.92)" /></clipPath></defs><g clip-path="url(#plate-c)"><path d="M134.28 649.77C134.28 653.38 137.21 656.3 140.81 656.3H726.79C730.39 656.3 733.32 653.38 733.32 649.77V430.37C733.32 426.76 730.39 423.83 726.79 423.83H140.81C137.21 423.83 134.28 426.76 134.28 430.37Z" transform="matrix(1,0,0,-1,-127.5,662.92)" class="plate-fill" /></g></svg><img src="assets/figures/method/action-model-c.svg" width="605" height="239" loading="lazy" alt="Original paper artwork: Multiview future-context prediction."><span class="flow-expand" aria-hidden="true">↗</span></button>
+<button type="button" style="left:46.14674665436087%;top:53.94736842105263%;width:12.921089063221041%;height:8.388157894736842%;" class="flow-module tone-teal" data-flow-module="c-current" data-flow-stage="c" data-figure="assets/figures/method/action-model-c-current.svg" data-caption="Current-context tokens" aria-pressed="false" aria-label="Enlarge module c-current: Current-context tokens"><svg class="flow-plate" viewBox="500 328 140 51" aria-hidden="true" focusable="false"><defs><clipPath id="plate-c-current" clipPathUnits="userSpaceOnUse"><rect x="500" y="328" width="140" height="51" rx="3" /></clipPath></defs><g clip-path="url(#plate-c-current)"><rect x="500" y="328" width="140" height="51" rx="3" class="plate-fill" /></g></svg><img src="assets/figures/method/action-model-c-current.svg" width="140" height="51" loading="lazy" alt="Original paper artwork: Current-context tokens."><span class="flow-expand" aria-hidden="true">↗</span></button>
+<button type="button" style="left:59.25242270419936%;top:0.4934210526315789%;width:40.51684356252884%;height:73.35526315789474%;" class="flow-module tone-blue" data-flow-module="d" data-flow-stage="d" data-figure="assets/figures/method/action-model-d.svg" data-caption="Continuous action generation" aria-pressed="false" aria-label="Enlarge module d: Continuous action generation"><svg class="flow-plate" viewBox="642 3 439 446" aria-hidden="true" focusable="false"><defs><clipPath id="plate-d" clipPathUnits="userSpaceOnUse"><path d="M770.04 649.77C770.04 653.38 772.97 656.3 776.57 656.3H1186.15C1189.75 656.3 1192.68 653.38 1192.68 649.77V287.86C1192.68 284.26 1189.75 281.33 1186.15 281.33H776.57C772.97 281.33 770.04 284.26 770.04 287.86Z" transform="matrix(1,0,0,-1,-127.5,662.92)" /><rect x="782.2" y="390.2" width="174.3" height="35.3" rx="3" /><rect x="980" y="389" width="95" height="56" rx="3" /></clipPath></defs><g clip-path="url(#plate-d)"><path d="M770.04 649.77C770.04 653.38 772.97 656.3 776.57 656.3H1186.15C1189.75 656.3 1192.68 653.38 1192.68 649.77V287.86C1192.68 284.26 1189.75 281.33 1186.15 281.33H776.57C772.97 281.33 770.04 284.26 770.04 287.86Z" transform="matrix(1,0,0,-1,-127.5,662.92)" class="plate-fill" /><rect x="782.2" y="390.2" width="174.3" height="35.3" rx="3" class="plate-fill" /><rect x="980" y="389" width="95" height="56" rx="3" class="plate-fill" /></g></svg><img src="assets/figures/method/action-model-d.svg" width="439" height="446" loading="lazy" alt="Original paper artwork: Continuous action generation."><span class="flow-expand" aria-hidden="true">↗</span></button>
+</div></figure>
+      </article>
+      <article class="method-stage" aria-labelledby="correction-interface-title">
+        <div class="method-stage-heading"><span class="method-stage-index" aria-hidden="true">02</span><div><h3 id="correction-interface-title">Grounded correction interface</h3><p>MetaBrain’s recovery instruction, verified spatial evidence, executed history and a fresh base-policy proposal are encoded into <strong>one correction code</strong>. A residual adapter uses this code to adjust action generation, with all model parameters fixed during deployment.</p></div></div>
+        <figure class="method-flow flow-correction-interface" data-method-flow role="group" aria-label="correction interface modules"><div class="flow-canvas" style="aspect-ratio:510.0/360.9599914550781">
+<img class="flow-connections" src="assets/figures/method/correction-interface-connections.svg" width="510.0" height="360.9599914550781" alt="Original arrows connecting the modules in the paper diagram." loading="lazy">
+<svg class="flow-clip-defs" width="0" height="0" aria-hidden="true"><defs><clipPath id="correction-a-clip" clipPathUnits="objectBoundingBox"><path d="M27 20H1173C1173.9281 20 1174.821 20.177615 1175.6786 20.53284 1176.5361 20.88807 1177.2932 21.393874 1177.9497 22.050251 1178.606 22.706629 1179.1117 23.463616 1179.467 24.321213 1179.8223 25.178812 1179.9999 26.071742 1180 27V333C1179.9999 333.92826 1179.8223 334.82118 1179.467 335.67875 1179.1117 336.53636 1178.606 337.29335 1177.9497 337.94975 1177.2932 338.6061 1176.5361 339.1119 1175.6786 339.46714 1174.821 339.82237 1173.9281 339.99998 1173 340H27C26.071742 339.99998 25.17881 339.82237 24.32121 339.46714 23.463616 339.1119 22.706629 338.6061 22.050251 337.94975 21.393874 337.29335 20.88807 336.53636 20.53284 335.67875 20.177613 334.82118 19.999999 333.92826 20 333V27C19.999999 26.071742 20.177613 25.17881 20.53284 24.32121 20.88807 23.463616 21.393874 22.706629 22.050251 22.050251 22.706629 21.393874 23.463616 20.88807 24.321213 20.53284 25.178812 20.177615 26.071742 20 27 20Z" transform="matrix(0.0008580384989858012 0.0 0.0 0.00308768598540146 -0.014693865922920893 -0.058394160583941604)"/></clipPath></defs></svg>
+<button type="button" style="left:1.5686274509803921%;top:2.216312109203828%;width:96.66666666666667%;height:37.954344870115555%;" class="flow-module tone-orange is-active" data-flow-module="a" data-flow-stage="a" data-figure="assets/figures/method/correction-interface-a.svg" data-caption="Encode grounded context once" aria-pressed="true" aria-label="Enlarge module a: Encode grounded context once"><img src="assets/figures/method/correction-interface-a.svg" width="493" height="137" loading="lazy" alt="Original paper artwork: Encode grounded context once."><span class="flow-expand" aria-hidden="true">↗</span></button>
+<svg class="flow-clip-defs" width="0" height="0" aria-hidden="true"><defs><clipPath id="correction-b-clip" clipPathUnits="objectBoundingBox"><path d="M27 360H1173C1173.9281 360 1174.821 360.1776 1175.6786 360.53285 1176.5361 360.88807 1177.2932 361.39387 1177.9497 362.05027 1178.606 362.70664 1179.1117 363.46363 1179.467 364.3212 1179.8223 365.17878 1179.9999 366.07173 1180 367V823C1179.9999 823.9283 1179.8223 824.82119 1179.467 825.6788 1179.1117 826.5364 1178.606 827.29336 1177.9497 827.9497 1177.2932 828.6061 1176.5361 829.1119 1175.6786 829.4671 1174.821 829.8223 1173.9281 829.99996 1173 830H27C26.071742 829.99996 25.17881 829.8223 24.32121 829.4671 23.463616 829.1119 22.706629 828.6061 22.050251 827.9497 21.393874 827.29336 20.88807 826.5364 20.53284 825.6788 20.177613 824.82119 19.999999 823.9283 20 823V367C19.999999 366.07173 20.177613 365.17878 20.53284 364.3212 20.88807 363.46363 21.393874 362.70664 22.050251 362.05027 22.706629 361.39387 23.463616 360.88807 24.321213 360.5328 25.178812 360.1776 26.071742 360 27 360Z" transform="matrix(0.0008580384989858012 0.0 0.0 0.00209932 -0.014693865922920893 -0.7518610421836228)"/></clipPath></defs></svg>
+<button type="button" style="left:1.5686274509803921%;top:41.971410568047496%;width:96.66666666666667%;height:55.82336125057142%;" class="flow-module tone-blue" data-flow-module="b" data-flow-stage="b" data-figure="assets/figures/method/correction-interface-b.svg" data-caption="Correct the action flow at every step" aria-pressed="false" aria-label="Enlarge module b: Correct the action flow at every step"><img src="assets/figures/method/correction-interface-b.svg" width="493" height="201.5" loading="lazy" alt="Original paper artwork: Correct the action flow at every step."><span class="flow-expand" aria-hidden="true">↗</span></button>
+</div></figure>
+      </article>
+      <article class="method-stage" aria-labelledby="correction-supervision-title">
+        <div class="method-stage-heading"><span class="method-stage-index" aria-hidden="true">03</span><div><h3 id="correction-supervision-title">Correction supervision</h3><p>Correction examples are <strong>mined offline</strong> by comparing a frozen policy’s unexecuted proposals with expert demonstrations. Grounded visual evidence and corrective instructions form the training context; the expert continuation supervises the correction branch while the base policy stays frozen.</p></div></div>
+        <figure class="method-flow flow-correction-training" data-method-flow role="group" aria-label="correction training modules"><div class="flow-canvas" style="aspect-ratio:510.0/267.1199951171875">
+<img class="flow-connections" src="assets/figures/method/correction-training-connections.svg" width="510.0" height="267.1199951171875" alt="Original arrows connecting the modules in the paper diagram." loading="lazy">
+<button type="button" style="left:2.156862745098039%;top:4.492363065047044%;width:20.784313725490197%;height:87.22671617966344%;" class="flow-module tone-orange is-active" data-flow-module="a" data-flow-stage="a" data-figure="assets/figures/method/correction-training-a.svg" data-caption="Causal proposal" aria-pressed="true" aria-label="Enlarge module a: Causal proposal"><img src="assets/figures/method/correction-training-a.svg" width="106" height="233" loading="lazy" alt="Original paper artwork: Causal proposal."><span class="flow-expand" aria-hidden="true">↗</span></button>
+<button type="button" style="left:24.509803921568626%;top:4.492363065047044%;width:26.862745098039216%;height:87.22671617966344%;" class="flow-module tone-blue" data-flow-module="b" data-flow-stage="b" data-figure="assets/figures/method/correction-training-b.svg" data-caption="Mine deviations" aria-pressed="false" aria-label="Enlarge module b: Mine deviations"><img src="assets/figures/method/correction-training-b.svg" width="137" height="233" loading="lazy" alt="Original paper artwork: Mine deviations."><span class="flow-expand" aria-hidden="true">↗</span></button>
+<button type="button" style="left:52.156862745098046%;top:4.492363065047044%;width:45.09803921568628%;height:92.09344283346441%;" class="flow-module tone-green" data-flow-module="c" data-flow-stage="c" data-figure="assets/figures/method/correction-training-c.svg" data-caption="Ground, annotate & assemble" aria-pressed="false" aria-label="Enlarge module c: Ground, annotate & assemble"><img src="assets/figures/method/correction-training-c.svg" width="230" height="246" loading="lazy" alt="Original paper artwork: Ground, annotate & assemble."><span class="flow-expand" aria-hidden="true">↗</span></button>
+</div></figure>
+      </article>
+      <article class="method-stage" aria-labelledby="execution-recovery-title">
+        <div class="method-stage-heading"><span class="method-stage-index" aria-hidden="true">04</span><div><h3 id="execution-recovery-title">Execution and recovery</h3><p>When execution becomes abnormal, the system pauses pending controls and gathers <strong>fresh evidence</strong> for a new recovery attempt. It checks the corrected candidate before execution, verifies the outcome and either resumes the unfinished task or updates the recovery query within the remaining budget.</p></div></div>
+        <figure class="method-flow flow-execution-recovery" data-method-flow role="group" aria-label="execution recovery modules"><div class="flow-canvas" style="aspect-ratio:510.0/318.0">
+<img class="flow-connections" src="assets/figures/method/execution-recovery-connections.svg" width="510.0" height="318.0" alt="Original arrows connecting the modules in the paper diagram." loading="lazy">
+<button type="button" style="left:1.1764705882352942%;top:1.257861635220126%;width:97.45098039215686%;height:27.358490566037734%;" class="flow-module tone-blue is-active" data-flow-module="a" data-flow-stage="a" data-figure="assets/figures/method/execution-recovery-a.svg" data-caption="Nominal execution" aria-pressed="true" aria-label="Enlarge module a: Nominal execution"><img src="assets/figures/method/execution-recovery-a.svg" width="497" height="87" loading="lazy" alt="Original paper artwork: Nominal execution."><span class="flow-expand" aria-hidden="true">↗</span></button>
+<button type="button" style="left:1.1764705882352942%;top:30.50314465408805%;width:29.80392156862745%;height:62.264150943396224%;" class="flow-module tone-orange" data-flow-module="b" data-flow-stage="b" data-figure="assets/figures/method/execution-recovery-b.svg" data-caption="Stop & ground" aria-pressed="false" aria-label="Enlarge module b: Stop & ground"><img src="assets/figures/method/execution-recovery-b.svg" width="152" height="198" loading="lazy" alt="Original paper artwork: Stop & ground."><span class="flow-expand" aria-hidden="true">↗</span></button>
+<button type="button" style="left:32.549019607843135%;top:30.50314465408805%;width:32.549019607843135%;height:58.17610062893082%;" class="flow-module tone-blue" data-flow-module="c" data-flow-stage="c" data-figure="assets/figures/method/execution-recovery-c.svg" data-caption="Regenerate from fresh state" aria-pressed="false" aria-label="Enlarge module c: Regenerate from fresh state"><img src="assets/figures/method/execution-recovery-c.svg" width="166" height="185" loading="lazy" alt="Original paper artwork: Regenerate from fresh state."><span class="flow-expand" aria-hidden="true">↗</span></button>
+<button type="button" style="left:67.45098039215686%;top:30.50314465408805%;width:31.176470588235293%;height:58.17610062893082%;" class="flow-module tone-green" data-flow-module="d" data-flow-stage="d" data-figure="assets/figures/method/execution-recovery-d.svg" data-caption="Check, act & verify" aria-pressed="false" aria-label="Enlarge module d: Check, act & verify"><img src="assets/figures/method/execution-recovery-d.svg" width="159" height="185" loading="lazy" alt="Original paper artwork: Check, act & verify."><span class="flow-expand" aria-hidden="true">↗</span></button>
+<button type="button" style="left:30.980392156862745%;top:89.77987421383648%;width:47.25490196078431%;height:7.3899371069182385%;" class="flow-module tone-purple" data-flow-module="e" data-flow-stage="e" data-figure="assets/figures/method/execution-recovery-e.svg" data-caption="Log and update the recovery query" aria-pressed="false" aria-label="Enlarge module e: Log and update the recovery query"><img src="assets/figures/method/execution-recovery-e.svg" width="241" height="23.5" loading="lazy" alt="Original paper artwork: Log and update the recovery query."><span class="flow-expand" aria-hidden="true">↗</span></button>
+</div></figure>
+      </article>
+    </section>
+
+    <section class="section real-world" id="real-world" aria-labelledby="real-world-title">
+      <div class="section-heading"><p class="section-kicker">DEMONSTRATIONS</p><h2 id="real-world-title">Real-World Manipulation</h2></div>
+      <nav class="results-jumps demo-jumps" aria-label="Jump to real-world demonstrations">
+        <a href="#coffee">Coffee preparation <span aria-hidden="true">↘</span></a>
+        <a href="#correction">Grasp correction <span aria-hidden="true">↘</span></a>
+        <a href="#task-demos">A²-WLA tasks <span aria-hidden="true">↘</span></a>
+      </nav>
+
+      <section class="demo-group coffee" id="coffee" aria-labelledby="coffee-title" tabindex="-1">
+        <div class="demo-group-heading"><h3 id="coffee-title">Long-Horizon Pour-Over Coffee Preparation</h3></div>
+        <div class="coffee-full-task" role="group" aria-labelledby="coffee-demo-title">
+          <h4 id="coffee-demo-title">Full-task demonstration</h4>
+          <div id="coffee-video"></div>
+          <noscript><p><a href="assets/videos/coffee.mp4">Play the full coffee sequence</a></p></noscript>
+        </div>
+
+        <section class="demo-subgroup correction" id="correction" aria-labelledby="correction-title" tabindex="-1">
+          <h4 id="correction-title">Grasp Correction and Step Completion</h4>
+      <div class="correction-grid" id="correction-videos"></div>
+      <noscript><p><a href="assets/videos/correction-step-2.mp4">Play Step 2 recovery</a> · <a href="assets/videos/correction-step-7.mp4">Play Step 7 recovery</a></p></noscript>
+      <div class="original-recovery"><figure class="paper-figure original-figure" id="figure-12">
+        <button class="figure-button" data-figure="assets/figures/coffee-recovery.svg" data-caption="Coffee preparation and recovery" aria-label="Enlarge Coffee preparation and recovery">
+          <img src="assets/figures/coffee-recovery.svg" width="469" height="425" loading="lazy" alt="Filter pickup and regrasping sequences for Steps 2 and 7, with separate charts for original-start completion and recovery after failure.">
+          <span class="enlarge-label" aria-hidden="true">Expand ↗</span>
+        </button>
+      </figure></div>
+        </section>
+      </section>
+
+      <section class="demo-group" id="task-demos" aria-labelledby="task-demos-title" tabindex="-1">
+        <div class="demo-group-heading"><h3 id="task-demos-title">Short-Horizon Tasks</h3><p class="task-hint">Click a video to enlarge.</p></div>
+      <div class="task-orbit">
+        <div id="task-gallery" class="task-ring" role="region" aria-label="Short-horizon task videos" aria-roledescription="carousel" tabindex="0" aria-busy="true"><p class="loading-note">Loading task inventory…</p></div>
+      </div>
+      <div class="task-controls" role="group" aria-label="Task video controls">
+        <button id="tasks-prev" type="button" aria-label="Previous task" aria-controls="task-gallery" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
+        <button id="tasks-next" type="button" aria-label="Next task" aria-controls="task-gallery" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
+      </div>
+      <p class="sr-only" id="gallery-announcement" aria-live="polite"></p>
+      <noscript><p>The task gallery needs JavaScript.</p></noscript>
+      </section>
+    </section>
+
+    <section class="section results-section" id="results" aria-labelledby="results-title">
+      <div class="section-heading"><p class="section-kicker">EVALUATION</p><h2 id="results-title">BEHAVIOR &amp; RoboTwin results</h2></div>
+      <nav class="results-jumps" aria-label="Jump to evaluation results">
+        <a href="#behavior-results">BEHAVIOR <span aria-hidden="true">↘</span></a>
+        <a href="#robotwin-results">RoboTwin <span aria-hidden="true">↘</span></a>
+      </nav>
+      <section class="results-group" id="behavior-results" aria-labelledby="behavior-results-title" tabindex="-1">
+        <h3 id="behavior-results-title">BEHAVIOR</h3>
+      <div class="paper-results-block"><div class="paper-table-panel"><div class="table-heading"><h4>System performance</h4><p class="table-meta"><span>2026 public set</span><span>100 tasks</span><span>1,000 episodes</span></p></div><p class="paper-table-hint">Swipe to see all columns <span aria-hidden="true">→</span></p><div class="paper-table-scroll" role="region" aria-label="System performance" tabindex="0"><table class="paper-table " data-paper-table="5"><caption class="sr-only">System performance</caption><colgroup><col style="width:35%"><col style="width:15%"><col style="width:18%"><col style="width:17%"><col style="width:15%"></colgroup><thead><tr><th scope="col">Configuration</th><th scope="col">Q-score</th><th scope="col">Success (%)</th><th scope="col">Successes</th><th scope="col">Coverage</th></tr></thead><tbody><tr class=""><th scope="row">A<sup>2</sup>-WLA single model</th><td>0.4597</td><td>27.20</td><td>272/1,000</td><td>70/100</td></tr><tr class=""><th scope="row">A<sup>2</sup>-WLA multiple models</th><td>0.6040</td><td>40.60</td><td>406/1,000</td><td>80/100</td></tr><tr class=""><th scope="row">A<sup>2</sup>-MEAS complete system</th><td><strong>0.6411</strong></td><td><strong>45.40</strong></td><td>454/1,000</td><td>88/100</td></tr></tbody></table></div></div></div>
+      <div class="paper-results-block"><div class="paper-table-panel"><div class="table-heading"><h4>Public-set comparison</h4><p class="table-meta"><span>Self-reported entries</span><span>Source-specific protocols</span></p></div><p class="paper-table-hint">Swipe to see all columns <span aria-hidden="true">→</span></p><div class="paper-table-scroll" role="region" aria-label="Public-set comparison" tabindex="0"><table class="paper-table " data-paper-table="6"><caption class="sr-only">Public-set comparison</caption><colgroup><col style="width:29%"><col style="width:49%"><col style="width:12%"><col style="width:10%"></colgroup><thead><tr><th scope="col">Team or submission</th><th scope="col">Institution</th><th scope="col">Q-score</th><th scope="col">SR (%)</th></tr></thead><tbody><tr class=""><th scope="row">George Albrecht</th><td>CAU / GMU / EWHA</td><td>0.3862</td><td>20.00</td></tr><tr class=""><th scope="row">Mirua</th><td>Xiaomi Robotics</td><td>0.3971</td><td>19.80</td></tr><tr class=""><th scope="row">VERA</th><td>AXXX</td><td>0.4000</td><td>25.00</td></tr><tr class=""><th scope="row">Newbie</th><td>morphic &amp; 4dvlab</td><td>0.4040</td><td>21.70</td></tr><tr class=""><th scope="row">Huawei AI Algorithm Dept</th><td>Huawei Technologies</td><td>0.4076</td><td>25.20</td></tr><tr class=""><th scope="row">Lion</th><td>Lionrock AI Lab</td><td>0.4082</td><td>21.80</td></tr><tr class=""><th scope="row">The Southern Cross</th><td>Independent</td><td>0.4099</td><td>23.00</td></tr><tr class=""><th scope="row">MXI</th><td>Beijing 1011 Technology</td><td>0.4187</td><td>22.70</td></tr><tr class=""><th scope="row">Sora</th><td>Independent</td><td>0.4195</td><td>22.50</td></tr><tr class=""><th scope="row">Multi</th><td>mor</td><td>0.4302</td><td>19.80</td></tr><tr class=""><th scope="row">Anyverse A2R</th><td>Anyverse-A2R</td><td>0.4321</td><td>24.70</td></tr><tr class=""><th scope="row">VGI-SKT</th><td>SNU / SKT</td><td>0.4449</td><td>22.30</td></tr><tr class=""><th scope="row">Robot Learning Collective</th><td>Independent</td><td>0.4458</td><td>27.30</td></tr><tr class=""><th scope="row">tasman3001</th><td>Ambarella, Inc.</td><td>0.4808</td><td>30.40</td></tr><tr class=""><th scope="row">asteroid</th><td>CLab</td><td>0.5143</td><td>30.80</td></tr><tr class="ours"><th scope="row">A<sup>2</sup>-MEAS (ours)</th><td>Anyverse–AutoLab</td><td><strong>0.6411</strong></td><td><strong>45.40</strong></td></tr></tbody></table></div></div></div>
+      <div class="paper-results-block"><div class="paper-table-panel"><div class="table-heading"><h4>Results across evaluation settings</h4><p class="table-meta"><span>2025 public references</span><span>2026 subset: 50 tasks, 500 episodes</span></p></div><p class="paper-table-hint">Swipe to see all columns <span aria-hidden="true">→</span></p><div class="paper-table-scroll" role="region" aria-label="Results across evaluation settings" tabindex="0"><table class="paper-table context-table" data-paper-table="7"><caption class="sr-only">Results across evaluation settings</caption><colgroup><col style="width:31%"><col style="width:13%"><col style="width:12%"><col style="width:44%"></colgroup><thead><tr><th scope="col">Method</th><th scope="col">Q-score</th><th scope="col">SR (%)</th><th scope="col">Evaluation context</th></tr></thead><tbody><tr class="table-group"><th scope="rowgroup" colspan="4">Competition public-dataset evaluation [11]</th></tr><tr class=""><th scope="row">RLC</th><td>0.2605</td><td>11.20</td><td>4 checkpoints</td></tr><tr class=""><th scope="row">Comet</th><td>0.1830</td><td>14.40</td><td>Competition submission</td></tr><tr class=""><th scope="row">SimpleAI Robot</th><td>0.1943</td><td>14.00</td><td>Competition submission</td></tr><tr class=""><th scope="row">The North Star</th><td>0.1702</td><td>12.80</td><td>Competition submission</td></tr><tr class="table-group"><th scope="rowgroup" colspan="4">Post-competition and subsequent reports</th></tr><tr class=""><th scope="row">Openpi Comet [23]</th><td>0.3450</td><td>—</td><td>2 checkpoints, reinforcement fine-tuning</td></tr><tr class=""><th scope="row">π<sub>0.5</sub> [7]</th><td>0.2626</td><td>—</td><td>4 epochs, single checkpoint</td></tr><tr class=""><th scope="row">G0.5 [7]</th><td>0.2904</td><td>—</td><td>1 epoch, single checkpoint</td></tr><tr class=""><th scope="row">G0.5 [7]</th><td>0.3136</td><td>—</td><td>4 epochs, single checkpoint</td></tr><tr class="table-group ours"><th scope="rowgroup" colspan="4">Our 2026 public-set subset, 50 tasks and 500 episodes</th></tr><tr class="ours"><th scope="row">A<sup>2</sup>-WLA single model</th><td>0.4522</td><td>25.60</td><td>4 epochs, single checkpoint</td></tr><tr class="ours"><th scope="row">A<sup>2</sup>-WLA multiple models</th><td>0.5755</td><td>37.40</td><td>25 checkpoints</td></tr><tr class="ours"><th scope="row">A<sup>2</sup>-MEAS complete system</th><td>0.6191</td><td>41.40</td><td>Including the full system</td></tr></tbody></table></div></div></div>
+      </section>
+      <section class="results-group" id="robotwin-results" aria-labelledby="robotwin-results-title" tabindex="-1">
+        <h3 id="robotwin-results-title">RoboTwin 2.0</h3>
+      <div class="paper-results-block"><div class="paper-table-panel"><div class="table-heading"><h4>Bimanual manipulation</h4><p class="table-meta"><span>Clean and randomized settings</span><span>Source-specific protocols</span></p></div><p class="paper-table-hint">Swipe to see all columns <span aria-hidden="true">→</span></p><div class="paper-table-scroll" role="region" aria-label="Bimanual manipulation" tabindex="0"><table class="paper-table " data-paper-table="8"><caption class="sr-only">Bimanual manipulation</caption><colgroup><col style="width:46%"><col style="width:18%"><col style="width:20%"><col style="width:16%"></colgroup><thead><tr><th scope="col">Method or configuration</th><th scope="col">Clean (%)</th><th scope="col">Randomized (%)</th><th scope="col">Average (%)</th></tr></thead><tbody><tr class=""><th scope="row">π<sub>0.5</sub> [9, 25]</th><td>82.74</td><td>76.76</td><td>79.75</td></tr><tr class=""><th scope="row">LingBot-VLA (without depth) [25]</th><td>86.50</td><td>85.34</td><td>85.92</td></tr><tr class=""><th scope="row">LingBot-VLA (with depth) [25]</th><td>88.56</td><td>86.68</td><td>87.62</td></tr><tr class=""><th scope="row">Motus [26]</th><td>88.70</td><td>87.00</td><td>87.85</td></tr><tr class=""><th scope="row">StarVLA [27]</th><td>88.70</td><td>87.80</td><td>88.25</td></tr><tr class=""><th scope="row">LingBot-VA [28]</th><td>92.90</td><td>91.50</td><td>92.20</td></tr><tr class=""><th scope="row">Fast-WAM [29]</th><td>91.90</td><td>91.80</td><td>91.85</td></tr><tr class=""><th scope="row">G0.5 [7]</th><td>93.70</td><td>92.80</td><td>93.25</td></tr><tr class=""><th scope="row">LingBot-VLA 2.0 [30]</th><td>93.52</td><td>92.80</td><td>93.16</td></tr><tr class=""><th scope="row">MotuBrain [31]</th><td>95.80</td><td>96.10</td><td>95.95</td></tr><tr class="table-group ours italic"><th scope="rowgroup" colspan="4">Our configurations</th></tr><tr class="ours"><th scope="row">A<sup>2</sup>-WLA</th><td>94.26</td><td>93.70</td><td>93.98</td></tr><tr class="ours"><th scope="row">A<sup>2</sup>-MEAS</th><td><strong>95.15</strong></td><td><strong>94.71</strong></td><td><strong>94.93</strong></td></tr></tbody></table></div></div></div>
+      </section>
+    </section>
+
+    <section class="section training-section" id="training-efficiency" aria-labelledby="training-efficiency-title">
+      <div class="section-heading"><p class="section-kicker">INFRASTRUCTURE</p><h2 id="training-efficiency-title">Training efficiency</h2></div>
+      <p class="section-intro">The training pipeline reduces repeated data preparation, reuses shared model computation, and distributes optimizer work across GPUs.</p>
+      <div class="paper-results-block"><figure class="paper-figure original-figure" id="figure-8">
+        <button class="figure-button" data-figure="assets/figures/training-systems.svg" data-caption="Data processing and distributed execution" aria-label="Enlarge Data processing and distributed execution">
+          <img src="assets/figures/training-systems.svg" width="471" height="175" loading="lazy" alt="Five original charts comparing data processing time, single-GPU and eight-GPU step time, eight-GPU throughput and time to first step.">
+          <span class="enlarge-label" aria-hidden="true">Expand ↗</span>
+        </button>
+        <figcaption class="figure-description"><p class="figure-caption-title">Data processing and distributed execution</p><p class="figure-brief">Batch JPEG decoding, Arrow caches and asynchronous prefetching remove repeated input work. Data preparation drops from about <strong>1,300 ms to 28 ms</strong>; single-GPU step time falls from <strong>3.03 s to 1.13 s</strong>. The eight-GPU panels separately measure faster startup and distributed execution.</p></figcaption>
+      </figure></div>
+      <div class="paper-results-block"><figure class="paper-figure original-figure" id="figure-9">
+        <button class="figure-button" data-figure="assets/figures/training-throughput.svg" data-caption="Training-throughput optimizations" aria-label="Enlarge Training-throughput optimizations">
+          <img src="assets/figures/training-throughput.svg" width="465" height="175" loading="lazy" alt="Three original before-and-after throughput charts for dedicated computation paths and scheduling, static caches, and Sharded Local Muon.">
+          <span class="enlarge-label" aria-hidden="true">Expand ↗</span>
+        </button>
+        <figcaption class="figure-description"><p class="figure-caption-title">Training-throughput optimizations</p><p class="figure-brief">Dedicated computation paths and scheduling reduce redundant work. Static token, rotary-index and metadata caches reuse fixed inputs. Sharded Local Muon distributes matrix updates across GPU ranks. The three panels show independent throughput gains of <strong>36.97%</strong>, <strong>5.70%</strong> and <strong>1.7%</strong>, respectively.</p></figcaption>
+      </figure></div>
+    </section>
+
+    <section class="section citation" id="citation" aria-labelledby="citation-title">
+      <div class="citation-heading"><h2 id="citation-title">BibTeX</h2><button class="copy-button" id="copy-citation"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M9 9h11v12H9zM15 9V3H3v12h6"/></svg><span>Copy citation</span></button></div>
+      <pre><code id="bibtex">@techreport{liang2026agentic,
+  title = {Toward the Era of Agentic Embodied Intelligence},
+  author = {Chao Liang and Ke Chen and Fengxiaoxiao Li and
+    Shibo Huang and Yufeng Sun and Zhaokai Yin and
+    Jianhuan Lai and Haozhe Feng and Chenghuan Jia and
+    Zhipeng Zhang},
+  institution = {AutoLab, School of Artificial Intelligence,
+    Shanghai Jiao Tong University and
+    Research Lab, Anyverse Dynamics},
+  year = {2026},
+  type = {Technical Report}
+}</code></pre>
+      <p class="copy-status" id="copy-status" role="status"></p>
+    </section>
+    <section class="section contributors" id="contributors" aria-labelledby="contributors-title">
+      <div class="section-heading"><p class="section-kicker">THE PEOPLE BEHIND THE WORK</p><h2 id="contributors-title">Authors &amp; contributions</h2></div>
+      <dl class="contribution-list">
+        <div class="contribution-row"><dt>Core contributors</dt><dd><ul class="contributor-names"><li>Chao Liang</li><li>Ke Chen</li><li>Fengxiaoxiao Li</li><li>Shibo Huang</li><li>Yufeng Sun</li></ul></dd></div>
+        <div class="contribution-row"><dt>Other contributors</dt><dd><ul class="contributor-names"><li>Zhaokai Yin</li><li>Jianhuan Lai</li><li>Haozhe Feng</li><li>Chenghuan Jia</li></ul></dd></div>
+        <div class="contribution-row"><dt>Project leaders</dt><dd><ul class="contributor-names"><li>Chao Liang</li><li>Zhipeng Zhang</li></ul></dd></div>
+        <div class="contribution-row"><dt>Corresponding author</dt><dd class="corresponding-details"><span>Zhipeng Zhang</span><span class="email-copy-control"><button class="contributor-email" id="copy-email" type="button" aria-label="Copy Zhipeng Zhang’s email" title="Copy email"><span>zhipengzhang@sjtu.edu.cn</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 9h11v12H9zM15 9V3H3v12h6"/></svg></button><span id="email-copy-status" class="email-feedback" role="status" aria-live="polite" hidden></span></span></dd></div>
+      </dl>
+      <div class="contributors-affiliations"><p>AutoLab, School of Artificial Intelligence, Shanghai Jiao Tong University</p><p>Research Lab, Anyverse Dynamics</p></div>
+    </section>
+  </main>
+  <footer class="site-footer"><a class="wordmark" href="#top">A<sup>2</sup><span>–</span>MEAS</a><p>Toward the Era of Agentic Embodied Intelligence</p></footer>
+
+  <dialog id="figure-dialog" aria-label="Expanded paper figure"><div class="dialog-toolbar"><p id="figure-caption"></p><button class="icon-button dialog-close" aria-label="Close expanded figure">✕</button></div><img id="expanded-figure" alt=""><div id="expanded-figure-description" class="figure-description" hidden></div></dialog>
+  <dialog id="task-video-dialog" class="video-dialog" aria-labelledby="task-video-title">
+    <div class="task-dialog-toolbar"><h2 id="task-video-title"></h2><button id="close-task-video" type="button" class="icon-button" aria-label="Close task video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <div id="task-modal-player"></div>
+    <div class="task-dialog-feedback" id="task-modal-feedback" hidden><p id="task-modal-status" role="status" hidden></p><button id="task-modal-retry" type="button" hidden>Retry video</button></div>
+  </dialog>
+  <dialog id="demo-video-dialog" class="video-dialog" aria-labelledby="demo-video-title">
+    <div class="task-dialog-toolbar"><h2 id="demo-video-title"></h2><button id="close-demo-video" type="button" class="icon-button video-dialog-close" aria-label="Close video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <div class="modal-video-player"><video id="demo-modal-video" controls playsinline preload="metadata"></video></div>
+    <p id="demo-video-status" class="demo-video-status" role="status" hidden></p>
+  </dialog>
+</body>
+</html>

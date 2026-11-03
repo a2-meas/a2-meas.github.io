@@ -1,0 +1,322 @@
+[
+  {
+    "stage": "a",
+    "group": "action-model",
+    "letter": "a",
+    "title": "Motion-aware visual history",
+    "color": "green",
+    "source": "figure/第16页_模型结构_裁剪.pdf",
+    "bounds": [
+      3,
+      240,
+      343,
+      405
+    ],
+    "width": 340,
+    "height": 165,
+    "asset": "assets/figures/method/action-model-a.svg",
+    "removed_page_backgrounds": 1,
+    "page_width": 1083.5,
+    "page_height": 608.0
+  },
+  {
+    "stage": "a",
+    "group": "action-model",
+    "letter": "a-detail",
+    "title": "Motion-aware history encoder — detail",
+    "color": "green",
+    "source": "figure/第16页_模型结构_裁剪.pdf",
+    "bounds": [
+      3,
+      463,
+      1081,
+      604
+    ],
+    "width": 1078,
+    "height": 141,
+    "asset": "assets/figures/method/action-model-a-detail.svg",
+    "removed_page_backgrounds": 1,
+    "page_width": 1083.5,
+    "page_height": 608.0
+  },
+  {
+    "stage": "b",
+    "group": "action-model",
+    "letter": "b",
+    "title": "Task interpretation with Qwen3-VL",
+    "color": "orange",
+    "source": "figure/第16页_模型结构_裁剪.pdf",
+    "bounds": [
+      344,
+      296,
+      496,
+      383
+    ],
+    "width": 152,
+    "height": 87,
+    "asset": "assets/figures/method/action-model-b.svg",
+    "removed_page_backgrounds": 1,
+    "page_width": 1083.5,
+    "page_height": 608.0
+  },
+  {
+    "stage": "c",
+    "group": "action-model",
+    "letter": "c",
+    "title": "Multiview future-context prediction",
+    "color": "teal",
+    "source": "figure/第16页_模型结构_裁剪.pdf",
+    "bounds": [
+      3,
+      3,
+      608,
+      242
+    ],
+    "width": 605,
+    "height": 239,
+    "asset": "assets/figures/method/action-model-c.svg",
+    "removed_page_backgrounds": 1,
+    "page_width": 1083.5,
+    "page_height": 608.0
+  },
+  {
+    "stage": "c",
+    "group": "action-model",
+    "letter": "c-current",
+    "title": "Current-context tokens",
+    "color": "teal",
+    "source": "figure/第16页_模型结构_裁剪.pdf",
+    "bounds": [
+      500,
+      328,
+      640,
+      379
+    ],
+    "width": 140,
+    "height": 51,
+    "asset": "assets/figures/method/action-model-c-current.svg",
+    "removed_page_backgrounds": 1,
+    "page_width": 1083.5,
+    "page_height": 608.0
+  },
+  {
+    "stage": "d",
+    "group": "action-model",
+    "letter": "d",
+    "title": "Continuous action generation",
+    "color": "blue",
+    "source": "figure/第16页_模型结构_裁剪.pdf",
+    "bounds": [
+      642,
+      3,
+      1081,
+      449
+    ],
+    "width": 439,
+    "height": 446,
+    "asset": "assets/figures/method/action-model-d.svg",
+    "removed_page_backgrounds": 1,
+    "page_width": 1083.5,
+    "page_height": 608.0
+  },
+  {
+    "stage": "a",
+    "group": "correction-interface",
+    "letter": "a",
+    "title": "Encode grounded context once",
+    "color": "orange",
+    "source": "figure/figure3.pdf",
+    "bounds": [
+      8,
+      8,
+      501,
+      145
+    ],
+    "width": 493,
+    "height": 137,
+    "asset": "assets/figures/method/correction-interface-a.svg",
+    "removed_page_backgrounds": 2,
+    "page_width": 510.0,
+    "page_height": 360.9599914550781
+  },
+  {
+    "stage": "b",
+    "group": "correction-interface",
+    "letter": "b",
+    "title": "Correct the action flow at every step",
+    "color": "blue",
+    "source": "figure/figure3.pdf",
+    "bounds": [
+      8,
+      151.5,
+      501,
+      353
+    ],
+    "width": 493,
+    "height": 201.5,
+    "asset": "assets/figures/method/correction-interface-b.svg",
+    "removed_page_backgrounds": 2,
+    "page_width": 510.0,
+    "page_height": 360.9599914550781
+  },
+  {
+    "stage": "a",
+    "group": "correction-training",
+    "letter": "a",
+    "title": "Causal proposal",
+    "color": "orange",
+    "source": "figure/figure4.pdf",
+    "bounds": [
+      11,
+      12,
+      117,
+      245
+    ],
+    "width": 106,
+    "height": 233,
+    "asset": "assets/figures/method/correction-training-a.svg",
+    "removed_page_backgrounds": 2,
+    "page_width": 510.0,
+    "page_height": 267.1199951171875
+  },
+  {
+    "stage": "b",
+    "group": "correction-training",
+    "letter": "b",
+    "title": "Mine deviations",
+    "color": "blue",
+    "source": "figure/figure4.pdf",
+    "bounds": [
+      125,
+      12,
+      262,
+      245
+    ],
+    "width": 137,
+    "height": 233,
+    "asset": "assets/figures/method/correction-training-b.svg",
+    "removed_page_backgrounds": 2,
+    "page_width": 510.0,
+    "page_height": 267.1199951171875
+  },
+  {
+    "stage": "c",
+    "group": "correction-training",
+    "letter": "c",
+    "title": "Ground, annotate & assemble",
+    "color": "green",
+    "source": "figure/figure4.pdf",
+    "bounds": [
+      266,
+      12,
+      496,
+      258
+    ],
+    "width": 230,
+    "height": 246,
+    "asset": "assets/figures/method/correction-training-c.svg",
+    "removed_page_backgrounds": 2,
+    "page_width": 510.0,
+    "page_height": 267.1199951171875
+  },
+  {
+    "stage": "a",
+    "group": "execution-recovery",
+    "letter": "a",
+    "title": "Nominal execution",
+    "color": "blue",
+    "source": "figure/figure5.pdf",
+    "bounds": [
+      6,
+      4,
+      503,
+      91
+    ],
+    "width": 497,
+    "height": 87,
+    "asset": "assets/figures/method/execution-recovery-a.svg",
+    "removed_page_backgrounds": 2,
+    "page_width": 510.0,
+    "page_height": 318.0
+  },
+  {
+    "stage": "b",
+    "group": "execution-recovery",
+    "letter": "b",
+    "title": "Stop & ground",
+    "color": "orange",
+    "source": "figure/figure5.pdf",
+    "bounds": [
+      6,
+      97,
+      158,
+      295
+    ],
+    "width": 152,
+    "height": 198,
+    "asset": "assets/figures/method/execution-recovery-b.svg",
+    "removed_page_backgrounds": 2,
+    "page_width": 510.0,
+    "page_height": 318.0
+  },
+  {
+    "stage": "c",
+    "group": "execution-recovery",
+    "letter": "c",
+    "title": "Regenerate from fresh state",
+    "color": "blue",
+    "source": "figure/figure5.pdf",
+    "bounds": [
+      166,
+      97,
+      332,
+      282
+    ],
+    "width": 166,
+    "height": 185,
+    "asset": "assets/figures/method/execution-recovery-c.svg",
+    "removed_page_backgrounds": 2,
+    "page_width": 510.0,
+    "page_height": 318.0
+  },
+  {
+    "stage": "d",
+    "group": "execution-recovery",
+    "letter": "d",
+    "title": "Check, act & verify",
+    "color": "green",
+    "source": "figure/figure5.pdf",
+    "bounds": [
+      344,
+      97,
+      503,
+      282
+    ],
+    "width": 159,
+    "height": 185,
+    "asset": "assets/figures/method/execution-recovery-d.svg",
+    "removed_page_backgrounds": 2,
+    "page_width": 510.0,
+    "page_height": 318.0
+  },
+  {
+    "stage": "e",
+    "group": "execution-recovery",
+    "letter": "e",
+    "title": "Log and update the recovery query",
+    "color": "purple",
+    "source": "figure/figure5.pdf",
+    "bounds": [
+      158,
+      285.5,
+      399,
+      309
+    ],
+    "width": 241,
+    "height": 23.5,
+    "asset": "assets/figures/method/execution-recovery-e.svg",
+    "removed_page_backgrounds": 2,
+    "page_width": 510.0,
+    "page_height": 318.0
+  }
+]

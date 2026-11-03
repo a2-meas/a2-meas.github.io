@@ -1,0 +1,15 @@
+.DS_Store
+__pycache__/
+*.pyc
+Tech Report/
+demo/
+assets/videos/*.tmp.mp4
+assets/videos/*.log
+output/
+dist/
+.env
+.env.*
+node_modules/
+.wrangler/
+.dev.vars
+.dev.vars.*

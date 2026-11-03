@@ -1,0 +1,130 @@
+[
+  {
+    "id": "framework",
+    "source": "figure/architecture_slide8_cropped.pdf",
+    "page": 1,
+    "clip": [
+      7,
+      13,
+      1022.5,
+      520
+    ],
+    "width": 1015.5,
+    "height": 507.0,
+    "safety_margin_pt": 3,
+    "format": "original PDF vectors and embedded images",
+    "asset": "assets/figures/framework.svg"
+  },
+  {
+    "id": "action-model",
+    "source": "figure/第16页_模型结构_裁剪.pdf",
+    "page": 1,
+    "clip": [
+      3,
+      3,
+      1080.5,
+      604.5
+    ],
+    "width": 1077.5,
+    "height": 601.5,
+    "safety_margin_pt": 3,
+    "format": "original PDF vectors and embedded images",
+    "asset": "assets/figures/action-model.svg"
+  },
+  {
+    "id": "correction-interface",
+    "source": "figure/figure3.pdf",
+    "page": 1,
+    "clip": [
+      6,
+      5.5,
+      503,
+      354
+    ],
+    "width": 497.0,
+    "height": 348.5,
+    "safety_margin_pt": 3,
+    "format": "original PDF vectors and embedded images",
+    "asset": "assets/figures/correction-interface.svg"
+  },
+  {
+    "id": "correction-training",
+    "source": "figure/figure4.pdf",
+    "page": 1,
+    "clip": [
+      10.5,
+      12,
+      497,
+      260.5
+    ],
+    "width": 486.5,
+    "height": 248.5,
+    "safety_margin_pt": 3,
+    "format": "original PDF vectors and embedded images",
+    "asset": "assets/figures/correction-training.svg"
+  },
+  {
+    "id": "execution-recovery",
+    "source": "figure/figure5.pdf",
+    "page": 1,
+    "clip": [
+      5,
+      4.5,
+      504,
+      311.5
+    ],
+    "width": 499.0,
+    "height": 307.0,
+    "safety_margin_pt": 3,
+    "format": "original PDF vectors and embedded images",
+    "asset": "assets/figures/execution-recovery.svg"
+  },
+  {
+    "id": "coffee-recovery",
+    "source": "To_the_Era_of_Agentic_Embodied_Intelligence.pdf",
+    "page": 34,
+    "clip": [
+      70.5,
+      80,
+      539.5,
+      505
+    ],
+    "width": 469.0,
+    "height": 425.0,
+    "safety_margin_pt": 3,
+    "format": "original PDF vectors and embedded images",
+    "asset": "assets/figures/coffee-recovery.svg"
+  },
+  {
+    "id": "training-systems",
+    "source": "To_the_Era_of_Agentic_Embodied_Intelligence.pdf",
+    "page": 23,
+    "clip": [
+      69,
+      406,
+      540,
+      581
+    ],
+    "width": 471.0,
+    "height": 175.0,
+    "safety_margin_pt": 3,
+    "format": "original PDF vectors and embedded images",
+    "asset": "assets/figures/training-systems.svg"
+  },
+  {
+    "id": "training-throughput",
+    "source": "To_the_Era_of_Agentic_Embodied_Intelligence.pdf",
+    "page": 25,
+    "clip": [
+      69,
+      163,
+      534,
+      338
+    ],
+    "width": 465.0,
+    "height": 175.0,
+    "safety_margin_pt": 3,
+    "format": "original PDF vectors and embedded images",
+    "asset": "assets/figures/training-throughput.svg"
+  }
+]

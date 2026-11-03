@@ -1,0 +1,44 @@
+[
+  {
+    "area": "research-question-context",
+    "text": "Each action should support continued task progress.",
+    "source": "To_the_Era_of_Agentic_Embodied_Intelligence.pdf",
+    "pages": [
+      3
+    ],
+    "sections": [
+      "1"
+    ],
+    "type": "concise paraphrase, not a direct quote"
+  },
+  {
+    "area": "training-efficiency introduction and chart explanations",
+    "source": "To_the_Era_of_Agentic_Embodied_Intelligence.pdf",
+    "pages": [
+      23,
+      24,
+      25
+    ],
+    "sections": [
+      "4",
+      "4.1"
+    ],
+    "type": "concise paraphrase; original chart measurements retained",
+    "measurements": {
+      "input_preparation_ms": [
+        1300,
+        28
+      ],
+      "single_gpu_step_s": [
+        3.03,
+        1.13
+      ],
+      "independent_throughput_gains_percent": [
+        36.97,
+        5.7,
+        1.7
+      ]
+    },
+    "protocol": "Single-device and eight-device figures use separate configurations; throughput panels are independent comparisons."
+  }
+]

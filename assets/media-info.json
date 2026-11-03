@@ -1,0 +1,146 @@
+[
+  {
+    "id": "correction-step-7",
+    "duration": 30.3,
+    "sourceBytes": 47635174,
+    "webBytes": 2522310,
+    "src": "assets/videos/correction-step-7.mp4",
+    "poster": "assets/posters/correction-step-7.jpg"
+  },
+  {
+    "id": "correction-step-2",
+    "duration": 27.91,
+    "sourceBytes": 40164777,
+    "webBytes": 1818262,
+    "src": "assets/videos/correction-step-2.mp4",
+    "poster": "assets/posters/correction-step-2.jpg"
+  },
+  {
+    "id": "usb-storage",
+    "duration": 70.59,
+    "sourceBytes": 474622378,
+    "webBytes": 17704924,
+    "src": "assets/videos/usb-storage.mp4",
+    "poster": "assets/posters/usb-storage.jpg"
+  },
+  {
+    "id": "bookshelf",
+    "duration": 27.52,
+    "sourceBytes": 182752484,
+    "webBytes": 6841226,
+    "src": "assets/videos/bookshelf.mp4",
+    "poster": "assets/posters/bookshelf.jpg"
+  },
+  {
+    "id": "cucumber",
+    "duration": 63.32,
+    "sourceBytes": 424165722,
+    "webBytes": 15835895,
+    "src": "assets/videos/cucumber.mp4",
+    "poster": "assets/posters/cucumber.jpg"
+  },
+  {
+    "id": "coffee",
+    "duration": 169.51,
+    "sourceBytes": 1173172936,
+    "webBytes": 63995092,
+    "src": "assets/videos/coffee.mp4",
+    "poster": "assets/posters/coffee.jpg"
+  },
+  {
+    "id": "food-waste",
+    "duration": 46.95,
+    "sourceBytes": 316482746,
+    "webBytes": 11952551,
+    "src": "assets/videos/food-waste.mp4",
+    "poster": "assets/posters/food-waste.jpg"
+  },
+  {
+    "id": "cosmetics",
+    "duration": 96.01,
+    "sourceBytes": 655213554,
+    "webBytes": 24113765,
+    "src": "assets/videos/cosmetics.mp4",
+    "poster": "assets/posters/cosmetics.jpg"
+  },
+  {
+    "id": "container-lid",
+    "duration": 37.92,
+    "sourceBytes": 253469447,
+    "webBytes": 9397270,
+    "src": "assets/videos/container-lid.mp4",
+    "poster": "assets/posters/container-lid.jpg"
+  },
+  {
+    "id": "charging",
+    "duration": 63.51,
+    "sourceBytes": 426688149,
+    "webBytes": 15836212,
+    "src": "assets/videos/charging.mp4",
+    "poster": "assets/posters/charging.jpg"
+  },
+  {
+    "id": "plug-insertion",
+    "duration": 36.18,
+    "sourceBytes": 238621763,
+    "webBytes": 8990210,
+    "src": "assets/videos/plug-insertion.mp4",
+    "poster": "assets/posters/plug-insertion.jpg"
+  },
+  {
+    "id": "bedtime",
+    "duration": 38.92,
+    "sourceBytes": 253271107,
+    "webBytes": 9689079,
+    "src": "assets/videos/bedtime.mp4",
+    "poster": "assets/posters/bedtime.jpg"
+  },
+  {
+    "id": "study-supplies",
+    "duration": 52.01,
+    "sourceBytes": 347963775,
+    "webBytes": 12994225,
+    "src": "assets/videos/study-supplies.mp4",
+    "poster": "assets/posters/study-supplies.jpg"
+  },
+  {
+    "id": "keyboard-pushback",
+    "duration": 66.55,
+    "sourceBytes": 446659428,
+    "webBytes": 16597469,
+    "src": "assets/videos/keyboard-pushback.mp4",
+    "poster": "assets/posters/keyboard-pushback.jpg"
+  },
+  {
+    "id": "medicine",
+    "duration": 79.2,
+    "sourceBytes": 533450558,
+    "webBytes": 19840202,
+    "src": "assets/videos/medicine.mp4",
+    "poster": "assets/posters/medicine.jpg"
+  },
+  {
+    "id": "jewelry",
+    "duration": 32.6,
+    "sourceBytes": 210219947,
+    "webBytes": 8138081,
+    "src": "assets/videos/jewelry.mp4",
+    "poster": "assets/posters/jewelry.jpg"
+  },
+  {
+    "id": "meatballs",
+    "duration": 38.31,
+    "sourceBytes": 254851875,
+    "webBytes": 9517550,
+    "src": "assets/videos/meatballs.mp4",
+    "poster": "assets/posters/meatballs.jpg"
+  },
+  {
+    "id": "drawer",
+    "duration": 129.92,
+    "sourceBytes": 885969172,
+    "webBytes": 32618919,
+    "src": "assets/videos/drawer.mp4",
+    "poster": "assets/posters/drawer.jpg"
+  }
+]

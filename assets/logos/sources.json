@@ -1,0 +1,38 @@
+[
+  {
+    "id": "sjtu",
+    "source": "logo/上海交通大学-logo.svg",
+    "viewBox": [
+      0,
+      0,
+      88,
+      88
+    ],
+    "asset": "assets/logos/sjtu.svg",
+    "operation": "outer viewport crop only; original artwork preserved"
+  },
+  {
+    "id": "autolab",
+    "source": "logo/autolab.svg",
+    "viewBox": [
+      15,
+      9,
+      405,
+      451
+    ],
+    "asset": "assets/logos/autolab.svg",
+    "operation": "outer viewport crop only; original artwork preserved"
+  },
+  {
+    "id": "anyverse-dynamics",
+    "source": "logo/anyverse-dynamics.svg",
+    "viewBox": [
+      13,
+      20,
+      1540,
+      438.5
+    ],
+    "asset": "assets/logos/anyverse-dynamics.svg",
+    "operation": "outer viewport crop only; original artwork preserved"
+  }
+]

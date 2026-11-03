@@ -1,0 +1,158 @@
+{
+  "scenes": [
+    {
+      "id": "study",
+      "title": "Study",
+      "description": "Small objects, confined spaces, and organized storage."
+    },
+    {
+      "id": "bedroom",
+      "title": "Bedroom",
+      "description": "Retrieval, pose adjustment, and multi-object routines."
+    },
+    {
+      "id": "living-room",
+      "title": "Living room",
+      "description": "Target alignment, charging, and contact control."
+    },
+    {
+      "id": "kitchen",
+      "title": "Kitchen",
+      "description": "Food preparation, sorting, and tool manipulation."
+    },
+    {
+      "id": "entryway",
+      "title": "Entryway",
+      "description": "Attachment, parcel handling, and ordered packing."
+    }
+  ],
+  "tasks": [
+    {
+      "id": "usb-storage",
+      "scene": "study",
+      "title": "USB drive storage",
+      "src": "assets/videos/usb-storage.mp4",
+      "poster": "assets/posters/usb-storage.jpg",
+      "duration": "1:11"
+    },
+    {
+      "id": "keyboard-pushback",
+      "scene": "study",
+      "title": "Keyboard pushback with obstacle avoidance",
+      "src": "assets/videos/keyboard-pushback.mp4",
+      "poster": "assets/posters/keyboard-pushback.jpg",
+      "duration": "1:07"
+    },
+    {
+      "id": "bookshelf",
+      "scene": "study",
+      "title": "Bookshelf organization",
+      "src": "assets/videos/bookshelf.mp4",
+      "poster": "assets/posters/bookshelf.jpg",
+      "duration": "0:28"
+    },
+    {
+      "id": "cosmetics",
+      "scene": "bedroom",
+      "title": "Skincare and cosmetics tabletop organization",
+      "src": "assets/videos/cosmetics.mp4",
+      "poster": "assets/posters/cosmetics.jpg",
+      "duration": "1:36"
+    },
+    {
+      "id": "medicine",
+      "scene": "bedroom",
+      "title": "Eye-drop and medicine retrieval and return",
+      "src": "assets/videos/medicine.mp4",
+      "poster": "assets/posters/medicine.jpg",
+      "duration": "1:19"
+    },
+    {
+      "id": "bedtime",
+      "scene": "bedroom",
+      "title": "Bedtime item preparation",
+      "src": "assets/videos/bedtime.mp4",
+      "poster": "assets/posters/bedtime.jpg",
+      "duration": "0:39"
+    },
+    {
+      "id": "drawer",
+      "scene": "bedroom",
+      "title": "Object retrieval from a drawer",
+      "src": "assets/videos/drawer.mp4",
+      "poster": "assets/posters/drawer.jpg",
+      "duration": "2:10"
+    },
+    {
+      "id": "charging",
+      "scene": "living-room",
+      "title": "Watch, wristband, and earbud placement for charging",
+      "src": "assets/videos/charging.mp4",
+      "poster": "assets/posters/charging.jpg",
+      "duration": "1:04"
+    },
+    {
+      "id": "food-waste",
+      "scene": "kitchen",
+      "title": "Food-waste sorting",
+      "src": "assets/videos/food-waste.mp4",
+      "poster": "assets/posters/food-waste.jpg",
+      "duration": "0:47"
+    },
+    {
+      "id": "cucumber",
+      "scene": "kitchen",
+      "title": "Cucumber preparation",
+      "src": "assets/videos/cucumber.mp4",
+      "poster": "assets/posters/cucumber.jpg",
+      "duration": "1:03"
+    },
+    {
+      "id": "parcel-unpacking",
+      "scene": "entryway",
+      "title": "Parcel unpacking",
+      "src": null,
+      "poster": null
+    },
+    {
+      "id": "parcel-packing",
+      "scene": "entryway",
+      "title": "Parcel packing and sealing",
+      "src": null,
+      "poster": null
+    }
+  ],
+  "corrections": [
+    {
+      "id": "correction-step-2",
+      "title": "Step 2 · Retrieve & place the filter",
+      "description": "Recover from a missed rack pickup, regrasp the filter, and continue placement onto the cup.",
+      "src": "assets/videos/correction-step-2.mp4",
+      "poster": "assets/posters/correction-step-2.jpg",
+      "duration": "0:28",
+      "tag": "RACK PICKUP"
+    },
+    {
+      "id": "correction-step-7",
+      "title": "Step 7 · Remove & transfer the filter",
+      "description": "Adjust the grasp at the cup rim, lift the filter clear, and continue the transfer.",
+      "src": "assets/videos/correction-step-7.mp4",
+      "poster": "assets/posters/correction-step-7.jpg",
+      "duration": "0:30",
+      "tag": "CUP-RIM PICKUP"
+    }
+  ],
+  "coffee": {
+    "id": "coffee",
+    "title": "Full pour-over coffee sequence",
+    "src": "assets/videos/coffee.mp4",
+    "poster": "assets/posters/coffee.jpg",
+    "duration": "2:50"
+  },
+  "behindTheScenes": {
+    "id": "behind-the-scenes",
+    "title": "Behind the scenes",
+    "src": null,
+    "poster": null
+  }
+}
