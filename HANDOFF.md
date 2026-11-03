@@ -45,6 +45,10 @@ python3 scripts/serve.py --port 4173
 Cloudflare 空项目名为 `a2meas-preview-laihh88`；只有完成 Access 的正式域名及预览域名保护
 并检查 PDF/视频直接地址后，才能上传论文内容。登录授权不等同于访问保护已配置完成。
 
+当前部署状态：GitHub 私有仓库上传完成，Cloudflare 官方工具登录完成；Zero Trust 首次开通
+停在官方付款资料及条款确认页。该页面显示 Free 基础费用为0，但要求绑定付款方式并授权
+超出免费额度时扣费，必须由账号所有者本人决定和操作。论文内容尚未部署到 Cloudflare。
+
 参考：[GitHub Pages 私密访问](https://docs.github.com/en/enterprise-cloud%40latest/pages/getting-started-with-github-pages/changing-the-visibility-of-your-github-pages-site)、
 [Cloudflare 邮箱验证](https://developers.cloudflare.com/cloudflare-one/integrations/identity-providers/one-time-pin/)、
 [Cloudflare Pages 文件限制](https://developers.cloudflare.com/pages/platform/limits/)。
