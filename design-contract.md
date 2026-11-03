@@ -148,3 +148,7 @@ Authors shortcut and underline cleanup (2026-11-02): user requests removing only
 
 ## Coffee video fallback: closable playback
 The three MP4 fallback links now open a native in-page video dialog. A sticky toolbar keeps a44px close button visible; Escape and backdrop dismiss, playback stops and focus returns without changing URL/history or scroll. Native video controls remain the only playback controls. Existing short-horizon video behavior is preserved. Local file video URLs are allowed so fallback playback also works when the HTML is opened directly; full galleries still require HTTP preview.
+
+
+## Video modal frame fit
+The enlarged task and fallback players size to the source video aspect ratio and available viewport height, including the measured toolbar height. Remove the independent video max-height that produced side and bottom gutters inside a larger16:9 container. Preserve the full video image, native controls and44px close target; update on metadata and toolbar resizing. The same rules apply on mobile and to both dialog types.

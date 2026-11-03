@@ -35,6 +35,26 @@
     return url.href;
   }
 
+  function fitVideoDialog(dialog, video) {
+    if (!dialog.open || !video) return;
+    const ratio = video.videoWidth && video.videoHeight ? video.videoWidth / video.videoHeight : 16 / 9;
+    dialog.style.setProperty('--video-aspect', String(ratio));
+    const toolbarHeight = Math.ceil(dialog.querySelector('.task-dialog-toolbar').getBoundingClientRect().height);
+    dialog.style.setProperty('--video-toolbar-height', `${toolbarHeight}px`);
+  }
+  const videoDialogObserver = new ResizeObserver(entries => {
+    for (const entry of entries) {
+      const dialog = entry.target.closest('.video-dialog');
+      fitVideoDialog(dialog, dialog.querySelector('video'));
+    }
+  });
+  document.querySelectorAll('.video-dialog .task-dialog-toolbar').forEach(toolbar => videoDialogObserver.observe(toolbar));
+  document.querySelectorAll('.video-dialog').forEach(dialog => {
+    dialog.addEventListener('loadedmetadata', event => {
+      if (event.target instanceof HTMLVideoElement) fitVideoDialog(dialog, event.target);
+    }, true);
+  });
+
   const demoDialog = document.querySelector('#demo-video-dialog');
   const demoVideo = document.querySelector('#demo-modal-video');
   const demoStatus = document.querySelector('#demo-video-status');
@@ -49,6 +69,7 @@
     else demoVideo.removeAttribute('poster');
     demoVideo.setAttribute('aria-label', item.title);
     demoDialog.showModal();
+    fitVideoDialog(demoDialog, demoVideo);
     demoClose.focus({ preventScroll: true });
     demoVideo.play().catch(() => {
       // Native video controls remain usable when autoplay is blocked.
@@ -182,6 +203,7 @@
     player.video.setAttribute('aria-label', player.item.title);
     player.video.controls = true;
     taskDialog.showModal();
+    fitVideoDialog(taskDialog, player.video);
     player.play(true);
   }
   document.querySelector('#close-task-video').addEventListener('click', () => taskDialog.close());
