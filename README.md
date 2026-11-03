@@ -70,6 +70,19 @@ They exclude original video directories, temporary files, credentials and screen
 All runtime URLs are relative; `dist/` supports a future `https://OWNER.github.io/REPO/` deployment.
 These commands do not upload, deploy, enable Pages or change repository visibility.
 
+## Hosting account connections
+
+The source is backed up in the private repository `laihh88/a2meas-homepage`.
+Cloudflare Pages project: `a2meas-preview-laihh88`. An authenticated online preview is
+being configured separately; repository privacy alone is not website protection.
+
+For Cloudflare's25MiB asset limit, `scripts/prepare_cloudflare.py` creates a separate
+hosting copy under `output/cloudflare-private/site`. It re-encodes only oversized
+videos and preserves the main assets. Requires imageio-ffmpeg. The normal `dist/`
+retains the original web copies for later GitHub Pages deployment.
+Never deploy the private preview until Access protects production and preview
+hostnames, including direct PDF and media paths.
+
 ## Private preview before publication
 
 Keep the GitHub repository private. A private repository alone does not restrict access to ordinary

@@ -37,6 +37,14 @@ python3 scripts/serve.py --port 4173
 但超过 Cloudflare Pages 的单文件25MiB上限。因此不能原样拖入 Cloudflare Pages；
 应使用受保护的服务器 / Tunnel，或在选定托管方案后另行处理媒体。
 
+现在另有 Cloudflare 专用打包脚本 `scripts/prepare_cloudflare.py`：只为上述两条视频
+生成约20MiB的托管副本，输出到 `output/cloudflare-private/site/`，主网站文件与视频原件不变。
+`dist/` 仍保留适合以后 GitHub Pages 使用的原网页视频。
+
+源码已备份至私有仓库 `https://github.com/laihh88/a2meas-homepage`。
+Cloudflare 空项目名为 `a2meas-preview-laihh88`；只有完成 Access 的正式域名及预览域名保护
+并检查 PDF/视频直接地址后，才能上传论文内容。登录授权不等同于访问保护已配置完成。
+
 参考：[GitHub Pages 私密访问](https://docs.github.com/en/enterprise-cloud%40latest/pages/getting-started-with-github-pages/changing-the-visibility-of-your-github-pages-site)、
 [Cloudflare 邮箱验证](https://developers.cloudflare.com/cloudflare-one/integrations/identity-providers/one-time-pin/)、
 [Cloudflare Pages 文件限制](https://developers.cloudflare.com/pages/platform/limits/)。
