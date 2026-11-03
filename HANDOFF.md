@@ -22,32 +22,43 @@ python3 scripts/serve.py --port 4173
 
 ## 私密在线浏览
 
-建议：**私有 GitHub 仓库存档 + 有身份验证的网页预览**。
+网站已部署到 **https://a2meas-preview-laihh88.pages.dev/**，由 Cloudflare 托管，
+不依赖制作者的电脑持续开机。源代码另存于 GitHub 私有仓库。
 
-- 团队已有内网 / VPN 服务器：将 `dist/` 交给管理员，通过团队现有访问权限提供网页。
-- 没有内部服务器：可配置 Cloudflare Access 的指定邮箱登录，部署方式和域名另行确定。
-  若通过本机 Tunnel 提供网页，本机及预览服务必须一直在线；长期交接应使用持续运行的服务器。
-- 如果组织已有 GitHub Enterprise Cloud：可以评估组织私有仓库的私有 GitHub Pages。
+访问者输入白名单邮箱，接收一次性验证码后登录；会话有效期为24小时。
+当前白名单仅包含负责人提供的邮箱，同事需要逐个加入白名单，不能直接转发验证码。
+无需给予同事 GitHub 写权限，也无需为同事创建 Cloudflare 管理员账号。
+
+在 Cloudflare Zero Trust → Access controls → Policies 中编辑 **Approved project viewers**，
+将获准浏览的同事邮箱添加到现有 **Emails** 条件中。不要选择 Everyone 或放开整个 Gmail 域。
+对应应用是 **A2-MEAS private preview**，保护范围包含正式域名及 `*.a2meas-preview-laihh88.pages.dev`。
+路径留空以保护全部内容，包括 PDF、图片、视频和 JSON 数据。
 
 普通 GitHub Pages 即使源仓库私有，网页也通常对互联网公开。请不要为内部预览直接开启普通 Pages。
 `noindex`、不告诉别人链接、网页 JavaScript 密码都不能代替服务端访问控制。
 需要验证 HTML、PDF、视频及其他资源的直接地址均受保护。
 
-当前咖啡 MP4 约61MiB，抽屉 MP4 约31MiB；均低于 Git 常规文件100MiB上限，
-但超过 Cloudflare Pages 的单文件25MiB上限。因此不能原样拖入 Cloudflare Pages；
-应使用受保护的服务器 / Tunnel，或在选定托管方案后另行处理媒体。
+原网页咖啡 MP4 约61MiB，抽屉 MP4 约31MiB；均低于 Git 常规文件100MiB上限，
+但超过 Cloudflare Pages 的单文件25MiB上限。
 
 现在另有 Cloudflare 专用打包脚本 `scripts/prepare_cloudflare.py`：只为上述两条视频
 生成约20MiB的托管副本，输出到 `output/cloudflare-private/site/`，主网站文件与视频原件不变。
 `dist/` 仍保留适合以后 GitHub Pages 使用的原网页视频。
 
 源码已备份至私有仓库 `https://github.com/laihh88/a2meas-homepage`。
-Cloudflare 空项目名为 `a2meas-preview-laihh88`；只有完成 Access 的正式域名及预览域名保护
-并检查 PDF/视频直接地址后，才能上传论文内容。登录授权不等同于访问保护已配置完成。
+Cloudflare 项目名为 `a2meas-preview-laihh88`。已先核验 Access 保护，再上传整站78个文件。
+上线后再次核验：正式及部署预览域名、PDF和视频的直接地址，未登录时均跳转验证码登录。
+Zero Trust Free 已由账号所有者本人完成开通；管理订阅和账单须由账号所有者自行处理。
 
-当前部署状态：GitHub 私有仓库上传完成，Cloudflare 官方工具登录完成；Zero Trust 首次开通
-停在官方付款资料及条款确认页。该页面显示 Free 基础费用为0，但要求绑定付款方式并授权
-超出免费额度时扣费，必须由账号所有者本人决定和操作。论文内容尚未部署到 Cloudflare。
+更新网站时，先安装 `imageio-ffmpeg` 并运行 `python3 scripts/prepare_cloudflare.py`，
+再通过已授权的官方 Wrangler 执行：
+
+```sh
+wrangler pages deploy output/cloudflare-private/site --project-name a2meas-preview-laihh88 --branch main
+```
+
+保持现有 Access 应用及白名单不变。推送 GitHub 仅备份源码，目前不会自动触发 Cloudflare 部署。
+登录凭据不在仓库或 ZIP 内。
 
 参考：[GitHub Pages 私密访问](https://docs.github.com/en/enterprise-cloud%40latest/pages/getting-started-with-github-pages/changing-the-visibility-of-your-github-pages-site)、
 [Cloudflare 邮箱验证](https://developers.cloudflare.com/cloudflare-one/integrations/identity-providers/one-time-pin/)、
@@ -55,7 +66,7 @@ Cloudflare 空项目名为 `a2meas-preview-laihh88`；只有完成 Access 的正
 
 ## 上传到 GitHub
 
-目标仓库必须先确定为 Private。当前文件夹还没有初始化 Git；不要将5.5GB原始 `demo/`
+当前文件夹已初始化 Git，并连接到上述 Private 仓库；不要将5.5GB原始 `demo/`
 或 `Tech Report/` 视频、临时日志、截图、交接 ZIP 加入仓库。
 交接 ZIP 内已排除上述内容；原始视频仍保留在制作者电脑。
 

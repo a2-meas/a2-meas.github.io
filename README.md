@@ -73,15 +73,27 @@ These commands do not upload, deploy, enable Pages or change repository visibili
 ## Hosting account connections
 
 The source is backed up in the private repository `laihh88/a2meas-homepage`.
-Cloudflare Pages project: `a2meas-preview-laihh88`. An authenticated online preview is
-being configured separately; repository privacy alone is not website protection.
+Private online preview: https://a2meas-preview-laihh88.pages.dev/
+Cloudflare Pages project: `a2meas-preview-laihh88`.
+Access protects both the production hostname and all deployment subdomains. Visitors
+must use an approved email address and a one-time PIN. The session lasts24hours.
+Anonymous checks confirmed that the homepage, deployment URL, PDF and video URLs
+redirect to Access login. Only the owner's supplied email is currently approved.
+Add colleague emails to the `Approved project viewers` policy; no GitHub write access is needed.
 
 For Cloudflare's25MiB asset limit, `scripts/prepare_cloudflare.py` creates a separate
 hosting copy under `output/cloudflare-private/site`. It re-encodes only oversized
 videos and preserves the main assets. Requires imageio-ffmpeg. The normal `dist/`
 retains the original web copies for later GitHub Pages deployment.
-Never deploy the private preview until Access protects production and preview
-hostnames, including direct PDF and media paths.
+Keep the existing Access application `A2-MEAS private preview` in place during updates.
+After preparing the hosting copy, an authenticated maintainer can deploy with:
+
+```sh
+wrangler pages deploy output/cloudflare-private/site --project-name a2meas-preview-laihh88 --branch main
+```
+
+GitHub pushes do not automatically deploy the website. The hosting authentication
+credentials are stored outside this repository. GitHub Pages has not been enabled.
 
 ## Private preview before publication
 
