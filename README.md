@@ -85,6 +85,10 @@ For Cloudflare's25MiB asset limit, `scripts/prepare_cloudflare.py` creates a sep
 hosting copy under `output/cloudflare-private/site`. It re-encodes only oversized
 videos and preserves the main assets. Requires imageio-ffmpeg. The normal `dist/`
 retains the original web copies for later GitHub Pages deployment.
+The Cloudflare package also installs `cloudflare/video-worker.mjs` as `_worker.js`,
+scoped by `_routes.json` to video URLs only. It serves HTTP byte ranges for native
+video seeking; Pages' ordinary static responses do not provide partial content.
+The adapter streams the requested bytes and remains behind the existing Access policy.
 Keep the existing Access application `A2-MEAS private preview` in place during updates.
 After preparing the hosting copy, an authenticated maintainer can deploy with:
 

@@ -49,7 +49,7 @@ def main():
     selected.update(media_paths(json.loads((ROOT / 'data/videos.json').read_text())))
     if handoff:
         selected.update(Path(p) for p in SOURCE_FILES)
-        for directory in ['scripts', 'figure', 'logo']:
+        for directory in ['scripts', 'figure', 'logo', 'cloudflare']:
             selected.update(files_under(directory))
     missing = [str(p) for p in sorted(selected) if not (ROOT / p).is_file()]
     if missing:

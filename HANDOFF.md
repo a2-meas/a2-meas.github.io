@@ -45,6 +45,13 @@ python3 scripts/serve.py --port 4173
 生成约20MiB的托管副本，输出到 `output/cloudflare-private/site/`，主网站文件与视频原件不变。
 `dist/` 仍保留适合以后 GitHub Pages 使用的原网页视频。
 
+Cloudflare 专用包还会安装 `cloudflare/video-worker.mjs` 的视频分段读取适配器，
+只处理 `/assets/videos/*`，让浏览器原生进度条可以前后拖动。
+默认 Pages 静态响应不支持所需的206分段响应；不要从托管包中移除 `_worker.js`
+或 `_routes.json`。后续重新编码后须重新运行打包脚本，更新适配器内的视频字节长度。
+这两个托管文件不放入普通 `dist/`，本地与以后 GitHub Pages 仍为纯静态网站。
+现有 Access 应用继续保护所有视频请求，不增加公开媒体入口。
+
 源码已备份至私有仓库 `https://github.com/laihh88/a2meas-homepage`。
 Cloudflare 项目名为 `a2meas-preview-laihh88`。已先核验 Access 保护，再上传整站78个文件。
 上线后再次核验：正式及部署预览域名、PDF和视频的直接地址，未登录时均跳转验证码登录。

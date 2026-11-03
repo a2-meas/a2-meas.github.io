@@ -13,6 +13,15 @@ OUT = ROOT / 'output/cloudflare-private/site'
 LIMIT = 25 * 1024**2
 
 
+def install_video_adapter(out=OUT):
+    sizes = {'/' + file.relative_to(out).as_posix(): file.stat().st_size
+             for file in sorted((out / 'assets/videos').glob('*.mp4'))}
+    source = (ROOT / 'cloudflare/video-worker.mjs').read_text()
+    source = source.replace('/* @video-sizes */ {}', json.dumps(sizes, sort_keys=True))
+    (out / '_worker.js').write_text(source)
+    shutil.copy2(ROOT / 'cloudflare/_routes.json', out / '_routes.json')
+
+
 def main():
     try:
         import imageio_ffmpeg
@@ -51,6 +60,9 @@ def main():
                   'video_bitrate_kbps': bitrate, 'source_unchanged': True}
         changes.append(result)
         print(json.dumps(result), flush=True)
+    # Only Cloudflare needs the byte-range adapter. Install after encoding, so
+    # its size fallback describes these exact files. dist/ remains fully static.
+    install_video_adapter()
     records = []
     for file in sorted(OUT.rglob('*')):
         if file.is_file() and file.name != 'package-manifest.json':

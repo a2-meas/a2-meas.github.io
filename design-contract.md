@@ -152,3 +152,6 @@ The three MP4 fallback links now open a native in-page video dialog. A sticky to
 
 ## Video modal frame fit
 The enlarged task and fallback players size to the source video aspect ratio and available viewport height, including the measured toolbar height. Remove the independent video max-height that produced side and bottom gutters inside a larger16:9 container. Preserve the full video image, native controls and44px close target; update on metadata and toolbar resizing. The same rules apply on mobile and to both dialog types.
+
+## Native video seeking on private Pages hosting
+The live Pages host returned200/full files for Range requests, leaving Chrome's seekable range at0–0 despite buffered video. Install a Pages-only streaming byte-range adapter for `/assets/videos/*`, returning206 with exact Content-Range and Content-Length, including open-ended and suffix requests. Preserve native controls, autoplay, individual pause state, full video image and existing Access protection. Keep the standard static/GitHub Pages package unchanged. Verify exact response bytes and lengths, invalid416, HEAD/static fallback, forward/backward dragging while playing and paused, and anonymous denial of direct video URLs.
