@@ -216,3 +216,11 @@ values. Replace coffee recovery with the original embedded PNG from report p36,
 without a screen capture or the external paper caption. Native cover looping now
 restarts immediately, with no end hold. Remove the colon from the centered A²-MEAS
 first title line; keep all other typography unchanged.
+
+## Full-video mask and two-line title — 2026-11-04
+Replace the local rounded title backing with a full-cover translucent mask, exactly
+inset0 across the video stage, retaining27% green tint and3px blur. Animate opacity
+only so no uncovered edge appears during the fade. Keep the8s mosaic reveal. Layout
+the title as A²-MEAS above the entire paper name on one unbroken line. Increase base
+font from3.2vw to3.9vw and project-name factor from1.6 to1.65; preserve rounded font,
+translucent white and bubble outline. Keep native immediate video looping.

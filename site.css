@@ -53,13 +53,13 @@ sup { font-size: .6em; vertical-align: super; line-height: 0; }
 .hero { position: relative; padding-top: var(--cover-header-height, var(--header-offset)); text-align: center; overflow: hidden; }
 .hero-video-stage { position: relative; width: 100%; aspect-ratio: 16 / 9; isolation: isolate; background: #223b34 url('assets/cover/cover-mosaic.jpg') center / cover no-repeat; }
 .hero-video-stage > video { display: block; width: 100%; height: 100%; object-fit: contain; }
-.hero-title-overlay { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; opacity: 0; transform: translateY(10px); transition: opacity 900ms ease-out, transform 900ms cubic-bezier(.22,1,.36,1); }
+.hero-title-overlay { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; opacity: 0; background: rgba(21,39,34,.27); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); transition: opacity 900ms ease-out; }
 .hero-video-stage:not(.is-title-visible) .hero-title-overlay { transition-duration: 120ms; }
-.hero-video-stage.is-title-visible .hero-title-overlay { opacity: 1; transform: translateY(0); }
-.hero h1 { width: max-content; max-width: 90%; height: auto; display: flex; flex-direction: column; justify-content: center; padding: .3em .4em; border: 1px solid rgba(255,255,255,.2); border-radius: clamp(8px,1.2vw,20px); background: rgba(21,39,34,.27); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); color: rgba(255,253,248,.64); font-family: "Nunito Cover", "Arial Rounded MT Bold", system-ui, sans-serif; font-size: 3.2vw; font-weight: 650; letter-spacing: -.02em; line-height: 1.05; -webkit-text-stroke: .17em rgba(247,252,246,.43); paint-order: stroke fill; text-shadow: 0 .04em 0 #6c817c, 0 .08em .2em #10291f88; }
-
+.hero-video-stage.is-title-visible .hero-title-overlay { opacity: 1; }
+.hero h1 { width: max-content; max-width: 94%; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0; padding: 0; color: rgba(255,253,248,.64); font-family: "Nunito Cover", "Arial Rounded MT Bold", system-ui, sans-serif; font-size: 3.9vw; font-weight: 650; letter-spacing: -.02em; line-height: 1.15; -webkit-text-stroke: .17em rgba(247,252,246,.43); paint-order: stroke fill; text-shadow: 0 .04em 0 #6c817c, 0 .08em .2em #10291f88; }
 .hero h1 > span { display: block; }
-.hero h1 .project-name { align-self: center; text-align: center; font-size: 1.6em; line-height: 1.05; margin-bottom: .12em; white-space: nowrap; }
+.hero h1 .project-name { align-self: center; text-align: center; font-size: 1.65em; line-height: 1.05; margin-bottom: .24em; white-space: nowrap; }
+.hero h1 .paper-name { white-space: nowrap; }
 .project-name sup { font-size: .58em; line-height: 0; position: relative; vertical-align: baseline; top: -.55em; }
 .hero-content { max-width: 1160px; margin: 0 auto; padding: 38px 24px 30px; }
 .affiliations { color: #627666; font-size: 16px; line-height: 1.9; }

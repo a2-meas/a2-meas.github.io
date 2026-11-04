@@ -19,7 +19,8 @@ The three coffee fallback buttons open a closable in-page player, including in l
 
 ## Current content
 
-- Cover film autoplays muted in a loop; the translucent rounded bubble title fades in at8seconds during the mosaic transition.
+- Cover film autoplays muted in a loop; the larger translucent bubble title and full-video mask fade in at8seconds during the mosaic transition.
+  The project name sits above the complete paper title on a single line.
   Playback restarts immediately after the final frame. Institutions and resource links sit below the film; contributors appear at the end.
   Reduced-motion preference uses the mosaic still and title. Blocked autoplay offers a Play film button.
 - Question, System, Model (action policy), Infra, Simulation, Real World, Authors, then Citation.
