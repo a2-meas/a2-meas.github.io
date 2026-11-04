@@ -137,7 +137,8 @@
     "asset": "assets/figures/method/correction-interface-a.svg",
     "removed_page_backgrounds": 2,
     "page_width": 510.0,
-    "page_height": 360.9599914550781
+    "page_height": 360.9599914550781,
+    "zoom_asset": "assets/figures/method/correction-interface-a-original.svg"
   },
   {
     "stage": "b",
@@ -157,7 +158,8 @@
     "asset": "assets/figures/method/correction-interface-b.svg",
     "removed_page_backgrounds": 2,
     "page_width": 510.0,
-    "page_height": 360.9599914550781
+    "page_height": 360.9599914550781,
+    "zoom_asset": "assets/figures/method/correction-interface-b-original.svg"
   },
   {
     "stage": "a",

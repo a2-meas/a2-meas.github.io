@@ -30,23 +30,6 @@
     "protocol": "Single-device and eight-device figures use separate configurations; throughput panels are independent comparisons."
   },
   {
-    "area": "foundation-model premise and introduction",
-    "answer": "We introduce A²-MEAS, an embodied multi-agent framework that coordinates reasoning, diagnostic grounding, and continuous control through a shared execution record.",
-    "source": "To_the_Era_of_Agentic_Embodied_Intelligence.pdf",
-    "pages": [
-      1,
-      2
-    ],
-    "sections": [
-      "Introduction",
-      "2.3",
-      "2.4"
-    ],
-    "type": "Premise shortened from report p1; introduction uses the original p2 sentence with the project-name superscript normalized. The reasoning/control question was removed at the author’s request.",
-    "qualification": "Code means a learned correction representation, as defined in report p10; not an executable program.",
-    "premise": "Foundation models can generate robot actions."
-  },
-  {
     "area": "System four-stage diagram and cards",
     "source": "To_the_Era_of_Agentic_Embodied_Intelligence.pdf",
     "pages": [
@@ -108,5 +91,14 @@
       }
     },
     "figure_extraction": "Original embedded 1309×1202 PNG from page36, image xref213. No screenshot or rasterization."
+  },
+  {
+    "area": "Compact introduction, framework emphasis",
+    "source": "To_the_Era_of_Agentic_Embodied_Intelligence_renew.pdf",
+    "pages": [
+      1,
+      2
+    ],
+    "type": "Foundation-model progress as supporting context; efficient control and recovery motivate A²-MEAS. Shortened from abstract and introduction; not a verbatim quotation."
   }
 ]

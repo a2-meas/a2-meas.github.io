@@ -104,6 +104,7 @@
   const demoClose = document.querySelector('#close-demo-video');
   let lastDemoTrigger = null;
   function openDemoVideo(item, trigger) {
+    taskPlayers.forEach(player => { if (player.video) { player.video.pause(); player.inRing = false; } });
     lastDemoTrigger = trigger;
     document.querySelector('#demo-video-title').textContent = item.title;
     demoStatus.hidden = true;
@@ -134,6 +135,7 @@
     demoVideo.load();
     demoStatus.hidden = true;
     lastDemoTrigger?.focus({ preventScroll: true });
+    taskPlayers.forEach(player => player.video && player.sync());
   });
   function demoVideoEntry(item, label = item.title) {
     const button = el('button', 'text-link demo-video-entry', `${label} ↗`);
@@ -153,7 +155,12 @@
     video.muted = true;
     video.setAttribute('aria-label', item.title);
     video.setAttribute('aria-hidden', 'true');
-    if (item.poster) video.poster = mediaURL(item.poster);
+    if (item.poster) {
+      const posterObserver = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) { video.poster = mediaURL(item.poster); posterObserver.disconnect(); }
+      }, { rootMargin: '350px' });
+      posterObserver.observe(shell);
+    }
     const cover = el('button', 'video-cover');
     cover.type = 'button';
     cover.setAttribute('aria-label', `Play ${item.title}`);
@@ -237,6 +244,9 @@
   function openTask(player, trigger) {
     if (suppressTaskClick) return;
     openedTask = player;
+    player.previewTime = player.video.currentTime;
+    taskPlayers.forEach(other => { if (other !== player && other.video) { other.video.pause(); other.inRing = false; } });
+    mediaPlayers.forEach(video => video.pause());
     lastTaskTrigger = trigger;
     modalTitle.textContent = player.item.title;
     modalPrompt.textContent = player.item.prompt || '';
@@ -248,6 +258,7 @@
     player.video.removeAttribute('aria-hidden');
     player.video.setAttribute('aria-label', player.item.title);
     player.video.controls = true;
+    player.video.poster = mediaURL(player.item.poster);
     taskDialog.showModal();
     fitVideoDialog(taskDialog, player.video);
     player.play(true);
@@ -257,16 +268,22 @@
   taskDialog.addEventListener('close', () => {
     if (!openedTask) return;
     const player = openedTask;
+    player.fullTime = player.video.currentTime;
     player.manuallyPaused = player.video.paused;
+    player.video.pause();
     player.video.controls = false;
     player.video.muted = true;
     player.video.setAttribute('aria-hidden', 'true');
     player.shell.insertBefore(player.video, player.expand);
     openedTask = null;
+    player.video.removeAttribute('src');
+    player.video.removeAttribute('poster');
+    player.video.load();
     modalStatus.hidden = true;
     modalFeedback.hidden = true;
     player.inRing = false;
     player.sync();
+    taskPlayers.forEach(other => other !== player && other.video && other.sync());
     lastTaskTrigger?.focus({ preventScroll: true });
   });
   modalRetry.addEventListener('click', () => {
@@ -287,6 +304,8 @@
     poster.src = mediaURL(item.poster);
     poster.alt = '';
     poster.draggable = false;
+    poster.loading = 'lazy';
+    poster.decoding = 'async';
     const video = document.createElement('video');
     video.preload = 'none';
     video.muted = true;
@@ -294,7 +313,6 @@
     video.playsInline = true;
     video.loop = true;
     video.setAttribute('aria-hidden', 'true');
-    video.poster = mediaURL(item.poster);
     const expand = el('button', 'task-expand');
     expand.type = 'button';
     expand.setAttribute('aria-label', `Expand ${item.title}`);
@@ -304,6 +322,7 @@
     shell.append(poster, video, expand, state);
     const player = {
       card, item, shell, video, expand, front: false, visible: false,
+      previewTime: 0, fullTime: 0,
       manuallyPaused: taskMotion.matches, failed: false, inRing: false,
       async play(explicit = false) {
         if (explicit) {
@@ -311,10 +330,15 @@
           if (openedTask === this) { modalStatus.hidden = true; modalFeedback.hidden = true; modalRetry.hidden = true; }
           if (this.failed) { this.failed = false; video.load(); }
         }
-        if (!video.getAttribute('src')) {
+        const source = mediaURL(openedTask === this ? item.src : (item.previewSrc || item.src));
+        if (video.getAttribute('src') !== source) {
           state.textContent = 'Loading…';
           state.hidden = false;
-          video.src = mediaURL(item.src);
+          const position = openedTask === this ? this.fullTime : this.previewTime;
+          video.addEventListener('loadedmetadata', () => {
+            if (video.getAttribute('src') === source && position > 0) video.currentTime = Math.min(position, Math.max(0, video.duration - .1));
+          }, { once: true });
+          video.src = source;
         }
         try { await video.play(); }
         catch (error) {
@@ -333,7 +357,7 @@
       },
       sync() {
         if (openedTask === this) return;
-        const shouldPlay = this.front && this.visible && !this.manuallyPaused && !document.hidden && !this.failed;
+        const shouldPlay = !taskDialog.open && !demoDialog.open && this.front && this.visible && !this.manuallyPaused && !document.hidden && !this.failed;
         if (shouldPlay && !this.inRing) this.play();
         else if (!shouldPlay && !video.paused) video.pause();
         this.inRing = shouldPlay;
@@ -361,7 +385,8 @@
     });
     video.addEventListener('play', () => { state.hidden = true; updateState(); });
     video.addEventListener('pause', updateState);
-    video.addEventListener('loadeddata', updateState);
+    video.addEventListener('loadeddata', () => { video.classList.add('has-frame'); updateState(); });
+    video.addEventListener('emptied', () => video.classList.remove('has-frame'));
     video.addEventListener('error', () => {
       player.failed = true;
       player.inRing = false;
@@ -535,6 +560,9 @@
     const modules = [...flow.querySelectorAll('[data-flow-module]')];
     const peers = [...flow.querySelectorAll('[data-flow-peer]')];
     const controls = [...modules, ...peers];
+    const graphics = [...flow.querySelectorAll('.flow-canvas img')];
+    let graphicsReady = graphics.every(image => image.complete && image.naturalWidth > 0);
+    flow.dataset.graphicsReady = String(graphicsReady);
     const isFramework = flow.hasAttribute('data-framework-flow');
     const stageOf = item => item.dataset.flowPeer || item.dataset.flowStage || item.dataset.flowModule;
     const stages = [...new Set(modules.map(module => module.dataset.flowStage || module.dataset.flowModule))];
@@ -576,10 +604,18 @@
       flow.dataset.flowMode = 'auto';
       delete flow.dataset.manualModule;
       if (motion.matches) { activate(stages.length); return; }
-      if (!visible || !started || document.hidden || document.querySelector('dialog[open]')) return;
+      if (!visible || !started || !graphicsReady || document.hidden || document.querySelector('dialog[open]')) return;
       timer = setTimeout(() => { activate((current + 1) % (stages.length + 1)); sync(); }, current === stages.length ? METHOD_COMPLETE_HOLD_MS : HIGHLIGHT_INTERVAL_MS);
     }
     activate(0);
+    graphics.forEach(image => image.addEventListener('load', () => {
+      if (!graphicsReady && graphics.every(item => item.complete && item.naturalWidth > 0)) {
+        graphicsReady = true;
+        flow.dataset.graphicsReady = 'true';
+        if (flow.dataset.flowMode !== 'manual') activate(0);
+        sync();
+      }
+    }));
     controls.forEach(module => {
       const stageIndex = stages.indexOf(stageOf(module));
       module.addEventListener('pointerenter', event => {
@@ -634,7 +670,11 @@
   document.querySelectorAll('[data-figure]').forEach(button => {
     button.addEventListener('click', () => {
       lastFigureTrigger = button;
-      expandedFigure.src = button.dataset.figure;
+      expandedFigure.src = button.querySelector('img').currentSrc || button.querySelector('img').src;
+      const original = new Image();
+      original.decoding = 'async';
+      original.onload = () => { if (dialog.open && lastFigureTrigger === button) expandedFigure.src = original.src; };
+      original.src = button.dataset.figure;
       expandedFigure.alt = button.querySelector('img').alt;
       document.querySelector('#figure-caption').textContent = button.dataset.caption;
       const caption = button.closest('figure').querySelector('.figure-description');

@@ -26,6 +26,41 @@ function matchesIfRange(value, headers) {
   return Number.isFinite(modified) && Number.isFinite(requested) && modified <= requested;
 }
 
+function privateHeaders(headers) {
+  const output = new Headers(headers);
+  output.set('Accept-Ranges', 'bytes');
+  output.set('Cache-Control', 'private, no-store');
+  return output;
+}
+
+async function storeFullVideo(cache, key, body, size, headers) {
+  const cacheHeaders = new Headers(headers);
+  cacheHeaders.set('Cache-Control', 'public, max-age=86400');
+  cacheHeaders.delete('Set-Cookie');
+  const stream = new FixedLengthStream(size);
+  // Native pipe avoids processing the full video chunk-by-chunk in JavaScript.
+  await Promise.all([
+    body.pipeTo(stream.writable),
+    cache.put(key, new Response(stream.readable, { headers: cacheHeaders }))
+  ]);
+}
+
+function prefixStream(body, length) {
+  const reader = body.getReader();
+  let remaining = length;
+  return new ReadableStream({
+    async pull(controller) {
+      const { done, value } = await reader.read();
+      if (done) { controller.close(); return; }
+      const count = Math.min(value.byteLength, remaining);
+      controller.enqueue(value.subarray(0, count));
+      remaining -= count;
+      if (!remaining) { controller.close(); await reader.cancel(); }
+    },
+    cancel(reason) { return reader.cancel(reason); }
+  });
+}
+
 export default {
   async fetch(request, env, context) {
     const path = new URL(request.url).pathname;
@@ -65,12 +100,22 @@ export default {
     const cacheKey = new Request(key);
     let cached = await cache.match(cacheKey);
     if (!cached) {
-      const cacheHeaders = new Headers(headers);
-      cacheHeaders.set('Cache-Control', 'public, max-age=86400');
-      cacheHeaders.delete('Set-Cookie');
-      const stream = new FixedLengthStream(size);
-      context.waitUntil(asset.body.pipeTo(stream.writable).catch(() => {}));
-      await cache.put(cacheKey, new Response(stream.readable, { headers: cacheHeaders }));
+      // Initial playback must not wait for the complete file to enter cache.
+      // Stream open-ended playback, or the small initial metadata probe, now;
+      // fill the native range cache in parallel for subsequent seeks.
+      if (!range || (range[0] === 0 && (range[1] === size - 1 || range[1] < 65536))) {
+        const [clientBody, cacheBody] = asset.body.tee();
+        context.waitUntil(storeFullVideo(cache, cacheKey, cacheBody, size, headers).catch(() => {}));
+        const outputHeaders = privateHeaders(headers);
+        if (range) {
+          const length = range[1] + 1;
+          outputHeaders.set('Content-Range', `bytes 0-${range[1]}/${size}`);
+          outputHeaders.set('Content-Length', String(length));
+          return new Response(length === size ? clientBody : prefixStream(clientBody, length), { status: 206, headers: outputHeaders });
+        }
+        return new Response(clientBody, { status: 200, headers: outputHeaders });
+      }
+      await storeFullVideo(cache, cacheKey, asset.body, size, headers);
     } else {
       context.waitUntil(asset.body.cancel());
       context.waitUntil(cached.body.cancel());
@@ -78,9 +123,7 @@ export default {
     const lookupHeaders = range ? { Range: `bytes=${range[0]}-${range[1]}` } : {};
     cached = await cache.match(new Request(key, { headers: lookupHeaders }));
     if (!cached) return new Response('Video temporarily unavailable', { status: 503, headers: { 'Retry-After': '1' } });
-    const outputHeaders = new Headers(cached.headers);
-    outputHeaders.set('Accept-Ranges', 'bytes');
-    outputHeaders.set('Cache-Control', 'private, no-store');
+    const outputHeaders = privateHeaders(cached.headers);
     return new Response(cached.body, { status: cached.status, headers: outputHeaders });
   }
 };

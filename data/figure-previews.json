@@ -1,0 +1,152 @@
+[
+  {
+    "source": "assets/figures/framework/connections.svg",
+    "preview": "assets/figures/framework/connections.webp",
+    "sourceBytes": 428246,
+    "previewBytes": 27528
+  },
+  {
+    "source": "assets/figures/framework/reason.svg",
+    "preview": "assets/figures/framework/reason.webp",
+    "sourceBytes": 424975,
+    "previewBytes": 11428
+  },
+  {
+    "source": "assets/figures/framework/ground.svg",
+    "preview": "assets/figures/framework/ground.webp",
+    "sourceBytes": 425030,
+    "previewBytes": 56410
+  },
+  {
+    "source": "assets/figures/framework/correct.svg",
+    "preview": "assets/figures/framework/correct.webp",
+    "sourceBytes": 425635,
+    "previewBytes": 58376
+  },
+  {
+    "source": "assets/figures/framework/execute.svg",
+    "preview": "assets/figures/framework/execute.webp",
+    "sourceBytes": 425686,
+    "previewBytes": 50132
+  },
+  {
+    "source": "assets/figures/method/correction-interface-connections.svg",
+    "preview": "assets/figures/method/correction-interface-connections.webp",
+    "sourceBytes": 332245,
+    "previewBytes": 12092
+  },
+  {
+    "source": "assets/figures/method/correction-interface-a.svg",
+    "preview": "assets/figures/method/correction-interface-a.webp",
+    "sourceBytes": 325316,
+    "previewBytes": 74494
+  },
+  {
+    "source": "assets/figures/method/correction-interface-b.svg",
+    "preview": "assets/figures/method/correction-interface-b.webp",
+    "sourceBytes": 325324,
+    "previewBytes": 94428
+  },
+  {
+    "source": "assets/figures/method/correction-training-connections.svg",
+    "preview": "assets/figures/method/correction-training-connections.webp",
+    "sourceBytes": 1800812,
+    "previewBytes": 6018
+  },
+  {
+    "source": "assets/figures/method/correction-training-a.svg",
+    "preview": "assets/figures/method/correction-training-a.webp",
+    "sourceBytes": 1800408,
+    "previewBytes": 36648
+  },
+  {
+    "source": "assets/figures/method/correction-training-b.svg",
+    "preview": "assets/figures/method/correction-training-b.webp",
+    "sourceBytes": 1800409,
+    "previewBytes": 51578
+  },
+  {
+    "source": "assets/figures/method/correction-training-c.svg",
+    "preview": "assets/figures/method/correction-training-c.webp",
+    "sourceBytes": 1800409,
+    "previewBytes": 102434
+  },
+  {
+    "source": "assets/figures/method/execution-recovery-connections.svg",
+    "preview": "assets/figures/method/execution-recovery-connections.webp",
+    "sourceBytes": 1863736,
+    "previewBytes": 7786
+  },
+  {
+    "source": "assets/figures/method/execution-recovery-a.svg",
+    "preview": "assets/figures/method/execution-recovery-a.webp",
+    "sourceBytes": 1863237,
+    "previewBytes": 58412
+  },
+  {
+    "source": "assets/figures/method/execution-recovery-b.svg",
+    "preview": "assets/figures/method/execution-recovery-b.webp",
+    "sourceBytes": 1863240,
+    "previewBytes": 47742
+  },
+  {
+    "source": "assets/figures/method/execution-recovery-c.svg",
+    "preview": "assets/figures/method/execution-recovery-c.webp",
+    "sourceBytes": 1863242,
+    "previewBytes": 47038
+  },
+  {
+    "source": "assets/figures/method/execution-recovery-d.svg",
+    "preview": "assets/figures/method/execution-recovery-d.webp",
+    "sourceBytes": 1863242,
+    "previewBytes": 40852
+  },
+  {
+    "source": "assets/figures/method/execution-recovery-e.svg",
+    "preview": "assets/figures/method/execution-recovery-e.webp",
+    "sourceBytes": 1863247,
+    "previewBytes": 16328
+  },
+  {
+    "source": "assets/figures/method/action-model-connections.svg",
+    "preview": "assets/figures/method/action-model-connections.webp",
+    "sourceBytes": 475201,
+    "previewBytes": 13814
+  },
+  {
+    "source": "assets/figures/method/action-model-a.svg",
+    "preview": "assets/figures/method/action-model-a.webp",
+    "sourceBytes": 474640,
+    "previewBytes": 24794
+  },
+  {
+    "source": "assets/figures/method/action-model-a-detail.svg",
+    "preview": "assets/figures/method/action-model-a-detail.webp",
+    "sourceBytes": 474642,
+    "previewBytes": 44596
+  },
+  {
+    "source": "assets/figures/method/action-model-b.svg",
+    "preview": "assets/figures/method/action-model-b.webp",
+    "sourceBytes": 474640,
+    "previewBytes": 4930
+  },
+  {
+    "source": "assets/figures/method/action-model-c.svg",
+    "preview": "assets/figures/method/action-model-c.webp",
+    "sourceBytes": 474632,
+    "previewBytes": 54708
+  },
+  {
+    "source": "assets/figures/method/action-model-c-current.svg",
+    "preview": "assets/figures/method/action-model-c-current.webp",
+    "sourceBytes": 474640,
+    "previewBytes": 2784
+  },
+  {
+    "source": "assets/figures/method/action-model-d.svg",
+    "preview": "assets/figures/method/action-model-d.webp",
+    "sourceBytes": 474634,
+    "previewBytes": 45426
+  }
+]

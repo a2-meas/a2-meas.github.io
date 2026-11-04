@@ -126,16 +126,17 @@ figcaption a:hover, .source-note a:hover { color: var(--accent); }
 .text-link { display: inline-flex; gap: 18px; align-items: center; margin-top: 24px; font-size: 13px; color: #985126; }
 .text-link:hover { color: var(--accent); }
 .compact-figure .figure-button { padding: 18px; }
-.research-question { min-height: 76svh; display: grid; align-items: center; text-align: center; padding-top: 110px; padding-bottom: 110px; }
-.research-question-content { max-width: 1020px; margin-inline: auto; }
-.section.research-question h2 { font-size: clamp(28px,3.2vw,44px); line-height: 1.45; letter-spacing: -.025em; font-weight: 450; color: var(--text); }
-.research-introduction { max-width: 890px; margin: 36px auto 0; font-size: clamp(19px,1.9vw,24px); line-height: 1.75; color: var(--muted); text-wrap: pretty; }
-.research-introduction strong { font-weight: 700; }
+.research-question { min-height: 0; padding-top: 80px; padding-bottom: 80px; }
+.research-question-content { max-width: 1060px; margin-inline: auto; display: grid; grid-template-columns: minmax(200px,.7fr) minmax(0,1.8fr); align-items: center; gap: 54px; text-align: left; }
+.section.research-question h2 { font-size: clamp(32px,3.5vw,46px); line-height: 1.25; letter-spacing: -.025em; font-weight: 500; color: var(--text); text-wrap: initial; }
+.research-question h2 > span { white-space: nowrap; font-weight: 700; }
+.research-introduction { font-size: clamp(19px,1.8vw,22px); line-height: 1.7; color: var(--muted); text-wrap: pretty; }
+.research-introduction p + p { margin-top: 20px; }
+.research-introduction strong { color: var(--text); font-weight: 650; }
 .system-section .method-stage-heading { grid-template-columns: minmax(0,1fr); }
 .task-dialog-heading { min-width: 0; }
 .task-video-prompt { margin-top: 6px; color: var(--muted); font-size: 15px; line-height: 1.55; text-wrap: pretty; }
 .research-question:focus { outline: none; }
-.research-question:focus-visible h2 { outline: 2px solid var(--accent); outline-offset: 10px; }
 .demo-group-heading .task-hint { color: var(--muted); font-size: 15px; line-height: 1.5; margin-top: 12px; }
 .task-orbit { width: calc(100vw - 32px); margin-inline: calc(50% - 50vw + 16px); overflow: clip; }
 .task-ring { position: relative; height: 560px; isolation: isolate; touch-action: pan-y pinch-zoom; user-select: none; cursor: grab; }
@@ -146,6 +147,8 @@ figcaption a:hover, .source-note a:hover { color: var(--accent); }
 .task-ring .task-tile h4 { font-size: 15px; font-weight: 500; line-height: 1.5; letter-spacing: 0; margin: 12px 0 0; text-align: center; min-height: 3em; }
 .task-tile .video-shell { border-radius: 7px; box-shadow: 0 6px 16px #263c3515; background: #e8ede4; }
 .task-tile .video-shell > :is(img,video) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+.task-tile .video-shell > video { opacity: 0; }
+.task-tile .video-shell > video.has-frame { opacity: 1; }
 .task-pending { display: flex; align-items: center; justify-content: center; background: #e8ede4; color: var(--muted); font-size: 14px; border-style: dashed; box-shadow: none; }
 .task-controls { display: flex; justify-content: center; gap: 12px; margin-top: 0; }
 .task-controls button { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 11px; border-radius: 50%; border: 1px solid var(--text); background: var(--text); color: var(--bg); transition: background .18s, border-color .18s; }
@@ -412,9 +415,10 @@ figcaption a:hover, .source-note a:hover { color: var(--accent); }
   .metrics div > span { font-size: 11px; }
   .metrics small { font-size: 9px; padding: 0 5px; }
   .source-note { font-size: 13px; }
-  .research-question { min-height: 72svh; padding-block: 76px; }
+  .research-question { padding-block: 56px; }
+  .research-question-content { grid-template-columns: 1fr; gap: 24px; }
   .section.research-question h2 { font-size: 28px; line-height: 1.45; }
-  .research-introduction { font-size: 18px; margin-top: 28px; }
+  .research-introduction { font-size: 18px; }
   .task-ring { height: 470px; }
   .task-ring .task-tile h4 { font-size: 15px; }
   .video-dialog { --video-dialog-gutter: 20px; --video-toolbar-height: 68px; }

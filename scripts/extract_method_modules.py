@@ -44,6 +44,19 @@ for group,source,modules in GROUPS:
      v=[float(x) for x in re.split('[, ]+',matrix[1])] if matrix else [1,0,0,1,0,0]
      if abs((vals[2]-vals[0])*v[0]) >= page.rect.width*.95 and abs((vals[3]-vals[1])*v[3])>=page.rect.height*.95:
       parent.remove(node); removed+=1
+  # Render the a→b correction-code connector once on the full diagram. Splitting
+  # one original path between independently scaled/blurred modules makes visible
+  # kinks at the panel boundary even though the source path is orthogonal.
+  shared_connectors=[]
+  zoom_root=copy.deepcopy(root) if group=='correction-interface' else None
+  if group=='correction-interface':
+   shared_paths={'M1106 186H1156V419H645V492.2',
+                 'M645 502.46 639.87 492.2H650.13L645 502.46Z'}
+   for parent in root.iter():
+    for child in list(parent):
+     if child.get('d') in shared_paths:
+      shared_connectors.append(copy.deepcopy(child));parent.remove(child)
+   assert len(shared_connectors)==3, 'Expected original connector and arrowhead'
   # Keep the original full diagram outside the module rectangles: connectors and retry.
   ns='{http://www.w3.org/2000/svg}'
   context=copy.deepcopy(root)
@@ -68,10 +81,14 @@ for group,source,modules in GROUPS:
    cp=ET.SubElement(defs,ns+'clipPath',{'id':ident,'clipPathUnits':'userSpaceOnUse'});cp.append(copy.deepcopy(shape))
    line=copy.deepcopy(shape);line.set('fill','none');line.set('stroke','#b6814b' if letter=='a' else '#7298ba');line.set('stroke-width','2')
    sharp=ET.SubElement(context,ns+'g',{'clip-path':'url(#'+ident+')'});sharp.append(line)
+  if shared_connectors:
+   context.set('preserveAspectRatio','none')
+   for connector in shared_connectors:context.append(connector)
   ET.ElementTree(context).write(OUT/f'{group}-connections.svg',encoding='unicode')
   for letter,title,color,bounds in modules:
    x,y,r,b=bounds; node=copy.deepcopy(root)
    node.set('viewBox',f'{x} {y} {r-x} {b-y}'); node.set('width',str(r-x)); node.set('height',str(b-y))
+   if group=='correction-interface':node.set('preserveAspectRatio','none')
    if group=='action-model' and letter in ('c','d'):
     for element in node.iter():
      if element.get('fill') in ('#f8fbfa','#fbfcfd'):
@@ -79,5 +96,11 @@ for group,source,modules in GROUPS:
    asset=f'assets/figures/method/{group}-{letter}.svg'
    ET.ElementTree(node).write(ROOT/asset,encoding='unicode')
    records.append(dict(stage=letter.split('-')[0],group=group,letter=letter,title=title,color=color,source=source,bounds=bounds,width=r-x,height=b-y,asset=asset,removed_page_backgrounds=removed,page_width=page.rect.width,page_height=page.rect.height))
+   if zoom_root is not None:
+    zoom=copy.deepcopy(zoom_root)
+    zoom.set('viewBox',f'{x} {y} {r-x} {b-y}');zoom.set('width',str(r-x));zoom.set('height',str(b-y));zoom.set('preserveAspectRatio','none')
+    zoom_asset=f'assets/figures/method/{group}-{letter}-original.svg'
+    ET.ElementTree(zoom).write(ROOT/zoom_asset,encoding='unicode')
+    records[-1]['zoom_asset']=zoom_asset
 (OUT/'sources.json').write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n')
 print(f'Extracted {len(records)} original vector modules')

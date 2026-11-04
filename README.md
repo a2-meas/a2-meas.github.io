@@ -127,3 +127,10 @@ The published report is the author’s2026-11-04 renewed50-page version, with lo
 PDF-structure compression for the Pages size limit. RoboTwin complete-system results
 are95.08 /95.02 /95.05. Coffee recovery uses the original PNG embedded on report p36,
 extracted without screenshots. The cover uses native immediate looping and no end hold.
+
+Performance: diagram previews are generated directly from original SVGs as lightweight WebP
+files; original vector assets remain available on enlargement. Full-duration low-bandwidth
+gallery videos live in `assets/previews/`; opening a player selects the full720p asset and
+pauses competing previews. Cover/media compression is reproducible with `scripts/optimize_playback.py`.
+The Cloudflare range adapter streams initial playback immediately and fills its internal
+range cache in the background. Its client responses remain private and uncached.

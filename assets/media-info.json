@@ -21,7 +21,7 @@
     "source": "demo/U盘收纳重剪版.mp4",
     "sourceBytes": 469866020,
     "sourceModifiedNs": 1793680958000000000,
-    "webBytes": 11982956,
+    "webBytes": 7801370,
     "src": "assets/videos/usb-storage.mp4",
     "poster": "assets/posters/usb-storage.jpg"
   },
@@ -31,7 +31,7 @@
     "source": "demo/书架重剪版.mp4",
     "sourceBytes": 181973868,
     "sourceModifiedNs": 1793680628000000000,
-    "webBytes": 4588371,
+    "webBytes": 3660857,
     "src": "assets/videos/bookshelf.mp4",
     "poster": "assets/posters/bookshelf.jpg"
   },
@@ -41,7 +41,7 @@
     "source": "demo/11月4日切黄瓜.mp4",
     "sourceBytes": 322057846,
     "sourceModifiedNs": 1793763630000000000,
-    "webBytes": 8167845,
+    "webBytes": 5080877,
     "src": "assets/videos/cucumber.mp4",
     "poster": "assets/posters/cucumber.jpg"
   },
@@ -49,7 +49,7 @@
     "id": "coffee",
     "duration": 169.51,
     "sourceBytes": 1173172936,
-    "webBytes": 63995092,
+    "webBytes": 15893820,
     "src": "assets/videos/coffee.mp4",
     "poster": "assets/posters/coffee.jpg"
   },
@@ -59,7 +59,7 @@
     "source": "demo/厨余垃圾分离.mp4",
     "sourceBytes": 316482746,
     "sourceModifiedNs": 1793601758000000000,
-    "webBytes": 8197355,
+    "webBytes": 5129891,
     "src": "assets/videos/food-waste.mp4",
     "poster": "assets/posters/food-waste.jpg"
   },
@@ -69,7 +69,7 @@
     "source": "demo/化妆品(1).mp4",
     "sourceBytes": 655213554,
     "sourceModifiedNs": 1793609328000000000,
-    "webBytes": 15654083,
+    "webBytes": 9351770,
     "src": "assets/videos/cosmetics.mp4",
     "poster": "assets/posters/cosmetics.jpg"
   },
@@ -87,7 +87,7 @@
     "source": "demo/11月4日手表.mp4",
     "sourceBytes": 420579252,
     "sourceModifiedNs": 1793763216000000000,
-    "webBytes": 10676641,
+    "webBytes": 6135594,
     "src": "assets/videos/charging.mp4",
     "poster": "assets/posters/charging.jpg"
   },
@@ -105,7 +105,7 @@
     "source": "demo/睡前物品准备(1).mp4",
     "sourceBytes": 253271107,
     "sourceModifiedNs": 1793608258000000000,
-    "webBytes": 6592543,
+    "webBytes": 4298789,
     "src": "assets/videos/bedtime.mp4",
     "poster": "assets/posters/bedtime.jpg"
   },
@@ -123,7 +123,7 @@
     "source": "demo/键盘回推重剪版.mp4",
     "sourceBytes": 444825075,
     "sourceModifiedNs": 1793681198000000000,
-    "webBytes": 11301570,
+    "webBytes": 7568163,
     "src": "assets/videos/keyboard-pushback.mp4",
     "poster": "assets/posters/keyboard-pushback.jpg"
   },
@@ -133,7 +133,7 @@
     "source": "demo/11月4日药品.mp4",
     "sourceBytes": 367900851,
     "sourceModifiedNs": 1793762696000000000,
-    "webBytes": 9424319,
+    "webBytes": 5210878,
     "src": "assets/videos/medicine.mp4",
     "poster": "assets/posters/medicine.jpg"
   },
@@ -159,7 +159,7 @@
     "source": "demo/首饰盒眼镜重拍版.mp4",
     "sourceBytes": 564057122,
     "sourceModifiedNs": 1793694994000000000,
-    "webBytes": 14317671,
+    "webBytes": 8197428,
     "src": "assets/videos/drawer.mp4",
     "poster": "assets/posters/drawer.jpg"
   },
@@ -169,7 +169,7 @@
     "source": "demo/11月4日快递开箱.mp4",
     "sourceBytes": 474131424,
     "sourceModifiedNs": 1793762018000000000,
-    "webBytes": 12072666,
+    "webBytes": 7359240,
     "src": "assets/videos/parcel-unpacking.mp4",
     "poster": "assets/posters/parcel-unpacking.jpg"
   },
@@ -179,7 +179,7 @@
     "source": "demo/11月4日封箱.mp4",
     "sourceBytes": 383473217,
     "sourceModifiedNs": 1793765204000000000,
-    "webBytes": 9822443,
+    "webBytes": 6454331,
     "src": "assets/videos/parcel-packing.mp4",
     "poster": "assets/posters/parcel-packing.jpg"
   },
@@ -187,7 +187,7 @@
     "id": "cover",
     "source": "demo/封面-en.mp4",
     "sourceBytes": 22520316,
-    "webBytes": 9868808,
+    "webBytes": 3171956,
     "src": "assets/videos/cover.mp4",
     "poster": "assets/cover/cover-start.jpg"
   }

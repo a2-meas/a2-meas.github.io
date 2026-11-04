@@ -26,7 +26,7 @@ python3 scripts/serve.py --port 4173
 不依赖制作者的电脑持续开机。源代码另存于 GitHub 私有仓库。
 
 访问者输入白名单邮箱，接收一次性验证码后登录；会话有效期为24小时。
-当前白名单包含负责人邮箱及通讯作者邮箱，同事需要逐个加入白名单，不能直接转发验证码。
+当前白名单包含负责人邮箱、通讯作者邮箱及 lfxxmaster@163.com，同事需要逐个加入白名单，不能直接转发验证码。
 无需给予同事 GitHub 写权限，也无需为同事创建 Cloudflare 管理员账号。
 
 在 Cloudflare Zero Trust → Access controls → Policies 中编辑 **Approved project viewers**，
@@ -136,3 +136,13 @@ RoboTwin 完整系统的 Clean / Randomized / Average 更新为 95.08 / 95.02 / 
 
 封面现采用全幅视频蒙版，A²-MEAS 单独居中，完整论文标题在下一行不换行。
 蒙版与标题仍从九宫格转场时淡入，视频立即循环，机构和三个入口仍在视频下方。
+
+## 加载与播放优化（2026-11-04）
+
+流程图页面显示由原始 SVG 裁切生成的 WebP 轻量预览，原始 SVG 继续用于放大查看；
+必须依次运行矢量裁切/布局脚本，再运行 `scripts/prepare_figure_previews.cjs`。后者需要 sharp，
+已生成的预览随包提供，日常预览不需要安装依赖。
+视频列表用 `assets/previews/` 内的低码率、完整时长版本，点击后换成 1280×720 全片；
+独立播放器打开时暂停其余预览。封面和全片经过流式播放编码，原始文件和旧网页文件备份
+均保留在 demo/、Tech Report/ 或 output/，不进入部署包。
+Cloudflare 首次播放直接发送视频首段，同时在内部填充分段缓存，仍保留私密登录与拖动功能。

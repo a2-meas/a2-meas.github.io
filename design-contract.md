@@ -224,3 +224,21 @@ only so no uncovered edge appears during the fade. Keep the8s mosaic reveal. Lay
 the title as A²-MEAS above the entire paper name on one unbroken line. Increase base
 font from3.2vw to3.9vw and project-name factor from1.6 to1.65; preserve rounded font,
 translucent white and bubble outline. Keep native immediate video looping.
+
+## Straight connectors, compact motivation and loading performance — 2026-11-04
+Keep the correction-code a→b arrow as one original SVG path in the common coordinate
+layer; preserve source geometry and arrowhead in enlargement assets. Render lightweight
+WebP previews from original SVG crops (no screenshots), and keep original SVGs for zoom.
+Do not advance the flow before its graphics have loaded. Show an immediate preview in
+the enlarged view while loading the original asset.
+
+Introduction: emphasize Introducing A²-MEAS, with a compact left heading and two readable
+right paragraphs. Use foundation-model progress as context, motivate efficient control
+and failure recovery, then explain the policy/coordinator combination using renewed
+report pp1–2. Avoid a dominant foundation-model headline or full-screen empty padding.
+
+Playback: preserve full video durations, but use480px low-bandwidth ring previews and
+720p full-player assets. Pause competing previews while a player is open, defer posters
+until their section approaches, and prioritize the cover poster. Initial Worker video
+requests stream immediately while native range caching proceeds in parallel; retain
+Access authentication, correct byte ranges and private no-store client responses.
