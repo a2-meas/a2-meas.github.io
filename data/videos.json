@@ -1,125 +1,100 @@
 {
-  "scenes": [
-    {
-      "id": "study",
-      "title": "Study",
-      "description": "Small objects, confined spaces, and organized storage."
-    },
-    {
-      "id": "bedroom",
-      "title": "Bedroom",
-      "description": "Retrieval, pose adjustment, and multi-object routines."
-    },
-    {
-      "id": "living-room",
-      "title": "Living room",
-      "description": "Target alignment, charging, and contact control."
-    },
-    {
-      "id": "kitchen",
-      "title": "Kitchen",
-      "description": "Food preparation, sorting, and tool manipulation."
-    },
-    {
-      "id": "entryway",
-      "title": "Entryway",
-      "description": "Attachment, parcel handling, and ordered packing."
-    }
-  ],
   "tasks": [
     {
       "id": "usb-storage",
-      "scene": "study",
       "title": "USB drive storage",
       "src": "assets/videos/usb-storage.mp4",
       "poster": "assets/posters/usb-storage.jpg",
-      "duration": "1:11"
+      "duration": "1:10",
+      "prompt": "Open the box, place the USB drives inside, then return and close it."
     },
     {
       "id": "keyboard-pushback",
-      "scene": "study",
       "title": "Keyboard pushback with obstacle avoidance",
       "src": "assets/videos/keyboard-pushback.mp4",
       "poster": "assets/posters/keyboard-pushback.jpg",
-      "duration": "1:07"
+      "duration": "1:07",
+      "prompt": "Put the headphones and USB drive in the box, the pen in its holder, and push back the keyboard."
     },
     {
       "id": "bookshelf",
-      "scene": "study",
       "title": "Bookshelf organization",
       "src": "assets/videos/bookshelf.mp4",
       "poster": "assets/posters/bookshelf.jpg",
-      "duration": "0:28"
+      "duration": "0:28",
+      "prompt": "Return both books to their correct slots, spines outward, and align them."
     },
     {
       "id": "cosmetics",
-      "scene": "bedroom",
-      "title": "Skincare and cosmetics tabletop organization",
+      "title": "Skincare and cosmetics organization",
       "src": "assets/videos/cosmetics.mp4",
       "poster": "assets/posters/cosmetics.jpg",
-      "duration": "1:36"
-    },
-    {
-      "id": "medicine",
-      "scene": "bedroom",
-      "title": "Eye-drop and medicine retrieval and return",
-      "src": "assets/videos/medicine.mp4",
-      "poster": "assets/posters/medicine.jpg",
-      "duration": "1:19"
-    },
-    {
-      "id": "bedtime",
-      "scene": "bedroom",
-      "title": "Bedtime item preparation",
-      "src": "assets/videos/bedtime.mp4",
-      "poster": "assets/posters/bedtime.jpg",
-      "duration": "0:39"
-    },
-    {
-      "id": "drawer",
-      "scene": "bedroom",
-      "title": "Object retrieval from a drawer",
-      "src": "assets/videos/drawer.mp4",
-      "poster": "assets/posters/drawer.jpg",
-      "duration": "2:10"
+      "duration": "1:36",
+      "prompt": "Organize the bottles and return the fallen bottle upright to its proper place."
     },
     {
       "id": "charging",
-      "scene": "living-room",
-      "title": "Watch, wristband, and earbud placement for charging",
+      "title": "Watch and earbud charging",
       "src": "assets/videos/charging.mp4",
       "poster": "assets/posters/charging.jpg",
-      "duration": "1:04"
+      "duration": "1:02",
+      "prompt": "Place the watch on the wireless charger, then pick up the earbuds and place them on the charger."
+    },
+    {
+      "id": "medicine",
+      "title": "Medicine retrieval and return",
+      "src": "assets/videos/medicine.mp4",
+      "poster": "assets/posters/medicine.jpg",
+      "duration": "0:55",
+      "prompt": "Retrieve the medicine from the drawer, hand it to the user, then return it and close the drawer."
+    },
+    {
+      "id": "bedtime",
+      "title": "Bedtime item preparation",
+      "src": "assets/videos/bedtime.mp4",
+      "poster": "assets/posters/bedtime.jpg",
+      "duration": "0:39",
+      "prompt": "Place the phone on the wireless charger, store the glasses, and turn on the nightlight or humidifier."
+    },
+    {
+      "id": "drawer",
+      "title": "Object retrieval from a drawer",
+      "src": "assets/videos/drawer.mp4",
+      "poster": "assets/posters/drawer.jpg",
+      "duration": "1:22",
+      "prompt": "Retrieve the hair tie or hair clip from the drawer, place it on the table, then close the drawer."
     },
     {
       "id": "food-waste",
-      "scene": "kitchen",
       "title": "Food-waste sorting",
       "src": "assets/videos/food-waste.mp4",
       "poster": "assets/posters/food-waste.jpg",
-      "duration": "0:47"
+      "duration": "0:47",
+      "prompt": "Empty the food scraps into the food-waste bin, return the plate, and put the wrapper in the general-waste bin."
     },
     {
       "id": "cucumber",
-      "scene": "kitchen",
       "title": "Cucumber preparation",
       "src": "assets/videos/cucumber.mp4",
       "poster": "assets/posters/cucumber.jpg",
-      "duration": "1:03"
+      "duration": "0:49",
+      "prompt": "Secure the cucumber in the cutting-board groove, cut two even slices, then return the knife to its holder."
     },
     {
       "id": "parcel-unpacking",
-      "scene": "entryway",
       "title": "Parcel unpacking",
-      "src": null,
-      "poster": null
+      "src": "assets/videos/parcel-unpacking.mp4",
+      "poster": "assets/posters/parcel-unpacking.jpg",
+      "prompt": "Cut the packing tape and take out the items.",
+      "duration": "1:13"
     },
     {
       "id": "parcel-packing",
-      "scene": "entryway",
       "title": "Parcel packing and sealing",
-      "src": null,
-      "poster": null
+      "src": "assets/videos/parcel-packing.mp4",
+      "poster": "assets/posters/parcel-packing.jpg",
+      "prompt": "Put in the items and seal the box.",
+      "duration": "0:58"
     }
   ],
   "corrections": [
@@ -154,5 +129,13 @@
     "title": "Behind the scenes",
     "src": null,
     "poster": null
+  },
+  "cover": {
+    "src": "assets/videos/cover.mp4",
+    "poster": "assets/cover/cover-start.jpg",
+    "finalPoster": "assets/cover/cover-mosaic.jpg",
+    "titleStartSeconds": 8.0,
+    "loop": true,
+    "endHoldSeconds": 0
   }
 }

@@ -1,7 +1,7 @@
 # A²-MEAS academic homepage
 
 English static website for **Toward the Era of Agentic Embodied Intelligence**.
-HTML, CSS and vanilla JavaScript; no npm installation, build framework, external fonts or database.
+HTML, CSS and vanilla JavaScript; no npm installation, build framework, remote font requests or database (the cover font is bundled locally).
 Chinese handoff and privacy/deployment instructions: [HANDOFF.md](HANDOFF.md).
 
 ## Run locally
@@ -19,14 +19,19 @@ The three coffee fallback buttons open a closable in-page player, including in l
 
 ## Current content
 
-- Title and institutions on the cover; contributors grouped at the end.
-- Overview, four Method diagrams, real-world demonstrations, BEHAVIOR/RoboTwin results,
-  independent training-efficiency section, BibTeX and contributors.
+- Cover film autoplays muted in a loop; the translucent rounded bubble title fades in at8seconds during the mosaic transition.
+  Playback restarts immediately after the final frame. Institutions and resource links sit below the film; contributors appear at the end.
+  Reduced-motion preference uses the mosaic still and title. Blocked autoplay offers a Play film button.
+- Question, System, Model (action policy), Infra, Simulation, Real World, Authors, then Citation.
+- System contains the synchronized Framework plus correction interface, supervision and recovery.
+  Model contains the original A²-WLA action-policy diagram.
 - Coffee full-task video first, then two independent grasp-correction experiments.
-- Short-horizon gallery: twelve tasks in a draggable elliptical chain, ten available videos and two pending parcel tasks.
+- Short-horizon gallery: twelve current videos in a draggable elliptical chain, including parcel unpacking and packing.
+  Each enlarged player shows the task prompt supplied by the author.
 - Available foreground previews autoplay muted. Each task opens native video controls in a closable dialog.
-- Framework and Method stages advance every1.5seconds after entering the viewport.
-  Method ends with all modules highlighted for10seconds. Pointer/focus activates manual selection.
+- Framework and all model/system diagram stages advance every1.5seconds after entering the viewport.
+  Each ends with all modules highlighted for10seconds. Pointer/focus activates manual selection.
+  Framework's diagram and four functional-stage cards share one controller and exact source-contour clips.
 - Original PDF vector figures are cropped at source; connectors remain intact. Tables are editable HTML.
 - No video synchronization or global play/pause switch. Behind-the-scenes video remains unavailable.
 
@@ -50,7 +55,8 @@ Original PDF crops are in `figure/`, source logos in `logo/`. Full-size original
 python3 scripts/extract_figures.py
 python3 scripts/extract_method_modules.py
 python3 scripts/build_method_layout.py
-python3 scripts/create_cover_ribbons.py
+python3 scripts/build_framework_flow.py
+python3 scripts/prepare_cover_media.py
 ```
 
 Do not regenerate media unless the original input videos are present.
@@ -78,7 +84,7 @@ Cloudflare Pages project: `a2meas-preview-laihh88`.
 Access protects both the production hostname and all deployment subdomains. Visitors
 must use an approved email address and a one-time PIN. The session lasts24hours.
 Anonymous checks confirmed that the homepage, deployment URL, PDF and video URLs
-redirect to Access login. Only the owner's supplied email is currently approved.
+redirect to Access login. The owner and the corresponding author's approved email addresses are allowlisted.
 Add colleague emails to the `Approved project viewers` policy; no GitHub write access is needed.
 
 For Cloudflare's25MiB asset limit, `scripts/prepare_cloudflare.py` creates a separate
@@ -109,3 +115,14 @@ See [HANDOFF.md](HANDOFF.md) for access-controlled preview and later public depl
 
 Design decisions and historical changes are recorded in `DESIGN.md`, `design-contract.md` and
 `implementation-handoff.md`. Some early historical entries describe superseded layouts.
+
+The cover source is `demo/封面-en.mp4`; regenerate it with `scripts/prepare_cover_media.py`
+when FFmpeg is installed. Nunito is included with its SIL Open Font License in `assets/fonts/`.
+On2026-11-04, nine obsolete or duplicate task-source copies were moved out of `demo/` to
+`output/demo-duplicates-2026-11-04/` with a SHA-256 manifest; they remain recoverable locally.
+Unique retired task sources were retained. These backups are excluded from every deployment.
+
+The published report is the author’s2026-11-04 renewed50-page version, with lossless
+PDF-structure compression for the Pages size limit. RoboTwin complete-system results
+are95.08 /95.02 /95.05. Coffee recovery uses the original PNG embedded on report p36,
+extracted without screenshots. The cover uses native immediate looping and no end hold.

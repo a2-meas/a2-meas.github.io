@@ -1,17 +1,5 @@
 [
   {
-    "area": "research-question-context",
-    "text": "Each action should support continued task progress.",
-    "source": "To_the_Era_of_Agentic_Embodied_Intelligence.pdf",
-    "pages": [
-      3
-    ],
-    "sections": [
-      "1"
-    ],
-    "type": "concise paraphrase, not a direct quote"
-  },
-  {
     "area": "training-efficiency introduction and chart explanations",
     "source": "To_the_Era_of_Agentic_Embodied_Intelligence.pdf",
     "pages": [
@@ -40,5 +28,85 @@
       ]
     },
     "protocol": "Single-device and eight-device figures use separate configurations; throughput panels are independent comparisons."
+  },
+  {
+    "area": "foundation-model premise and introduction",
+    "answer": "We introduce A²-MEAS, an embodied multi-agent framework that coordinates reasoning, diagnostic grounding, and continuous control through a shared execution record.",
+    "source": "To_the_Era_of_Agentic_Embodied_Intelligence.pdf",
+    "pages": [
+      1,
+      2
+    ],
+    "sections": [
+      "Introduction",
+      "2.3",
+      "2.4"
+    ],
+    "type": "Premise shortened from report p1; introduction uses the original p2 sentence with the project-name superscript normalized. The reasoning/control question was removed at the author’s request.",
+    "qualification": "Code means a learned correction representation, as defined in report p10; not an executable program.",
+    "premise": "Foundation models can generate robot actions."
+  },
+  {
+    "area": "System four-stage diagram and cards",
+    "source": "To_the_Era_of_Agentic_Embodied_Intelligence.pdf",
+    "pages": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      13
+    ],
+    "sections": [
+      "1.1–1.3",
+      "2.1–2.6"
+    ],
+    "type": "Four functional stages, not four agent families",
+    "sequence": "reason → ground → correct → execute illustrates recovery. Nominal control bypasses diagnostic/correction stages; observation history and the shared execution record belong to execution/feedback."
+  },
+  {
+    "area": "Short-horizon task prompts",
+    "source": "Five user-supplied prompt screenshots, 2026-11-03",
+    "type": "Transcribed prompts with minor punctuation cleanup",
+    "selection": "User confirmed exactly the 12 videos currently in demo/; omit the other four screenshot tasks."
+  },
+  {
+    "area": "System heading",
+    "text": "Code as a scaling interface",
+    "source": "To_the_Era_of_Agentic_Embodied_Intelligence.pdf",
+    "pages": [
+      1,
+      2,
+      7
+    ],
+    "type": "User-requested adaptation of the original phrase Language as a scaling interface; code refers to learned correction representations"
+  },
+  {
+    "area": "Renewed RoboTwin results and coffee recovery figure",
+    "source": "To_the_Era_of_Agentic_Embodied_Intelligence_renew.pdf",
+    "pages": [
+      32,
+      35,
+      36
+    ],
+    "RoboTwin_A2MEAS": {
+      "clean": 95.08,
+      "randomized": 95.02,
+      "average": 95.05
+    },
+    "coffee_trials_per_condition_per_step": 100,
+    "coffee_recovery": {
+      "step_2": {
+        "base_retry": 14,
+        "adapter": 94
+      },
+      "step_7": {
+        "base_retry": 8,
+        "adapter": 82
+      }
+    },
+    "figure_extraction": "Original embedded 1309×1202 PNG from page36, image xref213. No screenshot or rasterization."
   }
 ]

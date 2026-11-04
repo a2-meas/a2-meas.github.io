@@ -26,7 +26,7 @@ python3 scripts/serve.py --port 4173
 不依赖制作者的电脑持续开机。源代码另存于 GitHub 私有仓库。
 
 访问者输入白名单邮箱，接收一次性验证码后登录；会话有效期为24小时。
-当前白名单仅包含负责人提供的邮箱，同事需要逐个加入白名单，不能直接转发验证码。
+当前白名单包含负责人邮箱及通讯作者邮箱，同事需要逐个加入白名单，不能直接转发验证码。
 无需给予同事 GitHub 写权限，也无需为同事创建 Cloudflare 管理员账号。
 
 在 Cloudflare Zero Trust → Access controls → Policies 中编辑 **Approved project viewers**，
@@ -106,7 +106,30 @@ python3 scripts/package_site.py
 | 原图与裁剪脚本 | `figure/`、`scripts/extract_figures.py`、`scripts/extract_method_modules.py` |
 | 重新生成交接包 | `python3 scripts/package_site.py --mode handoff` |
 
-已有13条视频用于页面：10条短任务、2条纠错、1条咖啡全流程。
-短任务列表共12项，其中2条包裹操作仍未提供；花絮也待补。
-Framework 与 Method 每步1.5秒；Method 走完后全部高亮10秒；悬停进入手动模式。
+页面使用15条视频：12条已更新的短任务、2条纠错、1条咖啡全流程。
+12条任务以当前 demo/ 原片为准，包含拆包与封箱；其余任务不展示。
+放大短任务视频后，标题下方显示作者提供的英文 prompt，仍使用原生播放和拖动进度控件。
+页面顺序：Question → System → Model → Infra → Simulation → Real World → Authors → Citation。
+System 包含四阶段 Framework、纠错接口、纠错训练与执行恢复；Model 单独展示 A²-WLA 动作策略。
+所有流程图每步1.5秒，走完后全部高亮10秒；进入对应区域后从头开始，悬停进入手动模式。
+Framework 上图与下方四张卡片同步；诊断/纠错按恢复需要触发，正常控制仍直接执行与观察。
 新增视频后重新打包，运行文件的 SHA-256 清单见 `package-manifest.json`。
+
+## 封面与原片备份（2026-11-04）
+
+封面原片为 `demo/封面-en.mp4`，网页采用优化后的 `assets/videos/cover.mp4`。
+静音自动循环播放，8 秒开始在九宫格转场中淡入半透明白色气泡描边标题（圆角透明矩形蒙版），每轮播完后立即从头循环播放。
+机构与 Paper / Code & releases / BibTeX 在视频下方。字体 Nunito 及开源许可证随包提供。
+减少动态效果模式显示九宫格静态封面；浏览器阻止自动播放时可点击 Play film。
+
+9 份重复或旧任务版本已移至本地 `output/demo-duplicates-2026-11-04/`，
+其中 `manifest.json` 记录原路径、大小和 SHA-256，需恢复时移回即可。
+这份备份和原始 demo 都不上传 GitHub / Cloudflare，也不放进交接压缩包。
+
+## 新版报告与实验结果（2026-11-04）
+
+Paper 入口已替换为作者提供的 renew 版本，保持原 URL。只无损压缩 PDF 内部结构以满足
+Cloudflare 单文件上限，50 页文本和原始图像均保留，源 renew.pdf 不改动。
+RoboTwin 完整系统的 Clean / Randomized / Average 更新为 95.08 / 95.02 / 95.05。
+咖啡纠错图使用新版第 36 页内嵌的原始 1309×1202 PNG，直接提取，未截图。
+封面视频原生静音循环，播完立即重播，不再停留；首行 A²-MEAS 无冒号且居中。

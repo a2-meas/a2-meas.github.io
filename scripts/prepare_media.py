@@ -16,21 +16,18 @@ SOURCES = [
     ('coffee', '手冲咖啡全流程.mp4', 1920, 65),
 ]
 TASK_SOURCES = [
-    ('usb-storage', 'U盘收纳.mp4'),
-    ('bookshelf', '书架.mp4'),
-    ('cucumber', '切黄瓜.mp4'),
+    ('usb-storage', 'U盘收纳重剪版.mp4'),
+    ('keyboard-pushback', '键盘回推重剪版.mp4'),
+    ('bookshelf', '书架重剪版.mp4'),
     ('cosmetics', '化妆品(1).mp4'),
-    ('food-waste', '厨余垃圾分离.mp4'),
-    ('container-lid', '容器盖.mp4'),
-    ('charging', '手表充电(1).mp4'),
-    ('plug-insertion', '插排.mp4'),
-    ('study-supplies', '文具(1).mp4'),
+    ('charging', '11月4日手表.mp4'),
+    ('medicine', '11月4日药品.mp4'),
     ('bedtime', '睡前物品准备(1).mp4'),
-    ('medicine', '药品.mp4'),
-    ('keyboard-pushback', '键盘回推.mp4'),
-    ('meatballs', '食物分类.mp4'),
-    ('jewelry', '首饰分类.mp4'),
-    ('drawer', '首饰盒眼镜.mp4'),
+    ('drawer', '首饰盒眼镜重拍版.mp4'),
+    ('food-waste', '厨余垃圾分离.mp4'),
+    ('cucumber', '11月4日切黄瓜.mp4'),
+    ('parcel-unpacking', '11月4日快递开箱.mp4'),
+    ('parcel-packing', '11月4日封箱.mp4'),
 ]
 
 
@@ -72,7 +69,8 @@ def prepare(item, ffmpeg, force, hardware):
                         '-frames:v', '1', '-vf', 'scale=1280:-2', '-q:v', '3', str(poster)], check=True)
     if force or not video.is_file():
         temporary = video.with_suffix('.tmp.mp4')
-        encoder = (['-c:v', 'h264_videotoolbox', '-b:v', '3000k' if width > 1280 else '2000k']
+        bitrate = min(2000, int(23 * 1024**2 * 8 / duration / 1000) - 128)
+        encoder = (['-c:v', 'h264_videotoolbox', '-b:v', f'{bitrate}k', '-maxrate', f'{bitrate}k', '-bufsize', f'{bitrate*2}k']
                    if hardware else ['-c:v', 'libx264', '-preset', 'veryfast', '-crf', '24', '-threads', '2'])
         video_filter = f'scale={width}:-2'
         decode = acceleration
@@ -90,7 +88,8 @@ def prepare(item, ffmpeg, force, hardware):
                             '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '96k',
                             '-movflags', '+faststart', str(temporary)], stderr=log, stdout=log, check=True)
         temporary.replace(video)
-    result = {'id': slug, 'duration': round(duration, 2), 'sourceBytes': source.stat().st_size,
+    result = {'id': slug, 'duration': round(duration, 2), 'source': str(source.relative_to(ROOT)),
+              'sourceBytes': source.stat().st_size, 'sourceModifiedNs': source.stat().st_mtime_ns,
               'webBytes': video.stat().st_size, 'src': f'assets/videos/{slug}.mp4',
               'poster': f'assets/posters/{slug}.jpg'}
     print(json.dumps(result), flush=True)
@@ -101,12 +100,13 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--force', action='store_true')
     parser.add_argument('--hardware', action='store_true', help='Use macOS VideoToolbox acceleration')
+    parser.add_argument('--tasks-only', action='store_true', help='Leave coffee/correction media unchanged')
     parser.add_argument('--task-dir', type=Path, default=ROOT / 'demo', help='Directory containing the supplied A²-WLA task videos (default: demo/)')
     args = parser.parse_args()
     for folder in ['assets/videos', 'assets/posters']:
         (ROOT / folder).mkdir(parents=True, exist_ok=True)
     ffmpeg = find_ffmpeg()
-    sources = [(slug, ROOT / 'Tech Report' / name, width, timestamp) for slug, name, width, timestamp in SOURCES]
+    sources = [] if args.tasks_only else [(slug, ROOT / 'Tech Report' / name, width, timestamp) for slug, name, width, timestamp in SOURCES]
     if args.task_dir:
         sources.extend((slug, args.task_dir / name, 1280, 5) for slug, name in TASK_SOURCES
                        if (args.task_dir / name).is_file())

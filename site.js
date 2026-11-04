@@ -6,16 +6,59 @@
     threshold: [0, 0.5],
     rootMargin: `-${getComputedStyle(document.documentElement).getPropertyValue('--header-offset').trim()} 0px -8% 0px`
   };
-  const heroArt = document.querySelector('.hero-art');
-  let coverVisible = true;
-  function syncCoverMotion() {
-    heroArt.classList.toggle('is-idle', !coverVisible || document.hidden);
+  const coverVideo = document.querySelector('#cover-video');
+  const coverStage = document.querySelector('[data-cover-stage]');
+  const coverPlay = document.querySelector('.cover-play');
+  const coverMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  new ResizeObserver(entries => {
+    document.documentElement.style.setProperty('--cover-header-height', `${Math.ceil(entries[0].target.getBoundingClientRect().height)}px`);
+  }).observe(document.querySelector('.site-header'));
+  let coverVisible = false;
+  let coverStatic = coverMotion.matches;
+  function syncCoverTitle() {
+    coverStage.classList.toggle('is-title-visible', coverStatic || coverVideo.currentTime >= Number(coverVideo.dataset.titleStart));
   }
+  function syncCoverMotion() {
+    if (coverStatic || !coverVisible || document.hidden) {
+      coverVideo.pause();
+      return;
+    }
+    coverVideo.muted = true;
+    coverVideo.play().then(() => { coverPlay.hidden = true; }).catch(error => {
+      if (error.name === 'AbortError' || !coverVisible || document.hidden) return;
+      coverPlay.hidden = false;
+      coverStatic = true;
+      coverVideo.poster = 'assets/cover/cover-mosaic.jpg';
+      syncCoverTitle();
+    });
+  }
+  function setCoverPreference() {
+    coverStatic = coverMotion.matches;
+    coverVideo.autoplay = !coverStatic;
+    coverVideo.poster = coverStatic ? 'assets/cover/cover-mosaic.jpg' : 'assets/cover/cover-start.jpg';
+    coverVideo.style.visibility = coverStatic ? 'hidden' : '';
+    syncCoverTitle();
+    syncCoverMotion();
+  }
+  coverPlay.addEventListener('click', () => {
+    coverStatic = false;
+    coverVideo.style.visibility = '';
+    syncCoverTitle();
+    syncCoverMotion();
+  });
+  ['timeupdate', 'seeking', 'seeked', 'loadeddata'].forEach(name => coverVideo.addEventListener(name, syncCoverTitle));
+  coverVideo.addEventListener('error', () => {
+    coverStatic = true;
+    coverVideo.style.visibility = 'hidden';
+    syncCoverTitle();
+  });
   new IntersectionObserver(entries => {
     coverVisible = entries[0].isIntersecting;
     syncCoverMotion();
-  }, { threshold: 0 }).observe(document.querySelector('.hero'));
+  }, { threshold: 0.05 }).observe(coverStage);
   document.addEventListener('visibilitychange', syncCoverMotion);
+  coverMotion.addEventListener('change', setCoverPreference);
+  setCoverPreference();
   const gallery = document.querySelector('#task-gallery');
   const announcement = document.querySelector('#gallery-announcement');
   const mediaPlayers = new Set();
@@ -180,6 +223,7 @@
   const taskDialog = document.querySelector('#task-video-dialog');
   const modalPlayer = document.querySelector('#task-modal-player');
   const modalTitle = document.querySelector('#task-video-title');
+  const modalPrompt = document.querySelector('#task-video-prompt');
   const modalFeedback = document.querySelector('#task-modal-feedback');
   const modalRetry = document.querySelector('#task-modal-retry');
   const modalStatus = document.querySelector('#task-modal-status');
@@ -195,6 +239,8 @@
     openedTask = player;
     lastTaskTrigger = trigger;
     modalTitle.textContent = player.item.title;
+    modalPrompt.textContent = player.item.prompt || '';
+    modalPrompt.hidden = !player.item.prompt;
     modalStatus.hidden = true;
     modalFeedback.hidden = true;
     modalRetry.hidden = true;
@@ -472,81 +518,6 @@
     }
   }
 
-  const principles = document.querySelector('.principles');
-  const principleCards = [...principles.querySelectorAll('.principle-card')];
-  const principleHover = matchMedia('(hover: hover)');
-  let principleTimer = null;
-  let principlePointerCard = null;
-  let principlesVisible = false;
-  let principlesStarted = false;
-  principles.dataset.autoStarted = 'false';
-  function activatePrinciple(activeCard) {
-    principleCards.forEach(card => {
-      const active = card === activeCard;
-      card.classList.toggle('is-active', active);
-      card.setAttribute('aria-pressed', String(active));
-    });
-  }
-  function syncPrincipleCycle() {
-    clearTimeout(principleTimer);
-    principleTimer = null;
-    const focusedCard = principles.contains(document.activeElement) && document.activeElement.matches(':focus-visible') ? document.activeElement.closest('.principle-card') : null;
-    const pointerCard = principlePointerCard || (principleHover.matches && principleCards.find(card => card.matches(':hover')));
-    const selected = pointerCard || focusedCard;
-    principles.dataset.flowMode = selected ? 'manual' : 'auto';
-    if (selected) { activatePrinciple(selected); return; }
-    if (!principlesVisible || !principlesStarted || document.hidden || taskMotion.matches) return;
-    principleTimer = setTimeout(() => {
-      const current = principleCards.findIndex(card => card.classList.contains('is-active'));
-      activatePrinciple(principleCards[(current + 1) % principleCards.length]);
-      syncPrincipleCycle();
-    }, HIGHLIGHT_INTERVAL_MS);
-  }
-  principleCards.forEach(card => {
-    card.addEventListener('pointerenter', event => {
-      if (event.pointerType !== 'touch') {
-        principlePointerCard = card;
-        syncPrincipleCycle();
-      }
-    });
-    card.addEventListener('pointerleave', event => {
-      if (event.pointerType !== 'touch' && principlePointerCard === card) { principlePointerCard = null; queueMicrotask(syncPrincipleCycle); }
-    });
-    card.addEventListener('focus', () => { activatePrinciple(card); syncPrincipleCycle(); });
-    card.addEventListener('click', () => { activatePrinciple(card); syncPrincipleCycle(); });
-  });
-  principles.addEventListener('pointermove', event => {
-    if (event.pointerType === 'touch') return;
-    const card = event.target.closest('.principle-card');
-    if (principlePointerCard !== card) { principlePointerCard = card; syncPrincipleCycle(); }
-  });
-  principles.addEventListener('pointerleave', event => {
-    if (event.pointerType !== 'touch') {
-      principlePointerCard = null;
-      syncPrincipleCycle();
-    }
-  });
-  principles.addEventListener('focusout', () => queueMicrotask(syncPrincipleCycle));
-  new IntersectionObserver(entries => {
-    principlesVisible = entries[0].isIntersecting;
-    if (!principlesVisible) {
-      principlesStarted = false;
-      principles.dataset.autoStarted = 'false';
-      if (principles.dataset.flowMode !== 'manual') activatePrinciple(principleCards[0]);
-    }
-    syncPrincipleCycle();
-  }, { threshold: 0 }).observe(principles);
-  new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting && entries[0].intersectionRatio >= 0.5 && !principlesStarted) {
-      principlesStarted = true;
-      principles.dataset.autoStarted = 'true';
-      activatePrinciple(principleCards[0]);
-      syncPrincipleCycle();
-    }
-  }, autoStartViewport).observe(principleCards[0]);
-  document.addEventListener('visibilitychange', syncPrincipleCycle);
-  taskMotion.addEventListener('change', syncPrincipleCycle);
-
   document.querySelectorAll('.mobile-nav a').forEach(link => {
     link.addEventListener('click', () => document.querySelector('.mobile-nav').removeAttribute('open'));
   });
@@ -559,9 +530,13 @@
   window.addEventListener('hashchange', updateResultJump);
   updateResultJump();
 
-  // Independently cycle the paper's Method subpanels; keep all other media untouched.
-  document.querySelectorAll('[data-method-flow]').forEach(flow => {
+  // Framework and Method share timing, viewport gates and manual selection.
+  document.querySelectorAll('[data-method-flow], [data-framework-flow]').forEach(flow => {
     const modules = [...flow.querySelectorAll('[data-flow-module]')];
+    const peers = [...flow.querySelectorAll('[data-flow-peer]')];
+    const controls = [...modules, ...peers];
+    const isFramework = flow.hasAttribute('data-framework-flow');
+    const stageOf = item => item.dataset.flowPeer || item.dataset.flowStage || item.dataset.flowModule;
     const stages = [...new Set(modules.map(module => module.dataset.flowStage || module.dataset.flowModule))];
     const motion = matchMedia('(prefers-reduced-motion: reduce)');
     const hoverCapable = matchMedia('(hover: hover)');
@@ -571,26 +546,27 @@
       current = index;
       const complete = index === stages.length;
       flow.dataset.flowState = complete ? 'complete' : stages[index];
-      modules.forEach((module, i) => {
-        const active = complete || (module.dataset.flowStage || module.dataset.flowModule) === stages[index];
+      controls.forEach(module => {
+        const active = complete || stageOf(module) === stages[index];
         module.classList.toggle('is-active', active);
         module.setAttribute('aria-pressed', String(active));
       });
     }
     function selectManual(module) {
-      current = stages.indexOf(module.dataset.flowStage || module.dataset.flowModule);
+      current = stages.indexOf(stageOf(module));
       flow.dataset.flowState = stages[current];
       flow.dataset.flowMode = 'manual';
-      flow.dataset.manualModule = module.dataset.flowModule;
-      modules.forEach(item => {
-        item.classList.toggle('is-active', item === module);
-        item.setAttribute('aria-pressed', String(item === module));
+      flow.dataset.manualModule = module.dataset.flowModule || module.dataset.flowPeer;
+      controls.forEach(item => {
+        const active = isFramework ? stageOf(item) === stageOf(module) : item === module;
+        item.classList.toggle('is-active', active);
+        item.setAttribute('aria-pressed', String(active));
       });
     }
     function sync() {
       clearTimeout(timer);
-      const pointer = hoveredModule || (hoverCapable.matches && modules.find(module => module.matches(':hover')));
-      const focused = flow.contains(document.activeElement) && document.activeElement.matches(':focus-visible') ? document.activeElement.closest('[data-flow-module]') : null;
+      const pointer = hoveredModule || (hoverCapable.matches && controls.find(module => module.matches(':hover')));
+      const focused = flow.contains(document.activeElement) && document.activeElement.matches(':focus-visible') ? document.activeElement.closest('[data-flow-module], [data-flow-peer]') : null;
       const selected = pointer || focused;
       if (selected) {
         selectManual(selected);
@@ -599,12 +575,13 @@
       if (flow.dataset.flowMode === 'manual') activate(current);
       flow.dataset.flowMode = 'auto';
       delete flow.dataset.manualModule;
-      if (!visible || !started || document.hidden || motion.matches || document.querySelector('dialog[open]')) return;
+      if (motion.matches) { activate(stages.length); return; }
+      if (!visible || !started || document.hidden || document.querySelector('dialog[open]')) return;
       timer = setTimeout(() => { activate((current + 1) % (stages.length + 1)); sync(); }, current === stages.length ? METHOD_COMPLETE_HOLD_MS : HIGHLIGHT_INTERVAL_MS);
     }
     activate(0);
-    modules.forEach((module, index) => {
-      const stageIndex = stages.indexOf(module.dataset.flowStage || module.dataset.flowModule);
+    controls.forEach(module => {
+      const stageIndex = stages.indexOf(stageOf(module));
       module.addEventListener('pointerenter', event => {
         if (event.pointerType !== 'touch') { hoveredModule = module; sync(); }
       });
@@ -619,12 +596,12 @@
         if (!['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Home','End'].includes(event.key)) return;
         event.preventDefault();
         const next = event.key === 'Home' ? 0 : event.key === 'End' ? stages.length-1 : (stageIndex + (['ArrowRight','ArrowDown'].includes(event.key) ? 1 : -1) + stages.length) % stages.length;
-        activate(next); modules.find(item => (item.dataset.flowStage || item.dataset.flowModule) === stages[next]).focus(); sync();
+        activate(next); (module.dataset.flowPeer ? peers : modules).find(item => stageOf(item) === stages[next]).focus(); sync();
       });
     });
     flow.addEventListener('pointermove', event => {
       if (event.pointerType === 'touch') return;
-      const module = event.target.closest('[data-flow-module]');
+      const module = event.target.closest('[data-flow-module], [data-flow-peer]');
       if (hoveredModule !== module) { hoveredModule = module; sync(); }
     });
     flow.addEventListener('pointerleave', () => { hoveredModule = null; sync(); });

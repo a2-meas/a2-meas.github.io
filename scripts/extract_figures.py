@@ -15,7 +15,7 @@ SOURCES = [
     ('correction-training', 'figure/figure4.pdf', 1, (10.5, 12, 497, 260.5)),
     ('execution-recovery', 'figure/figure5.pdf', 1, (5, 4.5, 504, 311.5)),
     # Crop only the artwork. Paper captions are rendered separately as HTML.
-    ('coffee-recovery', REPORT, 34, (70.5, 80, 539.5, 505)),
+    ('coffee-recovery', REPORT, 36, (70.866, 80.9445, 541.1243, 512.763)),
     ('training-systems', REPORT, 23, (69, 406, 540, 581)),
     ('training-throughput', REPORT, 25, (69, 163, 534, 338)),
 ]
@@ -23,6 +23,21 @@ records = []
 for name, relative, number, bounds in SOURCES:
     with pymupdf.open(ROOT / relative) as source:
         page = source[number - 1]
+        if name == 'coffee-recovery':
+            # The renewed report embeds this complete figure as one PNG.
+            # Extract its original pixels, excluding the separate paper caption.
+            images = page.get_images(full=True)
+            assert len(images) == 1, 'Recovery figure image is ambiguous'
+            image = source.extract_image(images[0][0])
+            assert image['ext'] == 'png'
+            asset = f'assets/figures/{name}.png'
+            (ROOT / asset).write_bytes(image['image'])
+            records.append({'id': name, 'source': relative, 'page': number,
+                            'clip': bounds, 'width': image['width'], 'height': image['height'],
+                            'format': 'original embedded PNG extracted losslessly; no screenshot',
+                            'asset': asset})
+            print(name, image['width'], image['height'], 'original embedded PNG')
+            continue
         if bounds:
             clip = pymupdf.Rect(bounds)
             canvas = pymupdf.open()

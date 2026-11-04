@@ -81,19 +81,18 @@
   },
   {
     "id": "coffee-recovery",
-    "source": "To_the_Era_of_Agentic_Embodied_Intelligence.pdf",
-    "page": 34,
+    "source": "To_the_Era_of_Agentic_Embodied_Intelligence_renew.pdf",
+    "page": 36,
     "clip": [
-      70.5,
-      80,
-      539.5,
-      505
+      70.86599731445312,
+      80.94448852539062,
+      541.124267578125,
+      512.7630004882812
     ],
-    "width": 469.0,
-    "height": 425.0,
-    "safety_margin_pt": 3,
-    "format": "original PDF vectors and embedded images",
-    "asset": "assets/figures/coffee-recovery.svg"
+    "width": 1309,
+    "height": 1202,
+    "format": "original embedded PNG extracted losslessly from PDF image xref 213; no screenshot",
+    "asset": "assets/figures/coffee-recovery.png"
   },
   {
     "id": "training-systems",

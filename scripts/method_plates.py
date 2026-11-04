@@ -20,7 +20,7 @@ def plate_svg(item, root):
     if letter=='a':rect(3,240,338,164,5)
     elif letter=='a-detail':rect(3,463,1078,141,5)
     elif letter=='b':rect(349.5,301.7,141.8,76.3,4)
-    elif letter=='c-current':rect(500,328,140,51,3)
+    elif letter=='c-current':rect(500,328,125,51,3)
     elif letter=='d':
         rect(782.2,390.2,174.3,35.3,3)
         rect(980,389,95,56,3)

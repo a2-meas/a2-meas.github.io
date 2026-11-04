@@ -155,3 +155,64 @@ The enlarged task and fallback players size to the source video aspect ratio and
 
 ## Native video seeking on private Pages hosting
 The live Pages host returned200/full files for Range requests, leaving Chrome's seekable range at0–0 despite buffered video. Install a Pages-only streaming byte-range adapter for `/assets/videos/*`, returning206 with exact Content-Range and Content-Length, including open-ended and suffix requests. Preserve native controls, autoplay, individual pause state, full video image and existing Access protection. Keep the standard static/GitHub Pages package unchanged. Verify exact response bytes and lengths, invalid416, HEAD/static fallback, forward/backward dragging while playing and paused, and anonymous denial of direct video URLs.
+
+## Synchronized Framework diagram and four functional stages
+Use report §§1.1–1.3 and2.1–2.6 (pp4–10,13) to distinguish four explanatory stages, rather than inventing a fourth agent family: MetaBrain reasoning; diagnostic evidence; correction context plus adapter; A²-WLA execution plus observation history and shared execution record. The1→2→3→4 sequence illustrates recovery; ordinary control bypasses diagnosis/correction and repeats action/observation. State that conditional relationship in readable body copy. Preserve the original PDF artwork and all connectors. Clip each dimmed image and colored plate to its original exact Bézier contour; disconnected pieces may share one stage. Synchronize diagram groups and four equal cards using one controller:1500ms per stage,10000ms all-bright, viewport entry at the first diagram region starts stage1, exit/re-entry resets, hover/focus on either representation selects only that stage and its counterpart. Preserve Method behavior and existing zoom dialog. At reduced motion show all stages without timers. Desktop: four cards; tablet:2×2; phone: stacked cards and horizontally scrollable readable diagram, no page overflow. Verify viewport start/re-entry, exact dwell/hold with real timers, diagram/card hover both ways, keyboard, contour containment and existing Method cycles.
+
+## Paper-led hierarchy and refreshed demonstrations (2026-11-03)
+Latest user direction supersedes the old Overview/Method hierarchy. After the hero and Question, order System → Model (action policy) → Infra → Simulation → Real World → Authors → Citation. System includes the four-stage Framework plus the previous Method02/03/04; Model contains only the previous Method01 diagram. Use original paper wording: System heading “Language as a scaling interface”; Question answer “Cooperation through grounded correction codes” (Section2 title), replacing the initially requested Code-as-interface editorial phrase. Shorten the report's foundation-model premise and reasoning/control question with minimal word changes. Keep only the twelve source videos currently in demo/; user explicitly removed the other screenshot tasks. Re-encode and regenerate posters, add supplied prompts inside the enlarged video toolbar, preserve individual native playback/seeking and the6-front/6-back ring. Keep coffee/recovery content first within Real World, current tables and measurements, exact contour clips, existing private hosting and approved viewer policy. Verify real browser at desktop and mobile breakpoints, timer/manual behavior, all twelve source mappings, host file limits, and upload the refreshed private site/source handoff.
+
+Final System title update (2026-11-03): user replaces Language with Code, giving “Code as a scaling interface”. Keep the Question answer “Cooperation through grounded correction codes” and all other agreed changes. This is an author-requested adaptation, not a verbatim report heading.
+
+Arrow clearance refinements: shrink only the Current-context plate right edge from640 to625pt, retaining the full original image/arrow crop; move its expand badge below the connector and inside the plate. Keep the Framework Adapter source fill opaque, colored to the correction stage, so the original vertical arrow is occluded inside the box while outer connector segments remain.
+
+## Cover film — 2026-11-04
+Replace the ribbon background with the author-supplied1920×1080 cover film. Preserve16:9,
+play muted in a loop, reveal the central title at12.7s during the mosaic transition, and hold
+the last frame for5seconds before restarting. Translucent-white Nunito650 with a translucent rounded outer outline (1.5× the preceding7px stroke) supplies the requested rounded
+bubble lettering. A feathered radial mask affects only the title vicinity. Affiliations
+and resource links remain below the video. Pause while offscreen; reduced motion uses
+the final mosaic still. No changes to the established section hierarchy or diagram timing.
+
+The question area uses two text tiers and two colors: a single dark-green heading pairs
+the foundation-model premise with the organization question; a muted paragraph introduces
+A²-MEAS using report p2 wording. Bold alone emphasizes the question, project and capabilities.
+The former separate green answer/tagline and four-style hierarchy are removed.
+
+Local-only revision after the author paused uploads: replace the feathered title mask with
+a rectangular backing, softly rounded corners,27% dark-green opacity and3px background blur.
+Remove the reasoning/control question; retain the foundation-model premise and original-paper
+A²-MEAS introduction. Do not upload this revision until the author asks to resume publishing.
+
+Further local cover adjustment: center the title backing at40% of video width and height,
+slightly exceeding the central33.3% mosaic tile on each axis. Four explicit title lines
+fill the compact backing. Scale lettering and stroke with the video rather than using
+the previous nearly full-width title panel. Publishing remains paused.
+
+Final local title layout follows the author’s three-line preference: A²-MEAS / Toward
+the Era of / Agentic Embodied Intelligence. Widen the rounded backing to52% of the video
+and keep its height36%, so lettering stays inside rather than overflowing the mask.
+
+## English cover and fitted mask — 2026-11-04
+Replace the cover with the author’s trimmed `demo/封面-en.mp4` (17.23s). Title reveal
+starts at8.0s during the mosaic transition, reaching full opacity as the center tile
+settles. Keep the5s end hold and loop. Generate the mosaic still from0.5s before the
+new source ends. Fit the rounded backing to its unchanged three text lines using
+max-content width, automatic height, and0.3em vertical /0.4em horizontal padding.
+Font size, weight, opacity and outline stay unchanged. Continue local-only work.
+
+## Framework outline repair and private preview release — 2026-11-04
+Remove the second CSS panel stroke and the residual outer half-strokes in the original
+connection layer. Keep the original outline in each stage asset as the sole boundary.
+Clips and fill plates reuse the exact source Bézier paths, with identical non-letterboxed
+SVG scaling. Connectors and Adapter occlusion remain intact. The author has resumed
+uploading the reviewed local site to the existing email-protected preview.
+
+## Renewed report and immediate cover loop — 2026-11-04
+Use the author’s renewed50-page report for the Paper button. Preserve its content,
+losslessly compress PDF structure to fit Pages’25MiB limit, and keep the supplied
+renew.pdf untouched. Update RoboTwin A²-MEAS to95.08 /95.02 /95.05; retain A²-WLA
+values. Replace coffee recovery with the original embedded PNG from report p36,
+without a screen capture or the external paper caption. Native cover looping now
+restarts immediately, with no end hold. Remove the colon from the centered A²-MEAS
+first title line; keep all other typography unchanged.
