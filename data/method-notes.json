@@ -17,7 +17,7 @@
   },
   {
     "heading_id": "correction-interface-title",
-    "summary": "MetaBrain’s recovery instruction, verified spatial evidence, executed history and a fresh base-policy proposal are encoded into one correction code. A residual adapter uses this code to adjust action generation, with all model parameters fixed during deployment.",
+    "summary": "MetaBrain’s recovery instruction, verified spatial evidence, executed history and a fresh base-policy proposal are encoded into a correction code. A residual adapter uses this code to adjust action generation, with all model parameters fixed during deployment.",
     "source": "To_the_Era_of_Agentic_Embodied_Intelligence.pdf",
     "pages": [
       9,

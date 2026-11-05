@@ -19,9 +19,9 @@ The three coffee fallback buttons open a closable in-page player, including in l
 
 ## Current content
 
-- Cover film autoplays muted in a loop; the larger translucent bubble title and full-video mask fade in at8seconds during the mosaic transition.
+- Cover film autoplays muted once; the larger translucent bubble title and full-video mask fade in at8seconds during the mosaic transition.
   The project name sits above the complete paper title on a single line.
-  Playback restarts immediately after the final frame. Institutions and resource links sit below the film; contributors appear at the end.
+  Playback holds on the final frame. Institutions and resource links sit below the film; contributors appear at the end.
   Reduced-motion preference uses the mosaic still and title. Blocked autoplay offers a Play film button.
 - Question, System, Model (action policy), Infra, Simulation, Real World, Authors, then Citation.
 - System contains the synchronized Framework plus correction interface, supervision and recovery.
@@ -49,7 +49,8 @@ The three coffee fallback buttons open a closable in-page player, including in l
 
 Prepared web assets are included. No regeneration is needed for preview or deployment.
 For optional figure regeneration install PyMuPDF; for video re-encoding install ffmpeg or imageio-ffmpeg.
-Original PDF crops are in `figure/`, source logos in `logo/`. Full-size original videos in `demo/` and
+Original PDF crops are in `figure/`, source logos in `logo/`. The two renewed diagram crops
+are included; the original renewed report used by `extract_renewed_diagrams.py` remains a local input. Full-size original videos in `demo/` and
 `Tech Report/` are intentionally excluded from Git and handoff archives; keep a separate source-media backup.
 
 ```sh
@@ -79,7 +80,7 @@ These commands do not upload, deploy, enable Pages or change repository visibili
 
 ## Hosting account connections
 
-The source is backed up in the private repository `laihh88/a2meas-homepage`.
+The source repository is private at `a2-meas/a2-meas.github.io`. Migration backups are kept locally; GitHub Pages remains disabled.
 Private online preview: https://a2meas-preview-laihh88.pages.dev/
 Cloudflare Pages project: `a2meas-preview-laihh88`.
 Access protects both the production hostname and all deployment subdomains. Visitors
@@ -110,7 +111,11 @@ credentials are stored outside this repository. GitHub Pages has not been enable
 
 Keep the GitHub repository private. A private repository alone does not restrict access to ordinary
 GitHub Pages websites. Use an authenticated preview host or an existing internal/VPN server.
-Organization-private GitHub Pages requires a suitable Enterprise Cloud organization.
+The current GitHub Free organization cannot publish Pages from a private repository.
+GitHub Team supports a private source repository with a public Pages site. Enterprise Cloud
+access control applies to project sites; it does not support private organization sites such as this one.
+See [GitHub Pages availability](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages)
+and [site access control](https://docs.github.com/en/enterprise-cloud@latest/pages/getting-started-with-github-pages/changing-the-visibility-of-your-github-pages-site).
 Protect direct PDF/media URLs as well as HTML. Hosting credentials stay out of source control.
 See [HANDOFF.md](HANDOFF.md) for access-controlled preview and later public deployment.
 
@@ -126,7 +131,7 @@ Unique retired task sources were retained. These backups are excluded from every
 The published report is the author’s2026-11-04 renewed50-page version, with lossless
 PDF-structure compression for the Pages size limit. RoboTwin complete-system results
 are95.08 /95.02 /95.05. Coffee recovery uses the original PNG embedded on report p36,
-extracted without screenshots. The cover uses native immediate looping and no end hold.
+extracted without screenshots. The cover autoplays once and holds its final frame, including after leaving and returning to the hero.
 
 Performance: diagram previews are generated directly from original SVGs as lightweight WebP
 files; original vector assets remain available on enlargement. Full-duration low-bandwidth

@@ -5,19 +5,21 @@
     "letter": "a",
     "title": "Motion-aware visual history",
     "color": "green",
-    "source": "figure/第16页_模型结构_裁剪.pdf",
+    "source": "figure/action-model-renew.pdf",
     "bounds": [
       3,
-      240,
+      252,
       343,
-      405
+      417
     ],
     "width": 340,
     "height": 165,
     "asset": "assets/figures/method/action-model-a.svg",
     "removed_page_backgrounds": 1,
     "page_width": 1083.5,
-    "page_height": 608.0
+    "page_height": 608.0,
+    "report_source": "To_the_Era_of_Agentic_Embodied_Intelligence_renew.pdf",
+    "report_page": 16
   },
   {
     "stage": "a",
@@ -25,7 +27,7 @@
     "letter": "a-detail",
     "title": "Motion-aware history encoder — detail",
     "color": "green",
-    "source": "figure/第16页_模型结构_裁剪.pdf",
+    "source": "figure/action-model-renew.pdf",
     "bounds": [
       3,
       463,
@@ -37,7 +39,9 @@
     "asset": "assets/figures/method/action-model-a-detail.svg",
     "removed_page_backgrounds": 1,
     "page_width": 1083.5,
-    "page_height": 608.0
+    "page_height": 608.0,
+    "report_source": "To_the_Era_of_Agentic_Embodied_Intelligence_renew.pdf",
+    "report_page": 16
   },
   {
     "stage": "b",
@@ -45,19 +49,21 @@
     "letter": "b",
     "title": "Task interpretation with Qwen3-VL",
     "color": "orange",
-    "source": "figure/第16页_模型结构_裁剪.pdf",
+    "source": "figure/action-model-renew.pdf",
     "bounds": [
       344,
-      296,
+      311.235,
       496,
-      383
+      398.235
     ],
     "width": 152,
-    "height": 87,
+    "height": 87.0,
     "asset": "assets/figures/method/action-model-b.svg",
     "removed_page_backgrounds": 1,
     "page_width": 1083.5,
-    "page_height": 608.0
+    "page_height": 608.0,
+    "report_source": "To_the_Era_of_Agentic_Embodied_Intelligence_renew.pdf",
+    "report_page": 16
   },
   {
     "stage": "c",
@@ -65,7 +71,7 @@
     "letter": "c",
     "title": "Multiview future-context prediction",
     "color": "teal",
-    "source": "figure/第16页_模型结构_裁剪.pdf",
+    "source": "figure/action-model-renew.pdf",
     "bounds": [
       3,
       3,
@@ -77,7 +83,9 @@
     "asset": "assets/figures/method/action-model-c.svg",
     "removed_page_backgrounds": 1,
     "page_width": 1083.5,
-    "page_height": 608.0
+    "page_height": 608.0,
+    "report_source": "To_the_Era_of_Agentic_Embodied_Intelligence_renew.pdf",
+    "report_page": 16
   },
   {
     "stage": "c",
@@ -85,19 +93,21 @@
     "letter": "c-current",
     "title": "Current-context tokens",
     "color": "teal",
-    "source": "figure/第16页_模型结构_裁剪.pdf",
+    "source": "figure/action-model-renew.pdf",
     "bounds": [
       500,
-      328,
+      341.437,
       640,
-      379
+      392.437
     ],
     "width": 140,
-    "height": 51,
+    "height": 51.0,
     "asset": "assets/figures/method/action-model-c-current.svg",
     "removed_page_backgrounds": 1,
     "page_width": 1083.5,
-    "page_height": 608.0
+    "page_height": 608.0,
+    "report_source": "To_the_Era_of_Agentic_Embodied_Intelligence_renew.pdf",
+    "report_page": 16
   },
   {
     "stage": "d",
@@ -105,7 +115,7 @@
     "letter": "d",
     "title": "Continuous action generation",
     "color": "blue",
-    "source": "figure/第16页_模型结构_裁剪.pdf",
+    "source": "figure/action-model-renew.pdf",
     "bounds": [
       642,
       3,
@@ -117,7 +127,9 @@
     "asset": "assets/figures/method/action-model-d.svg",
     "removed_page_backgrounds": 1,
     "page_width": 1083.5,
-    "page_height": 608.0
+    "page_height": 608.0,
+    "report_source": "To_the_Era_of_Agentic_Embodied_Intelligence_renew.pdf",
+    "report_page": 16
   },
   {
     "stage": "a",

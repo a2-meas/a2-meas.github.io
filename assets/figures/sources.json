@@ -1,8 +1,8 @@
 [
   {
     "id": "framework",
-    "source": "figure/architecture_slide8_cropped.pdf",
-    "page": 1,
+    "source": "To_the_Era_of_Agentic_Embodied_Intelligence_renew.pdf",
+    "page": 4,
     "clip": [
       7,
       13,
@@ -13,12 +13,15 @@
     "height": 507.0,
     "safety_margin_pt": 3,
     "format": "original PDF vectors and embedded images",
-    "asset": "assets/figures/framework.svg"
+    "asset": "assets/figures/framework.svg",
+    "derived_source": "figure/framework-renew.pdf",
+    "source_sha256": "4de8fd107e46fefe868cf8ae163890ad09203c3744fb2c72888da3505e157afb",
+    "source_form": "/Im4"
   },
   {
     "id": "action-model",
-    "source": "figure/第16页_模型结构_裁剪.pdf",
-    "page": 1,
+    "source": "To_the_Era_of_Agentic_Embodied_Intelligence_renew.pdf",
+    "page": 16,
     "clip": [
       3,
       3,
@@ -29,7 +32,10 @@
     "height": 601.5,
     "safety_margin_pt": 3,
     "format": "original PDF vectors and embedded images",
-    "asset": "assets/figures/action-model.svg"
+    "asset": "assets/figures/action-model.svg",
+    "derived_source": "figure/action-model-renew.pdf",
+    "source_sha256": "4de8fd107e46fefe868cf8ae163890ad09203c3744fb2c72888da3505e157afb",
+    "source_form": "/Im10"
   },
   {
     "id": "correction-interface",

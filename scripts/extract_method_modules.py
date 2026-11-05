@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 """Extract original vector regions; remove full-page white paint, not internal whites."""
-import json, re, copy
+import argparse, json, re, copy
 from pathlib import Path
 import xml.etree.ElementTree as ET
 import pymupdf
+from action_model_layout import space_history_row, spaced_bounds
 ROOT=Path(__file__).resolve().parent.parent
 OUT=ROOT/'assets/figures/method'; OUT.mkdir(exist_ok=True)
 ET.register_namespace('', 'http://www.w3.org/2000/svg')
 ET.register_namespace('xlink','http://www.w3.org/1999/xlink')
 # Bounds in original PDF coordinates; original text and glyphs are preserved.
 GROUPS=[
- ('action-model','figure/第16页_模型结构_裁剪.pdf',[
+ ('action-model','figure/action-model-renew.pdf',[
   ('a','Motion-aware visual history','green',(3,240,343,405)),
   ('a-detail','Motion-aware history encoder — detail','green',(3,463,1081,604)),
   ('b','Task interpretation with Qwen3-VL','orange',(344,296,496,383)),
@@ -30,8 +31,14 @@ GROUPS=[
   ('c','Regenerate from fresh state','blue',(166,97,332,282)),
   ('d','Check, act & verify','green',(344,97,503,282)),
   ('e','Log and update the recovery query','purple',(158,285.5,399,309))])]
-records=[]
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--group',choices=[item[0] for item in GROUPS])
+args=parser.parse_args()
+records=json.loads((OUT/'sources.json').read_text()) if args.group else []
+if args.group:
+ records=[item for item in records if item['group']!=args.group]
 for group,source,modules in GROUPS:
+ if args.group and group!=args.group: continue
  with pymupdf.open(ROOT/source) as doc:
   page=doc[0]; root=ET.fromstring(page.get_svg_image(text_as_path=True)); removed=0
   for parent in root.iter():
@@ -48,6 +55,12 @@ for group,source,modules in GROUPS:
   # one original path between independently scaled/blurred modules makes visible
   # kinks at the panel boundary even though the source path is orthogonal.
   shared_connectors=[]
+  if group=='action-model':
+   shared_connectors=space_history_row(root)
+   modules=[(letter,title,color,spaced_bounds(letter,bounds)) for letter,title,color,bounds in modules]
+   whole=copy.deepcopy(root)
+   for connector in shared_connectors: whole.append(copy.deepcopy(connector))
+   ET.ElementTree(whole).write(ROOT/'assets/figures/action-model.svg',encoding='unicode')
   zoom_root=copy.deepcopy(root) if group=='correction-interface' else None
   if group=='correction-interface':
    shared_paths={'M1106 186H1156V419H645V492.2',
@@ -96,11 +109,14 @@ for group,source,modules in GROUPS:
    asset=f'assets/figures/method/{group}-{letter}.svg'
    ET.ElementTree(node).write(ROOT/asset,encoding='unicode')
    records.append(dict(stage=letter.split('-')[0],group=group,letter=letter,title=title,color=color,source=source,bounds=bounds,width=r-x,height=b-y,asset=asset,removed_page_backgrounds=removed,page_width=page.rect.width,page_height=page.rect.height))
+   if group=='action-model':
+    records[-1].update(report_source='To_the_Era_of_Agentic_Embodied_Intelligence_renew.pdf',report_page=16)
    if zoom_root is not None:
     zoom=copy.deepcopy(zoom_root)
     zoom.set('viewBox',f'{x} {y} {r-x} {b-y}');zoom.set('width',str(r-x));zoom.set('height',str(b-y));zoom.set('preserveAspectRatio','none')
     zoom_asset=f'assets/figures/method/{group}-{letter}-original.svg'
     ET.ElementTree(zoom).write(ROOT/zoom_asset,encoding='unicode')
     records[-1]['zoom_asset']=zoom_asset
+records.sort(key=lambda item: [group[0] for group in GROUPS].index(item['group']))
 (OUT/'sources.json').write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n')
 print(f'Extracted {len(records)} original vector modules')

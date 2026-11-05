@@ -25,9 +25,15 @@
         36.97,
         5.7,
         1.7
-      ]
+      ],
+      "final_implementation_demonstration_samples_per_second": 427.1,
+      "final_implementation_gpu_count": 8,
+      "final_implementation_global_batch_size": 256,
+      "pi05_reference_demonstration_samples_per_second": 106,
+      "overall_implementation_throughput_ratio": 4.03
     },
-    "protocol": "Single-device and eight-device figures use separate configurations; throughput panels are independent comparisons."
+    "protocol": "Single-device and eight-device figures use separate fixed configurations. Figure 9 panels are independent ablations, with gains that cannot be added. The overall 427.1 versus 106 demonstration-samples/s comparison is reported separately in Section 4.1, pages 24–25: matching GPU hardware, image resolution and action horizon; batch sizes are chosen separately for resource utilization. Multiple flow samples from one demonstration count as one demonstration sample. This is an implementation-throughput comparison, not a matched-batch architectural ablation.",
+    "copy_update": "The two figure descriptions jointly explain data/distributed execution and computation/optimizer improvements, with the paper's pi05 reference comparison integrated into the second description. The user requested omitting the comparison-conditions sentence and the single-/eight-GPU fixed-configurations sentence from the displayed captions; the original measurement protocol remains recorded here. Existing section heading retained as requested previously."
   },
   {
     "area": "System four-stage diagram and cards",

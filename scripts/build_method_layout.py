@@ -1,8 +1,12 @@
 from pathlib import Path
-import re,json
+import argparse,re,json
 from method_plates import plate_svg, correction_clip_svg
 root=Path(__file__).resolve().parent.parent;records=json.loads((root/'assets/figures/method/sources.json').read_text());html=(root/'index.html').read_text()
+parser=argparse.ArgumentParser()
+parser.add_argument('--group',choices=list(dict.fromkeys(x['group'] for x in records)))
+args=parser.parse_args()
 for group in dict.fromkeys(x['group'] for x in records):
+ if args.group and group!=args.group: continue
  items=[x for x in records if x['group']==group];w=items[0]['page_width'];h=items[0]['page_height']
  parts=[f'<figure class="method-flow flow-{group}" data-method-flow role="group" aria-label="{group.replace("-"," ")} modules"><div class="flow-canvas" style="aspect-ratio:{w}/{h}">']
  parts.append(f'<img class="flow-connections" src="assets/figures/method/{group}-connections.svg" width="{w}" height="{h}" alt="Original arrows connecting the modules in the paper diagram." loading="lazy">')

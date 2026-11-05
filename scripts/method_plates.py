@@ -2,6 +2,7 @@
 import copy
 import xml.etree.ElementTree as E
 from pathlib import Path
+from action_model_layout import ROW_SHIFT, QWEN_SHIFT, CONTEXT_SHIFT, HISTORY_RIGHT, CONTEXT_LEFT, CONTEXT_RIGHT
 
 NS='{http://www.w3.org/2000/svg}'
 
@@ -17,10 +18,10 @@ def plate_svg(item, root):
         shapes.append(E.Element('path',{'d':original.get('d'),'transform':original.get('transform')}))
     def rect(a,c,w,h,rx=3):
         shapes.append(E.Element('rect',{'x':str(a),'y':str(c),'width':str(w),'height':str(h),'rx':str(rx)}))
-    if letter=='a':rect(3,240,338,164,5)
+    if letter=='a':rect(3,240+ROW_SHIFT,HISTORY_RIGHT-3,164,5)
     elif letter=='a-detail':rect(3,463,1078,141,5)
-    elif letter=='b':rect(349.5,301.7,141.8,76.3,4)
-    elif letter=='c-current':rect(500,328,125,51,3)
+    elif letter=='b':rect(349.5,301.7+QWEN_SHIFT,141.8,76.3,4)
+    elif letter=='c-current':rect(CONTEXT_LEFT,328+CONTEXT_SHIFT,CONTEXT_RIGHT-CONTEXT_LEFT,51,3)
     elif letter=='d':
         rect(782.2,390.2,174.3,35.3,3)
         rect(980,389,95,56,3)

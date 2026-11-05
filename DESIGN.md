@@ -78,3 +78,23 @@ Header simplification (2026-11-02): remove background pause icon and its grid co
 Credits relocation (2026-11-02): remove hero author list/role markers; retain title and institutional lines without orphan affiliation indices. Restore final Authors & contributions after BibTeX with the reference’s centered heading, four ruled label/value rows and centered institutional footer. Stack rows on phone. Move the single email-copy control/tooltip to the corresponding-author row.
 
 Logo/figure/text polish (2026-11-02): institution logo order SJTU→AutoLab→Anyverse; preserve original artwork in cropped SVG viewports. Tighten all8original-PDF figure edges with3pt safety and16pxdesktop/12pxphone frame padding. All4method figures now have concise paper-grounded English explanations; phone explanation spans full text width below number/title. Sources in data/method-notes.json and both SVG sources.json manifests.
+
+Latest bounded revision (2026-11-04): cover autoplays once and retains its last frame; visibility changes must not restart an ended film. Meet A²-MEAS uses 22px desktop / 20px phone type and a compact 40px / 32px gap to the research question. The introduction opens with “What embodied systems co-evolve with foundation models?” and answers directly with grounded A²-MEAS control/recovery copy; the Introducing heading was removed at the user’s latest request. The three orange System/Model/Infra labels now carry the user-supplied full claims, with normal tracking and responsive wrapping; existing navigation names, section h2s, palette and paper artwork remain.
+
+Introduction alignment refinement (2026-11-04): center the research question and answer on the same axis. Desktop question uses two explicit lines; phones use balanced natural wrapping. Answer text has an 800px maximum measure and 22px type (19px on phones). Emphasize only the A²-MEAS name. The user subsequently removed the supporting paragraph beginning “A compact action policy”; retain only the A²-MEAS connects… answer.
+
+After removing the introduction support paragraph, use 20px desktop / 18px mobile question-to-answer spacing. Introduction bottom padding is 32px / 24px, and the immediately following System section has 36px top padding, yielding an approximately 69px / 61px answer-to-claim gap.
+
+Latest content override (2026-11-04): retain only the centered research question; remove the A²-MEAS connects… answer and its unused container/styles. Orange section claims explicitly start with SYSTEM:, MODEL:, and INFRASTRUCTURE: followed by the user-supplied descriptions.
+
+Spacing override: question-to-System claim spacing is now 120px desktop / 88px mobile. Remove the divider only between the research-question section and the immediately following System section.
+
+Infrastructure hierarchy: retain the orange throughput result; the dark h2 reads “From data loading to distributed optimization” to explain the scope of the training optimizations without repeating infrastructure.
+
+Latest local-only revision: Meet A²-MEAS ↓ sits below the centered research question and links to #system. Keep 24px desktop /20px mobile question-to-Meet spacing, followed by 56px /52px to the System claim. No divider. User explicitly requested review before any further upload; this Meet relocation remains local.
+
+Local refinement: hero affiliation text is22px desktop /17px phone. Place Meet48px /40px below the research question and32px before the System claim, keeping overall section height stable. Still local-only pending user review.
+
+Local infrastructure emphasis: use π with semantic subscript0.5; increase only4× to1.55em and use #557b49, a darker text tone in the method panel’s sage-green family. Preserve Throughput (the user withdrew the Throughout correction). Remains local-only.
+
+Renewed diagrams: extract original Form XObjects from renewed report pp4/16 with scripts/extract_renewed_diagrams.py, then rebuild Framework, action-model-only modules/layout, and source-derived WebP previews. Preserve exact source geometry, original links/labels and the existing color/highlight/hover/zoom behavior. Originals and source report remain untouched. Local-only pending user review.

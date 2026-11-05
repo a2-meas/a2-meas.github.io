@@ -9,8 +9,8 @@ OUT = ROOT / 'assets/figures'
 OUT.mkdir(parents=True, exist_ok=True)
 REPORT = 'To_the_Era_of_Agentic_Embodied_Intelligence.pdf'
 SOURCES = [
-    ('framework', 'figure/architecture_slide8_cropped.pdf', 1, (7, 13, 1022.5, 520)),
-    ('action-model', 'figure/第16页_模型结构_裁剪.pdf', 1, (3, 3, 1080.5, 604.5)),
+    ('framework', 'figure/framework-renew.pdf', 1, (7, 13, 1022.5, 520)),
+    ('action-model', 'figure/action-model-renew.pdf', 1, (3, 3, 1080.5, 604.5)),
     ('correction-interface', 'figure/figure3.pdf', 1, (6, 5.5, 503, 354)),
     ('correction-training', 'figure/figure4.pdf', 1, (10.5, 12, 497, 260.5)),
     ('execution-recovery', 'figure/figure5.pdf', 1, (5, 4.5, 504, 311.5)),

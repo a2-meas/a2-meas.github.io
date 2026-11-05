@@ -1,5 +1,17 @@
 # A²-MEAS 网站交接
 
+**最新状态（2026-11-04）：主页原生迁移和改名已完成，当前仓库为 `a2-meas/a2-meas.github.io`（ID `1443768725`），origin fetch/push已更新。本轮按用户“帮我更新一下”同步已确认的前端更新，使用普通提交和推送；原始新版报告、未使用JPEG、原始视频与本地备份不上传，两张小型派生裁切PDF和生成脚本纳入。仓库保持Private，GitHub Pages仍关闭，未更新Cloudflare部署，算法仓库及Code入口不变。组织为GitHub Free，不支持Private仓库Pages；升级Team可以保留源码私有但网页公开，组织主页不支持Pages私密访问控制。尚未授权付费升级或网页公开，继续保留现有Cloudflare Access私密预览。下方未提交状态和迁移基线SHA为历史记录，以当前Git/API为准。**
+
+**当前优先任务：迁移和改名已完成，保持Private、Pages关闭，禁止自动部署/公开。** 最新状态见 MIGRATION_HANDOFF.md，详细计划见 MIGRATION_PLAN.md。当前仓库为 `a2-meas/a2-meas.github.io`，origin已更新；算法仓库及Code入口独立保留。下方旧状态与部署记录仅用于追溯。
+
+**最新部署（2026-11-04）：https://5e740d43.a2meas-preview-laihh88.pages.dev/，原私密预览入口同步更新。** Infra两段图注已统筹润色，第二段添加论文正文的427.1对106 demonstration samples/s（π下标0.5参考、4.03×）。用户要求删除比较条件句及single-/eight-GPU独立配置句，已从可见图注删除；原测量条件留在data/site-copy-notes.json供溯源。标题、图形与整体样式保留。桌面/手机及放大图注已检查；线上核验最终文案，正式与部署域名仍受Access保护。截图output/infra-deployed-5e740d43.png；Git仍未提交/推送。
+
+**当前部署（2026-11-04）：https://1575a85d.a2meas-preview-laihh88.pages.dev/，原正式预览入口同步更新。用户已授权上传，此前所有“仅本地、未上传”改动现已发布；下方对应描述为历史。** 已保留Access保护，并核验生产/部署首页、PDF、视频、CSS和图片匿名请求均跳转登录。Git仍未提交/推送。截图output/frontend-deployed-1575a85d.png；发布状态output/deployment-status.json。
+
+最新本地标题维护（未上传）：统一六个章节红大/黑小的字号层级，桌面56/28px，390px手机38/24px，≤380px红色30–34px自适应。Authors红/黑标题使用同一套规则与居中，已移除单独的小字号、大字距覆盖；研究问题、Citation不变，4×绿色强调保留。见site.css的 --section-primary-size / --section-secondary-size。截图 output/heading-hierarchy-system-local.jpg、output/heading-hierarchy-authors-local.jpg。继续不上传。
+
+最新本地维护（2026-11-04，未上传）：A²-WLA 的 Observation history 原图组和绿色底板下移12图坐标单位，拉开与上方青色框的距离；同步调整Qwen3-VL、Current context及Full task instruction入口。收窄绿色和token底板，出箭头从边界外开始，跨模块连线只在共享连接层绘制，编码器/Qwen/token统一水平中心轴。实现见 scripts/action_model_layout.py（由extract_method_modules.py调用）；原报告PDF保留不变。桌面整图及390px手机左右横滑/放大已检查，仍遵守用户先审阅、不上传要求。截图 output/history-row-aligned-local.jpg。
+
 这是可以直接运行的静态网站，不需要 Node、npm、数据库或构建框架。
 包含当前网页、原图导出的 SVG、所用视频、封面、论文 PDF 和维护脚本。
 打包或下载不会自动开启公开网站。
@@ -52,7 +64,7 @@ Cloudflare 专用包还会安装 `cloudflare/video-worker.mjs` 的视频分段�
 这两个托管文件不放入普通 `dist/`，本地与以后 GitHub Pages 仍为纯静态网站。
 现有 Access 应用继续保护所有视频请求，不增加公开媒体入口。
 
-源码已备份至私有仓库 `https://github.com/laihh88/a2meas-homepage`。
+当前源码私有仓库为 `https://github.com/a2-meas/a2-meas.github.io`；由原 `laihh88/a2meas-homepage` 原生转移并改名，尚未提交的本地更新另有本机快照备份。
 Cloudflare 项目名为 `a2meas-preview-laihh88`。已先核验 Access 保护，再上传整站78个文件。
 上线后再次核验：正式及部署预览域名、PDF和视频的直接地址，未登录时均跳转验证码登录。
 Zero Trust Free 已由账号所有者本人完成开通；管理订阅和账单须由账号所有者自行处理。
@@ -118,7 +130,7 @@ Framework 上图与下方四张卡片同步；诊断/纠错按恢复需要触发
 ## 封面与原片备份（2026-11-04）
 
 封面原片为 `demo/封面-en.mp4`，网页采用优化后的 `assets/videos/cover.mp4`。
-静音自动循环播放，8 秒开始在九宫格转场中淡入半透明白色气泡描边标题（全幅视频透明蒙版），每轮播完后立即从头循环播放。
+静音自动播放一次，8 秒开始在九宫格转场中淡入半透明白色气泡描边标题（全幅视频透明蒙版），播完停在最后一帧；滚离再返回封面也不会自动重播。
 机构与 Paper / Code & releases / BibTeX 在视频下方。字体 Nunito 及开源许可证随包提供。
 减少动态效果模式显示九宫格静态封面；浏览器阻止自动播放时可点击 Play film。
 
@@ -132,10 +144,10 @@ Paper 入口已替换为作者提供的 renew 版本，保持原 URL。只无损
 Cloudflare 单文件上限，50 页文本和原始图像均保留，源 renew.pdf 不改动。
 RoboTwin 完整系统的 Clean / Randomized / Average 更新为 95.08 / 95.02 / 95.05。
 咖啡纠错图使用新版第 36 页内嵌的原始 1309×1202 PNG，直接提取，未截图。
-封面视频原生静音循环，播完立即重播，不再停留；首行 A²-MEAS 无冒号且居中。
+封面视频静音自动播放一次，结束后保留末帧；首行 A²-MEAS 无冒号且居中。
 
 封面现采用全幅视频蒙版，A²-MEAS 单独居中，完整论文标题在下一行不换行。
-蒙版与标题仍从九宫格转场时淡入，视频立即循环，机构和三个入口仍在视频下方。
+蒙版与标题仍从九宫格转场时淡入，视频播完停在末帧，机构和三个入口仍在视频下方。
 
 ## 加载与播放优化（2026-11-04）
 
@@ -146,3 +158,60 @@ RoboTwin 完整系统的 Clean / Randomized / Average 更新为 95.08 / 95.02 / 
 独立播放器打开时暂停其余预览。封面和全片经过流式播放编码，原始文件和旧网页文件备份
 均保留在 demo/、Tech Report/ 或 output/，不进入部署包。
 Cloudflare 首次播放直接发送视频首段，同时在内部填充分段缓存，仍保留私密登录与拖动功能。
+
+## 前端文案与封面更新（2026-11-04，当前本地）
+
+Meet A²-MEAS 放大到桌面 22px / 手机 20px，与问题标题相距约 40px / 32px。
+介绍区先提出 “What embodied systems co-evolve with foundation models?”，下方直接用 A²-MEAS 的控制/恢复能力作答（按用户最新要求删除 Introducing 标题）。System / Model / Infra 的红色标签分别改为：
+
+- Distilling Foundation Model Capabilities into Action Policies
+- Simple but Surprisingly Strong World-Language-Action Model
+- 4× Training Throughput of Pi05 at a Similar Model Size
+
+保留原有导航名称、锚点、绿黑主标题和图表。此次改动已部署，尚未提交或推送。
+
+介绍区最新排版：问题与回答统一居中；桌面标题分两行，手机自然均衡换行。回答限宽 800px，只保留 A²-MEAS connects… 这一句，只加粗 A²-MEAS 名称。用户最新要求已删除 A compact action policy… 补充说明。
+
+删段后的间距已同步收紧：问题到回答为桌面 20px / 手机 18px；回答到 System 红色标题约 69px / 61px。已在浏览器测量，无横向溢出。最新桌面截图：output/research-question-spacing-desktop.jpg。已部署，尚未提交/推送。
+
+## 最新部署完成（2026-11-04）
+
+部署版本：https://4a4503ad.a2meas-preview-laihh88.pages.dev/
+正式入口：https://a2meas-preview-laihh88.pages.dev/ 。本轮全部前端调整已上线；Git 工作区尚未提交或推送。
+已登录浏览器核验居中问题、单句回答、20px / 约69px 间距、三处长标题、封面 loop=false 和12条任务。
+匿名 GET 核验正式域名、新部署域名、PDF 和封面视频均302跳转 Cloudflare Access 登录；未改访问设置或白名单。
+线上截图：output/frontend-deployed-4a4503ad.jpg；访问检查：output/frontend-deploy-access-checks.json。
+
+最新内容修正（2026-11-04）：三个红色标题使用 SYSTEM: / MODEL: / INFRASTRUCTURE: 加完整英文描述。介绍区仅保留居中的研究问题；用户已删除 A²-MEAS connects… 回答，不要恢复。对应空容器和段间距 CSS 已移除，问题与 System 间仍保留紧凑留白。
+
+最新间距覆盖：研究问题至 SYSTEM 红色标题拉大为桌面 120px / 手机 88px；移除仅这两块之间的横向分隔线。三处标题前缀和删除回答的要求继续保留。
+
+当前已上线版本（2026-11-04）：https://57aee81a.a2meas-preview-laihh88.pages.dev/。三处前缀、删除回答、问题至 SYSTEM 桌面120px / 手机88px留白以及去分隔线均已部署并核验。截图：output/frontend-deployed-57aee81a.jpg。
+
+基础设施黑色主标题经用户确认改为 From data loading to distributed optimization；红色 INFRASTRUCTURE: 4×… 标题保留。已检查桌面及 390px 手机，无横向溢出。
+
+## 当前仅本地修改，停止上传（用户明确要求，2026-11-04）
+
+黑色基础设施标题已先部署到 https://bed7a5bc.a2meas-preview-laihh88.pages.dev/ 。随后用户要求 Meet 移至 What 问题下面，又明确要求“改了之后先别上传，我再看看”。
+本地已将 Meet A²-MEAS ↓ 从封面移至研究问题下方，改用 .meet-link 并指向 #system；桌面问题到 Meet 24px、Meet 到 SYSTEM 56px，手机20px /52px，无分隔线和横向溢出。
+**Meet 位置改动未部署；未经用户后续要求，不再上传。** 本地服务器4173保留用于审阅。预览：http://127.0.0.1:4173/?review=meet-local#research-question ，截图 output/meet-below-question-local.jpg。
+
+最新本地调整（未上传）：封面下方两行机构名称放大到桌面22px / 手机17px。Meet 在 What 下方向 SYSTEM 靠近：桌面问题到Meet48px、Meet到SYSTEM32px；手机40px /32px。保持整体问题到SYSTEM的距离，无分隔线、无横向溢出。截图 output/meet-closer-system-local.jpg 与 output/affiliations-meet-local.jpg。继续遵守用户先审阅、不上传的要求。
+
+最新本地调整（未上传）：INFRASTRUCTURE 标题的 Pi05 改为 π<sub>0.5</sub>；4× 放大到原字号1.55倍（桌面43.4px / 手机37.2px），采用 method 浅绿底板同色系的深鼠尾草绿 #557b49。其余标题维持原橙色。用户已撤回 Throughout 更正，保持 Throughput，不要替换。桌面及390px手机无横向溢出。截图 output/throughput-emphasis-local.jpg。继续不上传。
+
+下标小数点显示修正（仅本地）：π 的 sub 文本仍为标准0.5，点为ASCII句点U+002E；用 Arial 下标数字并将句点轻微下移，避免视觉上像中点。截图 output/decimal-point-local.jpg。未上传。
+
+## 两张新版原图裁切（仅本地，未上传）
+
+已从用户指定 renew.pdf 第4页 Framework 与第16页 A²-WLA 内嵌 Form XObject 直接提取原始矢量图；无截图替代。派生原图为 figure/framework-renew.pdf、figure/action-model-renew.pdf，旧原图及用户报告均保留。
+轮廓和位置逐项比对一致，沿用原裁切边界、色板、四阶段轮播、1.5秒阶段/10秒全亮、悬停手动、卡片联动和放大入口。新增任务指令连线及新版标注已进入页面。WebP 从新 SVG 生成。
+复现顺序（Python需pypdf、PyMuPDF；Node需sharp）：
+1. python3 scripts/extract_renewed_diagrams.py
+2. python3 scripts/build_framework_flow.py
+3. python3 scripts/extract_method_modules.py --group action-model
+4. python3 scripts/build_method_layout.py --group action-model
+5. node scripts/prepare_figure_previews.cjs
+
+其他方法图保留原资产。已核验原图几何一致、裁片资产齐全、图/卡片联动、自动阶段切换、SVG放大，以及390px手机局部横滑且页面无横向溢出。脚本语法和git diff --check通过。
+本地预览 http://127.0.0.1:4173/?review=renewed-diagrams#framework-flow 。A²-WLA截图 output/renewed-action-model-local.jpg。仍遵守用户“先别上传”的要求。

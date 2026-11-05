@@ -10,7 +10,7 @@ import pymupdf
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / 'assets/figures/framework'
-SOURCE = 'figure/architecture_slide8_cropped.pdf'
+SOURCE = 'figure/framework-renew.pdf'
 NS = '{http://www.w3.org/2000/svg}'
 E.register_namespace('', NS[1:-1])
 E.register_namespace('xlink', 'http://www.w3.org/1999/xlink')
@@ -107,6 +107,7 @@ def main():
             path = OUT / f"{stage['id']}.svg"
             E.ElementTree(asset).write(path, encoding='unicode')
             records.append({**stage, 'bounds': list(bounds), 'source': SOURCE,
+                            'report_source': 'To_the_Era_of_Agentic_Embodied_Intelligence_renew.pdf', 'report_page': 4,
                             'asset': path.relative_to(ROOT).as_posix(),
                             'contours': [E.tostring(s, encoding='unicode') for s in shapes]})
         connections = copy.deepcopy(root)

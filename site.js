@@ -19,7 +19,7 @@
     coverStage.classList.toggle('is-title-visible', coverStatic || coverVideo.currentTime >= Number(coverVideo.dataset.titleStart));
   }
   function syncCoverMotion() {
-    if (coverStatic || !coverVisible || document.hidden) {
+    if (coverStatic || !coverVisible || document.hidden || coverVideo.ended) {
       coverVideo.pause();
       return;
     }
