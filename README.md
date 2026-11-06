@@ -1,148 +1,43 @@
-# A²-MEAS academic homepage
+# A²-MEAS
 
-English static website for **Toward the Era of Agentic Embodied Intelligence**.
-HTML, CSS and vanilla JavaScript; no npm installation, build framework, remote font requests or database (the cover font is bundled locally).
-Chinese handoff and privacy/deployment instructions: [HANDOFF.md](HANDOFF.md).
+## Toward the Era of Agentic Embodied Intelligence
 
-## Run locally
+**Chao Liang, Ke Chen, Fengxiaoxiao Li, Shibo Huang, Yufeng Sun, Zhaokai Yin, Jianhuan Lai, Haozhe Feng, Chenghuan Jia, and Zhipeng Zhang**
 
-Requires Python 3. In this folder:
+AutoLab, School of Artificial Intelligence, Shanghai Jiao Tong University<br>
+Research Lab, Anyverse Dynamics
 
-```sh
-python3 scripts/serve.py --port 4173
+[Project Website](https://a2-meas.github.io/) · [Tech Report](To_the_Era_of_Agentic_Embodied_Intelligence.pdf) · [Code & Releases](https://github.com/AutoLab-SAI-SJTU/A2MEAS) · [BibTeX](data/citation.bib)
+
+### Overview
+
+A²-MEAS studies agentic embodied intelligence through a system that connects high-level reasoning, grounded diagnosis, action generation, and execution feedback. The framework combines MetaBrain, diagnostic agents, a learned correction interface, and the A²-WLA action policy to support task execution and recovery from physical failures.
+
+The project website presents the system and policy architecture, training infrastructure, simulation results, and real-world evaluations. Demonstrations include household manipulation tasks, multi-step coffee preparation, and grasp-correction and recovery experiments.
+
+### Resources
+
+- [Technical report](To_the_Era_of_Agentic_Embodied_Intelligence.pdf): the complete report, including methods, experiments, and evaluation protocols.
+- [Project website](https://a2-meas.github.io/): interactive method figures, experimental results, and robot demonstrations.
+- [Algorithm repository](https://github.com/AutoLab-SAI-SJTU/A2MEAS): the separate repository for research code and releases.
+
+### Citation
+
+```bibtex
+@techreport{liang2026agentic,
+  title = {Toward the Era of Agentic Embodied Intelligence},
+  author = {Chao Liang and Ke Chen and Fengxiaoxiao Li and
+    Shibo Huang and Yufeng Sun and Zhaokai Yin and
+    Jianhuan Lai and Haozhe Feng and Chenghuan Jia and
+    Zhipeng Zhang},
+  institution = {AutoLab, School of Artificial Intelligence,
+    Shanghai Jiao Tong University and
+    Research Lab, Anyverse Dynamics},
+  year = {2026},
+  type = {Technical Report}
+}
 ```
 
-Open http://127.0.0.1:4173. On macOS use `Preview.command`; on Windows with Python Launcher use `Preview.bat`.
-The server binds to localhost and supports byte-range video seeking. Use HTTP rather than opening
-`index.html` as a local file: browsers typically block the JSON inventory under `file://`.
-The three coffee fallback buttons open a closable in-page player, including in local-file mode.
+### Contact
 
-## Current content
-
-- The complete cover film autoplays muted and loops continuously.
-  Each loop fades the entire video uniformly to black over0.6s, then fades
-  uniformly in from black over0.6s; the nine cells never transition separately.
-  The background uses a 2px blur. The solid-white title, affiliations and
-  Tech Report / Code / BibTeX links are visible from the first frame.
-  Reduced-motion preference shows the mosaic still. Blocked autoplay offers a Play film button.
-- Question, System, Model (action policy), Infra, Simulation, Real World, Authors, then Citation.
-- System contains the synchronized Framework plus correction interface, supervision and recovery.
-  Model contains the original A²-WLA action-policy diagram.
-- Coffee full-task video first, then two independent grasp-correction experiments.
-- Short-horizon gallery: twelve current videos in a draggable elliptical chain, including parcel unpacking and packing.
-  Each enlarged player shows the task prompt supplied by the author.
-- Available foreground previews autoplay muted. Each task opens native video controls in a closable dialog.
-- Framework and all model/system diagram stages advance every1.5seconds after entering the viewport.
-  Each ends with all modules highlighted for10seconds. Pointer/focus activates manual selection.
-  Framework's diagram and four functional-stage cards share one controller and exact source-contour clips.
-- Original PDF vector figures are cropped at source; connectors remain intact. Tables are editable HTML.
-- No video synchronization or global play/pause switch. Behind-the-scenes video remains unavailable.
-
-## Edit and regenerate
-
-| Purpose | File |
-| --- | --- |
-| Content, tables, authors, resource links | `index.html` |
-| Appearance | `site.css` |
-| Interactions | `site.js` |
-| Media list and pending entries | `data/videos.json` |
-| Citation | `data/citation.bib` and the matching HTML block |
-| Copy provenance | `data/site-copy-notes.json`, `data/method-notes.json` |
-
-Prepared web assets are included. No regeneration is needed for preview or deployment.
-For optional figure regeneration install PyMuPDF; for video re-encoding install ffmpeg or imageio-ffmpeg.
-Original PDF crops are in `figure/`, source logos in `logo/`. The two renewed diagram crops
-are included; the original renewed report used by `extract_renewed_diagrams.py` remains a local input. Full-size original videos in `demo/` and
-`Tech Report/` are intentionally excluded from Git and handoff archives; keep a separate source-media backup.
-
-```sh
-python3 scripts/extract_figures.py
-python3 scripts/extract_method_modules.py
-python3 scripts/build_method_layout.py
-python3 scripts/build_framework_flow.py
-python3 scripts/prepare_cover_media.py
-```
-
-Do not regenerate media unless the original input videos are present.
-
-## Package without publishing
-
-```sh
-python3 scripts/package_site.py
-python3 scripts/package_site.py --mode handoff
-```
-
-The first command writes a minimal static deployment to `dist/`.
-The second writes a runnable source handoff and ZIP in `output/handoff/`.
-Packages include only video/poster files referenced by the media inventory, with SHA-256 checksums.
-They exclude original video directories, temporary files, credentials and screenshots.
-
-All runtime URLs are relative; `dist/` supports a future `https://OWNER.github.io/REPO/` deployment.
-These commands do not upload, deploy, enable Pages or change repository visibility.
-
-## Hosting account connections
-
-The source repository is private at `a2-meas/a2-meas.github.io`. Migration backups are kept locally; GitHub Pages remains disabled.
-Private online preview: https://a2meas-preview-laihh88.pages.dev/
-Cloudflare Pages project: `a2meas-preview-laihh88`.
-Access protects both the production hostname and all deployment subdomains. Visitors
-must use an approved email address and a one-time PIN. The session lasts24hours.
-Anonymous checks confirmed that the homepage, deployment URL, PDF and video URLs
-redirect to Access login. The owner and the corresponding author's approved email addresses are allowlisted.
-Add colleague emails to the `Approved project viewers` policy; no GitHub write access is needed.
-
-For Cloudflare's25MiB asset limit, `scripts/prepare_cloudflare.py` creates a separate
-hosting copy under `output/cloudflare-private/site`. It re-encodes only oversized
-videos and preserves the main assets. Requires imageio-ffmpeg. The normal `dist/`
-retains the original web copies for later GitHub Pages deployment.
-The Cloudflare package also installs `cloudflare/video-worker.mjs` as `_worker.js`,
-scoped by `_routes.json` to video URLs only. It serves HTTP byte ranges for native
-video seeking; Pages' ordinary static responses do not provide partial content.
-The adapter streams the requested bytes and remains behind the existing Access policy.
-Keep the existing Access application `A2-MEAS private preview` in place during updates.
-After preparing the hosting copy, an authenticated maintainer can deploy with:
-
-```sh
-wrangler pages deploy output/cloudflare-private/site --project-name a2meas-preview-laihh88 --branch main
-```
-
-GitHub pushes do not automatically deploy the website. The hosting authentication
-credentials are stored outside this repository. GitHub Pages has not been enabled.
-
-## Private preview before publication
-
-Keep the GitHub repository private. A private repository alone does not restrict access to ordinary
-GitHub Pages websites. Use an authenticated preview host or an existing internal/VPN server.
-The current GitHub Free organization cannot publish Pages from a private repository.
-GitHub Team supports a private source repository with a public Pages site. Enterprise Cloud
-access control applies to project sites; it does not support private organization sites such as this one.
-See [GitHub Pages availability](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages)
-and [site access control](https://docs.github.com/en/enterprise-cloud@latest/pages/getting-started-with-github-pages/changing-the-visibility-of-your-github-pages-site).
-Protect direct PDF/media URLs as well as HTML. Hosting credentials stay out of source control.
-See [HANDOFF.md](HANDOFF.md) for access-controlled preview and later public deployment.
-
-Design decisions and historical changes are recorded in `DESIGN.md`, `design-contract.md` and
-`implementation-handoff.md`. Some early historical entries describe superseded layouts.
-
-The cover source is `demo/封面-en-v6.mp4`; regenerate it with `scripts/prepare_cover_media.py`
-when FFmpeg is installed. Google Sans Bold is self-hosted with its SIL Open Font License in `assets/fonts/`; the older Nunito asset is retained.
-The cover embeds a small Google Sans 700 WOFF2 subset in the render-blocking stylesheet,
-so its first visible title uses the final typeface without a fallback-font swap.
-Regenerate it with `scripts/prepare_cover_font.py` when fonttools and brotli are installed.
-On2026-11-04, nine obsolete or duplicate task-source copies were moved out of `demo/` to
-`output/demo-duplicates-2026-11-04/` with a SHA-256 manifest; they remain recoverable locally.
-Unique retired task sources were retained. These backups are excluded from every deployment.
-
-The published report is the author’s2026-11-04 renewed50-page version, with lossless
-PDF-structure compression for the Pages size limit. RoboTwin complete-system results
-are95.08 /95.02 /95.05. Coffee recovery uses the original PNG embedded on report p36,
-extracted without screenshots. The full cover loops continuously, with a 2px blur; title, affiliations and resource buttons are visible from the start. The v6 cover and fades are deployed on the access-controlled preview; the latest embedded-font fix is included in this source update and has not been redeployed to that preview.
-
-Performance: diagram previews are generated directly from original SVGs as lightweight WebP
-files; original vector assets remain available on enlargement. Full-duration low-bandwidth
-gallery videos live in `assets/previews/`; opening a player selects the full720p asset and
-pauses competing previews. Cover/media compression is reproducible with `scripts/optimize_playback.py`.
-The Cloudflare range adapter streams initial playback immediately and fills its internal
-range cache in the background. Its client responses remain private and uncached.
-
-For the organization root site, keep the repository name `a2-meas.github.io`. After the owner changes visibility, GitHub Pages still needs to be enabled separately in Settings → Pages, using `main` and `/ (root)` (or an explicitly configured publishing workflow). The static files and `.nojekyll` are ready for that root path.
+Corresponding author: [Zhipeng Zhang](mailto:zhipengzhang@sjtu.edu.cn).

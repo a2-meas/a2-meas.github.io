@@ -14,3 +14,18 @@ node_modules/
 .dev.vars
 .dev.vars.*
 
+# Local project operations and authoring records
+/DESIGN.md
+/HANDOFF.md
+/MIGRATION_HANDOFF.md
+/MIGRATION_PLAN.md
+/NEXT_CHAT_CONTEXT.md
+/design-contract.md
+/implementation-handoff.md
+/Preview.command
+/Preview.bat
+/data/site-copy-notes.json
+/data/method-notes.json
+/scripts/prepare_cloudflare.py
+/cloudflare/
+

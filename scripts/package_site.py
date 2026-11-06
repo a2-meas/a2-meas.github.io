@@ -10,9 +10,8 @@ import zipfile
 ROOT = Path(__file__).resolve().parent.parent
 REPORT = 'To_the_Era_of_Agentic_Embodied_Intelligence.pdf'
 WEB_FILES = ['index.html', 'site.css', 'site.js', '.nojekyll', REPORT]
-SOURCE_FILES = ['README.md', 'HANDOFF.md', '.gitignore', 'DESIGN.md',
-                'design-contract.md', 'implementation-handoff.md',
-                'Preview.command', 'Preview.bat']
+SOURCE_FILES = ['README.md', '.gitignore']
+DATA_FILES = ['data/citation.bib', 'data/figure-previews.json', 'data/videos.json']
 
 
 def media_paths(value):
@@ -43,14 +42,15 @@ def main():
     handoff = args.mode == 'handoff'
     destination = ROOT / ('output/handoff/a2meas-homepage' if handoff else 'dist')
     selected = {Path(p) for p in WEB_FILES}
-    selected.update(files_under('data'))
+    selected.update(Path(p) for p in DATA_FILES)
     selected.update(p for p in files_under('assets')
                     if p.parts[1] not in ('videos', 'posters'))
     selected.update(media_paths(json.loads((ROOT / 'data/videos.json').read_text())))
     if handoff:
         selected.update(Path(p) for p in SOURCE_FILES)
-        for directory in ['scripts', 'figure', 'logo', 'cloudflare']:
-            selected.update(files_under(directory))
+        for directory in ['scripts', 'figure', 'logo']:
+            selected.update(p for p in files_under(directory)
+                            if p != Path('scripts/prepare_cloudflare.py'))
     missing = [str(p) for p in sorted(selected) if not (ROOT / p).is_file()]
     if missing:
         raise SystemExit('Missing required files: ' + ', '.join(missing))
