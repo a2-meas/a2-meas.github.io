@@ -13,7 +13,6 @@
   --border: rgba(49, 76, 53, .17);
   --content: 1200px;
   --header-offset: 112px;
-  --cover-blur: 2px;
   --resource-bg: #333333;
   --resource-hover: #287fbd;
   --section-primary-size: clamp(40px, 4vw, 56px);
@@ -60,8 +59,8 @@ sup { font-size: .6em; vertical-align: super; line-height: 0; }
 /* cover-font-end */
 .hero { position: relative; padding-top: var(--cover-header-height, var(--header-offset)); text-align: center; overflow: hidden; }
 .hero-video-stage { position: relative; width: 100%; aspect-ratio: 16 / 9; isolation: isolate; overflow: hidden; background: #223b34; }
-.hero-video-stage::before { content: ""; position: absolute; inset: -18px; z-index: -1; background: url('assets/cover/cover-mosaic.jpg') center / cover no-repeat; filter: blur(var(--cover-blur)); }
-.hero-video-stage > video { display: block; width: 100%; height: 100%; object-fit: cover; filter: blur(var(--cover-blur)); transform: scale(1.035); }
+.hero-video-stage::before { content: ""; position: absolute; inset: -18px; z-index: -1; background: url('assets/cover/cover-mosaic.jpg') center / cover no-repeat; }
+.hero-video-stage > video { display: block; width: 100%; height: 100%; object-fit: cover; transform: scale(1.035); }
 .hero-title-overlay { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: auto; visibility: visible; opacity: 1; background: rgba(0,0,0,.38); transition: none; }
 .hero-title-content { width: 100%; display: flex; flex-direction: column; align-items: center; gap: clamp(22px, 2.4vw, 36px); padding: 28px 0; }
 .hero h1 { width: max-content; max-width: 94%; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0; padding: 0; color: #ffffff; font-family: "Google Sans Cover", "Segoe UI", Roboto, Arial, sans-serif; font-size: 3.9vw; font-weight: 700; letter-spacing: -.02em; line-height: 1.15; -webkit-text-stroke: 0; text-shadow: none; }
@@ -381,6 +380,7 @@ figcaption a:hover, .source-note a:hover { color: var(--accent); }
   .site-header nav a { font-size: 11px; padding: 12px 0; }
   .icon-button { width: 44px; height: 44px; }
   .hero-video-stage { aspect-ratio: auto; height: max(360px, 60vw); }
+  .hero-video-stage::before { background-image: url('assets/cover/cover-mosaic-mobile.jpg'); }
   .hero-title-content { gap: 24px; padding: 24px 0; }
   .hero-details { padding: 0 20px; }
   .affiliations { font-size: 17px; max-width: 500px; margin-left: auto; margin-right: auto; }

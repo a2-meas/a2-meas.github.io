@@ -10,6 +10,8 @@
   const coverStage = document.querySelector('[data-cover-stage]');
   const coverPlay = document.querySelector('.cover-play');
   const coverMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const coverMobile = matchMedia('(max-width: 767px)');
+  const coverStill = () => `assets/cover/cover-mosaic${coverMobile.matches ? '-mobile' : ''}.jpg`;
   new ResizeObserver(entries => {
     document.documentElement.style.setProperty('--cover-header-height', `${Math.ceil(entries[0].target.getBoundingClientRect().height)}px`);
   }).observe(document.querySelector('.site-header'));
@@ -25,13 +27,13 @@
       if (error.name === 'AbortError' || !coverVisible || document.hidden) return;
       coverPlay.hidden = false;
       coverStatic = true;
-      coverVideo.poster = 'assets/cover/cover-mosaic.jpg';
+      coverVideo.poster = coverStill();
     });
   }
   function setCoverPreference() {
     coverStatic = coverMotion.matches;
     coverVideo.autoplay = !coverStatic;
-    coverVideo.poster = coverStatic ? 'assets/cover/cover-mosaic.jpg' : 'assets/cover/cover-start.jpg';
+    coverVideo.poster = coverStatic ? coverStill() : 'assets/cover/cover-start.jpg';
     coverVideo.style.visibility = coverStatic ? 'hidden' : '';
     syncCoverMotion();
   }
@@ -50,6 +52,10 @@
   }, { threshold: 0.05 }).observe(coverStage);
   document.addEventListener('visibilitychange', syncCoverMotion);
   coverMotion.addEventListener('change', setCoverPreference);
+  coverMobile.addEventListener('change', () => {
+    coverVideo.load();
+    setCoverPreference();
+  });
   setCoverPreference();
   const gallery = document.querySelector('#task-gallery');
   const announcement = document.querySelector('#gallery-announcement');

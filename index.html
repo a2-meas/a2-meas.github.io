@@ -19,7 +19,7 @@
       <a class="wordmark" href="#top" aria-label="A squared MEAS, back to top">A<sup>2</sup><span>–</span>MEAS</a>
         <div class="institution-logos" role="group" aria-label="Research institutions">
           <img class="institution-logo sjtu-logo" src="assets/logos/sjtu.svg" width="88" height="88" alt="Shanghai Jiao Tong University" decoding="async">
-          <img class="institution-logo autolab-logo" src="assets/logos/autolab.svg" width="405" height="451" alt="AutoLab" decoding="async">
+          <img class="institution-logo autolab-logo" src="assets/logos/autolab.webp" width="405" height="451" alt="AutoLab" decoding="async">
           <img class="institution-logo anyverse-logo" src="assets/logos/anyverse-dynamics.svg" width="1540" height="439" alt="Anyverse Dynamics" decoding="async">
         </div>
     </div>
@@ -42,6 +42,7 @@
     <section class="hero" id="top" aria-labelledby="paper-title">
       <div class="hero-video-stage" data-cover-stage>
         <video id="cover-video" autoplay muted loop playsinline preload="auto" poster="assets/cover/cover-start.jpg" aria-label="A squared MEAS real-world demonstrations">
+          <source src="assets/videos/cover-mobile.mp4" media="(max-width: 767px)" type="video/mp4">
           <source src="assets/videos/cover.mp4" type="video/mp4">
         </video>
         <div class="hero-title-overlay">
@@ -158,14 +159,14 @@
       <p class="section-intro">The training pipeline reduces repeated data preparation, reuses shared model computation, and distributes optimizer work across GPUs.</p>
       <div class="paper-results-block"><figure class="paper-figure original-figure" id="figure-8">
         <button class="figure-button" data-figure="assets/figures/training-systems.svg" data-caption="Data processing and distributed execution" aria-label="Enlarge Data processing and distributed execution">
-          <img src="assets/figures/training-systems.svg" width="471" height="175" loading="lazy" alt="Five original charts comparing data processing time, single-GPU and eight-GPU step time, eight-GPU throughput and time to first step." decoding="async">
+          <img src="assets/figures/training-systems.webp" width="471" height="175" loading="lazy" alt="Five original charts comparing data processing time, single-GPU and eight-GPU step time, eight-GPU throughput and time to first step." decoding="async">
           <span class="enlarge-label" aria-hidden="true">Expand ↗</span>
         </button>
         <figcaption class="figure-description"><p class="figure-caption-title">Data processing and distributed execution</p><p class="figure-brief">Batch JPEG decoding, Apache Arrow caches and asynchronous prefetching reduce repeated input work, cutting data preparation from about <strong>1,300 ms to 28 ms</strong> and single-GPU step time from <strong>3.03 s to 1.13 s</strong>. Parallel dataset preparation and streamlined synchronization improve multi-GPU startup and execution.</p></figcaption>
       </figure></div>
       <div class="paper-results-block"><figure class="paper-figure original-figure" id="figure-9">
         <button class="figure-button" data-figure="assets/figures/training-throughput.svg" data-caption="Training-throughput optimizations" aria-label="Enlarge Training-throughput optimizations">
-          <img src="assets/figures/training-throughput.svg" width="465" height="175" loading="lazy" alt="Three original before-and-after throughput charts for dedicated computation paths and scheduling, static caches, and Sharded Local Muon." decoding="async">
+          <img src="assets/figures/training-throughput.webp" width="465" height="175" loading="lazy" alt="Three original before-and-after throughput charts for dedicated computation paths and scheduling, static caches, and Sharded Local Muon." decoding="async">
           <span class="enlarge-label" aria-hidden="true">Expand ↗</span>
         </button>
         <figcaption class="figure-description"><p class="figure-caption-title">Training-throughput optimizations</p><p class="figure-brief">Dedicated computation paths and scheduling, static caches and Sharded Local Muon yield independent throughput gains of 36.97%, 5.70% and 1.7%, respectively. With shared-prefix execution and the other pipeline optimizations, the final eight-GPU implementation reaches <strong>427.1 demonstration samples/s</strong>, versus <strong>106 for the <span class="policy-name">π<sub>0<span class="policy-decimal">.</span>5</sub></span> reference</strong>—a <strong>4.03×</strong> gain.</p></figcaption>

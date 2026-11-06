@@ -17,7 +17,7 @@ DATA_FILES = ['data/citation.bib', 'data/figure-previews.json', 'data/videos.jso
 def media_paths(value):
     if isinstance(value, dict):
         for key, child in value.items():
-            if key in ('src', 'poster') and child:
+            if key in ('src', 'poster', 'mobileSrc') and child:
                 if not child.startswith('assets/') or '..' in Path(child).parts:
                     raise ValueError(f'Expected a bundled relative media path: {child}')
                 yield Path(child)

@@ -20,8 +20,10 @@
       405,
       451
     ],
-    "asset": "assets/logos/autolab.svg",
-    "operation": "outer viewport crop only; original artwork preserved"
+    "asset": "assets/logos/autolab.webp",
+    "operation": "lossless 176px-high display raster from original cropped SVG; original retained",
+    "original_asset": "assets/logos/autolab.svg",
+    "displayBytes": 24404
   },
   {
     "id": "anyverse-dynamics",

@@ -11,6 +11,9 @@ ROOT = Path(__file__).resolve().parent.parent
 source = ROOT / 'demo/封面-en-v6.mp4'
 TITLE_START_SECONDS = 0
 FADE_SECONDS = 0.6
+# Approximate the existing 2 CSS-pixel blur at the normal desktop/mobile sizes.
+# Both variants are prefiltered; the page no longer blurs each decoded frame.
+VARIANTS = [('cover.mp4', 1280, 1.93), ('cover-mobile.mp4', 720, 2.17)]
 ffmpeg = os.environ.get('FFMPEG') or shutil.which('ffmpeg')
 if not ffmpeg:
     import imageio_ffmpeg
@@ -31,26 +34,33 @@ fade_out_start = frame_count - 1 - fade_frames
 assert fade_out_start > fade_frames, 'Cover must be longer than both fades'
 # One scalar brightness ramp applies to every pixel of the complete frame.
 # Never crop, mask, stagger, or fade the individual grid cells independently.
-filters = (f'scale=1280:-2,fade=t=in:s=0:n={fade_frames}:color=black,'
-           f'fade=t=out:s={fade_out_start}:n={fade_frames}:color=black')
-subprocess.run([ffmpeg, '-hide_banner', '-loglevel', 'error', '-y', '-i', str(source),
-                '-an', '-vf', filters,
-                '-c:v', 'libx264', '-preset', 'fast', '-crf', '26',
-                '-threads', '4', '-maxrate', '1500k', '-bufsize', '3000k', '-g', '60',
-                '-pix_fmt', 'yuv420p', '-movflags', '+faststart', str(target)], check=True)
+for filename, width, sigma in VARIANTS:
+    filters = (f'scale={width}:-2,gblur=sigma={sigma}:steps=3,'
+               f'fade=t=in:s=0:n={fade_frames}:color=black,'
+               f'fade=t=out:s={fade_out_start}:n={fade_frames}:color=black')
+    subprocess.run([ffmpeg, '-hide_banner', '-loglevel', 'error', '-y', '-i', str(source),
+                    '-an', '-vf', filters,
+                    '-c:v', 'libx264', '-preset', 'fast', '-crf', '26',
+                    '-threads', '4', '-maxrate', '1500k', '-bufsize', '3000k', '-g', '60',
+                    '-pix_fmt', 'yuv420p', '-movflags', '+faststart',
+                    str(target.with_name(filename))], check=True)
 # Match the black opening frame while retaining an unfaded, useful still for
 # reduced-motion, blocked-autoplay and no-video fallbacks.
 for input_path, seek, poster_filters, name in [
         (target, ['-ss', '0'], [], 'cover-start.jpg'),
-        (source, ['-sseof', '-0.25'], ['-vf', 'reverse,scale=1280:-2'], 'cover-mosaic.jpg')]:
+        (source, ['-sseof', '-0.25'], ['-vf', 'reverse,scale=1280:-2,gblur=sigma=1.93:steps=3'], 'cover-mosaic.jpg'),
+        (source, ['-sseof', '-0.25'], ['-vf', 'reverse,scale=720:-2,gblur=sigma=2.17:steps=3'], 'cover-mosaic-mobile.jpg')]:
     subprocess.run([ffmpeg, '-hide_banner', '-loglevel', 'error', '-y', *seek,
                     '-i', str(input_path), *poster_filters, '-frames:v', '1', '-q:v', '3',
                     str(images / name)], check=True)
 manifest_path = ROOT / 'data/videos.json'
 manifest = json.loads(manifest_path.read_text())
 manifest['cover'] = {'src': 'assets/videos/cover.mp4',
+                     'mobileSrc': 'assets/videos/cover-mobile.mp4',
                      'poster': 'assets/cover/cover-start.jpg',
                      'finalPoster': 'assets/cover/cover-mosaic.jpg',
+                     'mobileFinalPoster': 'assets/cover/cover-mosaic-mobile.jpg',
+                     'blurBakedIn': True,
                      'titleStartSeconds': TITLE_START_SECONDS,
                      'loop': True, 'endHoldSeconds': 0,
                      'fadeInSeconds': fade_frames / fps,
@@ -62,6 +72,9 @@ info_path = ROOT / 'assets/media-info.json'
 info = [row for row in json.loads(info_path.read_text()) if row['id'] != 'cover']
 info.append({'id': 'cover', 'source': str(source.relative_to(ROOT)),
              'sourceBytes': source.stat().st_size, 'webBytes': target.stat().st_size,
+             'mobileSrc': 'assets/videos/cover-mobile.mp4',
+             'mobileWebBytes': target.with_name('cover-mobile.mp4').stat().st_size,
+             'blurBakedIn': True,
              'src': 'assets/videos/cover.mp4', 'poster': 'assets/cover/cover-start.jpg'})
 info_path.write_text(json.dumps(info, ensure_ascii=False, indent=2) + '\n')
 print(f'Cover: {target.stat().st_size / 1024**2:.1f} MiB; source untouched.')

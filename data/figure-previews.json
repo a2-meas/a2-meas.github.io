@@ -148,5 +148,19 @@
     "preview": "assets/figures/method/action-model-d.webp",
     "sourceBytes": 482696,
     "previewBytes": 45426
+  },
+  {
+    "source": "assets/figures/training-systems.svg",
+    "preview": "assets/figures/training-systems.webp",
+    "sourceBytes": 478053,
+    "previewBytes": 55178,
+    "width": 2400
+  },
+  {
+    "source": "assets/figures/training-throughput.svg",
+    "preview": "assets/figures/training-throughput.webp",
+    "sourceBytes": 441339,
+    "previewBytes": 49002,
+    "width": 2400
   }
 ]
