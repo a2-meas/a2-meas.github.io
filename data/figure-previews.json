@@ -2,151 +2,151 @@
   {
     "source": "assets/figures/framework/connections.svg",
     "preview": "assets/figures/framework/connections.webp",
-    "sourceBytes": 436098,
-    "previewBytes": 27846
+    "sourceBytes": 432859,
+    "previewBytes": 25534
   },
   {
     "source": "assets/figures/framework/reason.svg",
     "preview": "assets/figures/framework/reason.webp",
-    "sourceBytes": 432827,
+    "sourceBytes": 432855,
     "previewBytes": 13226
   },
   {
     "source": "assets/figures/framework/ground.svg",
     "preview": "assets/figures/framework/ground.webp",
-    "sourceBytes": 432882,
+    "sourceBytes": 432910,
     "previewBytes": 56410
   },
   {
     "source": "assets/figures/framework/correct.svg",
     "preview": "assets/figures/framework/correct.webp",
-    "sourceBytes": 433487,
+    "sourceBytes": 433515,
     "previewBytes": 60222
   },
   {
     "source": "assets/figures/framework/execute.svg",
     "preview": "assets/figures/framework/execute.webp",
-    "sourceBytes": 433538,
-    "previewBytes": 50132
+    "sourceBytes": 433566,
+    "previewBytes": 49620
   },
   {
     "source": "assets/figures/method/correction-interface-connections.svg",
     "preview": "assets/figures/method/correction-interface-connections.webp",
-    "sourceBytes": 332245,
-    "previewBytes": 12092
+    "sourceBytes": 331673,
+    "previewBytes": 10972
   },
   {
     "source": "assets/figures/method/correction-interface-a.svg",
     "preview": "assets/figures/method/correction-interface-a.webp",
-    "sourceBytes": 325316,
+    "sourceBytes": 325916,
     "previewBytes": 74494
   },
   {
     "source": "assets/figures/method/correction-interface-b.svg",
     "preview": "assets/figures/method/correction-interface-b.webp",
-    "sourceBytes": 325324,
+    "sourceBytes": 325924,
     "previewBytes": 94428
   },
   {
     "source": "assets/figures/method/correction-training-connections.svg",
     "preview": "assets/figures/method/correction-training-connections.webp",
-    "sourceBytes": 1800812,
-    "previewBytes": 6018
+    "sourceBytes": 1799674,
+    "previewBytes": 4732
   },
   {
     "source": "assets/figures/method/correction-training-a.svg",
     "preview": "assets/figures/method/correction-training-a.webp",
-    "sourceBytes": 1800408,
-    "previewBytes": 36648
+    "sourceBytes": 1800436,
+    "previewBytes": 36430
   },
   {
     "source": "assets/figures/method/correction-training-b.svg",
     "preview": "assets/figures/method/correction-training-b.webp",
-    "sourceBytes": 1800409,
-    "previewBytes": 51578
+    "sourceBytes": 1800437,
+    "previewBytes": 51130
   },
   {
     "source": "assets/figures/method/correction-training-c.svg",
     "preview": "assets/figures/method/correction-training-c.webp",
-    "sourceBytes": 1800409,
-    "previewBytes": 102434
+    "sourceBytes": 1800437,
+    "previewBytes": 102066
   },
   {
     "source": "assets/figures/method/execution-recovery-connections.svg",
     "preview": "assets/figures/method/execution-recovery-connections.webp",
-    "sourceBytes": 1863736,
-    "previewBytes": 7786
+    "sourceBytes": 1861476,
+    "previewBytes": 6146
   },
   {
     "source": "assets/figures/method/execution-recovery-a.svg",
     "preview": "assets/figures/method/execution-recovery-a.webp",
-    "sourceBytes": 1863237,
+    "sourceBytes": 1863265,
     "previewBytes": 58412
   },
   {
     "source": "assets/figures/method/execution-recovery-b.svg",
     "preview": "assets/figures/method/execution-recovery-b.webp",
-    "sourceBytes": 1863240,
-    "previewBytes": 47742
+    "sourceBytes": 1863268,
+    "previewBytes": 47462
   },
   {
     "source": "assets/figures/method/execution-recovery-c.svg",
     "preview": "assets/figures/method/execution-recovery-c.webp",
-    "sourceBytes": 1863242,
-    "previewBytes": 47038
+    "sourceBytes": 1863270,
+    "previewBytes": 46590
   },
   {
     "source": "assets/figures/method/execution-recovery-d.svg",
     "preview": "assets/figures/method/execution-recovery-d.webp",
-    "sourceBytes": 1863242,
-    "previewBytes": 40852
+    "sourceBytes": 1863270,
+    "previewBytes": 40826
   },
   {
     "source": "assets/figures/method/execution-recovery-e.svg",
     "preview": "assets/figures/method/execution-recovery-e.webp",
-    "sourceBytes": 1863247,
-    "previewBytes": 16328
+    "sourceBytes": 1863275,
+    "previewBytes": 16358
   },
   {
     "source": "assets/figures/method/action-model-connections.svg",
     "preview": "assets/figures/method/action-model-connections.webp",
-    "sourceBytes": 483274,
-    "previewBytes": 14956
+    "sourceBytes": 482663,
+    "previewBytes": 13920
   },
   {
     "source": "assets/figures/method/action-model-a.svg",
     "preview": "assets/figures/method/action-model-a.webp",
-    "sourceBytes": 482063,
+    "sourceBytes": 482702,
     "previewBytes": 24662
   },
   {
     "source": "assets/figures/method/action-model-a-detail.svg",
     "preview": "assets/figures/method/action-model-a-detail.webp",
-    "sourceBytes": 482065,
+    "sourceBytes": 482704,
     "previewBytes": 44596
   },
   {
     "source": "assets/figures/method/action-model-b.svg",
     "preview": "assets/figures/method/action-model-b.webp",
-    "sourceBytes": 482071,
+    "sourceBytes": 482710,
     "previewBytes": 4500
   },
   {
     "source": "assets/figures/method/action-model-c.svg",
     "preview": "assets/figures/method/action-model-c.webp",
-    "sourceBytes": 482055,
+    "sourceBytes": 482694,
     "previewBytes": 54298
   },
   {
     "source": "assets/figures/method/action-model-c-current.svg",
     "preview": "assets/figures/method/action-model-c-current.webp",
-    "sourceBytes": 482071,
+    "sourceBytes": 482710,
     "previewBytes": 2404
   },
   {
     "source": "assets/figures/method/action-model-d.svg",
     "preview": "assets/figures/method/action-model-d.webp",
-    "sourceBytes": 482057,
+    "sourceBytes": 482696,
     "previewBytes": 45426
   }
 ]

@@ -9,8 +9,11 @@ const root = path.resolve(__dirname, '..');
   let html = await fs.readFile(htmlPath, 'utf8');
   const sources = [...html.matchAll(/<img\b[^>]*\bsrc="(assets\/figures\/(?:method|framework)\/[^".]+)\.(?:svg|webp)"/g)].map(m => m[1]);
   const records = [];
-  for (const stem of [...new Set(sources)]) {
-    const source = await fs.readFile(path.join(root, stem + '.svg'));
+  // Cross-module links remain vectors: rasterizing them reintroduces seams.
+  for (const stem of [...new Set(sources)].filter(stem => !/(?:\/|-)connectors$/.test(stem))) {
+    const original = await fs.readFile(path.join(root, stem + '.svg'));
+    // Enlargements retain connector stubs; inline previews use the shared layer.
+    const source = Buffer.from(original.toString().replace(/<g id="zoom-connectors">[\s\S]*?<\/g>/g, ''));
     const text = source.toString();
     const view = /viewBox="([^"]+)"/.exec(text)[1].split(/[, ]+/).map(Number);
     const group = stem.split('/').pop().replace(/-(?:a-detail|c-current|connections|[a-e])$/, '');
@@ -19,7 +22,7 @@ const root = path.resolve(__dirname, '..');
     const output = await sharp(source, { density: Math.max(72, 72 * width / view[2]) })
       .resize({ width }).webp({ quality: 90, alphaQuality: 100, effort: 5 }).toBuffer();
     await fs.writeFile(path.join(root, stem + '.webp'), output);
-    records.push({ source: stem + '.svg', preview: stem + '.webp', sourceBytes: source.length, previewBytes: output.length });
+    records.push({ source: stem + '.svg', preview: stem + '.webp', sourceBytes: original.length, previewBytes: output.length });
     html = html.replaceAll(`src="${stem}.svg"`, `src="${stem}.webp"`);
   }
   html = html.replace(/(<img\b[^>]*\bsrc="assets\/figures\/[^\"]+"[^>]*)(>)/g,

@@ -1,6 +1,7 @@
 from pathlib import Path
 import argparse,re,json
 from method_plates import plate_svg, correction_clip_svg
+from align_diagram_connectors import separate_connectors
 root=Path(__file__).resolve().parent.parent;records=json.loads((root/'assets/figures/method/sources.json').read_text());html=(root/'index.html').read_text()
 parser=argparse.ArgumentParser()
 parser.add_argument('--group',choices=list(dict.fromkeys(x['group'] for x in records)))
@@ -20,3 +21,5 @@ for group in dict.fromkeys(x['group'] for x in records):
   pattern=r'<figure class="paper-figure original-figure">\s*<button class="figure-button" data-figure="assets/figures/action-model.svg".*?</figure>'
  html,n=re.subn(pattern,'\n'.join(parts),html,flags=re.S);assert n==1
 (root/'index.html').write_text(html)
+for group in dict.fromkeys(x['group'] for x in records):
+ if not args.group or group==args.group: separate_connectors(group)

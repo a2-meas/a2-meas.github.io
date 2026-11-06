@@ -242,3 +242,15 @@ Playback: preserve full video durations, but use480px low-bandwidth ring preview
 until their section approaches, and prioritize the cover poster. Initial Worker video
 requests stream immediately while native range caching proceeds in parallel; retain
 Access authentication, correct byte ranges and private no-store client responses.
+
+## 封面信息覆盖层（2026-11-05，仅本地，未提交/推送/部署）
+
+按用户参考图配色，封面视频从首帧到结束全程6px虚化；静态海报/减少动态效果/加载失败回退也使用同样虚化背景。保留原视频文件、播放一次停末帧及8秒标题淡入时机。两行机构和Paper / Code & releases / BibTeX移入同一标题覆盖层，统一淡入；删除视频下方原hero-content及其空白。机构白字，按钮深灰#333333/白字，hover与focus-visible变蓝#287fbd；链接目的地不变。封面外任务演示视频保持清晰。手机封面最小360px，避免标题/机构/按钮拥挤；后续章节与Meet间距不变。当前只供本地预览，GitHub仍Private、Pages关闭，未更新Cloudflare或Access。
+
+## 九宫格直接循环（2026-11-05，最新本地覆盖，未提交/推送/部署）
+
+取消封面前半段及九宫格切换过程。从原片demo/封面-en.mp4约9.1s（边框已完全落定）截到最后一个视频帧，生成1280×720/24fps约8.083s、1.3MiB的静音循环版cover.mp4。首帧已是完整九宫格，两个海报都取该首帧；原片SHA核验未变，旧运行资产备份于output/cover-before-mosaic-loop-20261105/。HTML使用原生loop，JS移除ended暂停及标题时序；标题/机构/图标/资源链接从首屏直接显示（opacity1、transition0s），不再8秒淡入。保留6px虚化、Google Sans实心标题和80%机构/按钮尺寸。prepare_cover_media.py可复现，optimize_playback.py不再用旧整片备份覆盖新循环。保持Private、Pages关闭、Cloudflare及Access不变。此段覆盖下方“只播放一次/8秒标题淡入”的历史记录。
+
+## 最新还原已部署（2026-11-05，优先于下方历史）
+
+用户要求取消“直接九宫格循环、标题与链接立即显示”的改动。已从修改前备份逐字节恢复完整cover.mp4及海报，并恢复播放一次停末帧、8s统一淡入。保留Google Sans实心标题、80%机构与按钮、6px虚化及Tech Report名称。新私密部署 https://740ffbd9.a2meas-preview-laihh88.pages.dev/，正式入口同步；上传4文件/复用133，Worker已更新完整视频字节长度。12项匿名资源检查均302到Access；未修改Access/白名单、GitHub Private或Pages，未提交/推送Git。本地浏览器已验证开场隐藏、8s后显示、17.166667s结束暂停且loop=false；登录后线上视觉未复核。还原审计与临时旧版备份在output/mosaic-loop-cancel-20261105/，访问记录output/mosaic-cancel-access-after.json。此段覆盖此前e47f8956九宫格循环发布记录。

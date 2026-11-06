@@ -1231,4 +1231,7 @@
 <use data-text="r" xlink:href="#font_6_85" transform="matrix(8.81136,0,0,-8.81136,462.3698,341.65568)" fill="#386d45" />
 <use data-text="r" xlink:href="#font_6_85" transform="matrix(8.81136,0,0,-8.81136,465.79853,341.65568)" fill="#386d45" />
 </g>
-</svg>
+<g id="zoom-connectors"><path transform="matrix(.42301298,0,0,.42301298,.7559241,0)" stroke-width="2.27" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="round" fill="none" stroke="#9f4a22" d="M1106 186H1156V419H645V492.2" />
+<path transform="matrix(.42301298,0,0,.42301298,.7559241,0)" d="M645 502.46 639.87 492.2H650.13L645 502.46Z" fill="#9f4a22" />
+<path transform="matrix(.42301298,0,0,.42301298,.7559241,0)" stroke-width="2.27" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#9f4a22" d="M645 502.46 639.87 492.2H650.13L645 502.46Z" />
+</g></svg>

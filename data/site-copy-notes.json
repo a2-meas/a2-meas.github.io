@@ -106,5 +106,70 @@
       2
     ],
     "type": "Foundation-model progress as supporting context; efficient control and recovery motivate A²-MEAS. Shortened from abstract and introduction; not a verbatim quotation."
+  },
+  {
+    "area": "Coffee recovery figure description",
+    "source": "To_the_Era_of_Agentic_Embodied_Intelligence_renew.pdf",
+    "pages": [
+      35,
+      36
+    ],
+    "section": "5.4.2",
+    "figure": 13,
+    "type": "Concise paraphrase added beneath original figure; not a verbatim quote",
+    "original_start_step_completion_percent": {
+      "step_2": {
+        "base_policy": 71,
+        "with_adapter": 98
+      },
+      "step_7": {
+        "base_policy": 76,
+        "with_adapter": 95
+      }
+    },
+    "post_failure_rollback_step_completion_percent": {
+      "step_2": {
+        "base_policy_retry": 14,
+        "history_conditioned_adapter": 94
+      },
+      "step_7": {
+        "base_policy_retry": 8,
+        "history_conditioned_adapter": 82
+      }
+    },
+    "trials_per_condition_per_step": 100,
+    "scope": "Step completion under two distinct starting conditions, not end-to-end coffee-task success. The real-robot Adapter uses observations and failure history; do not describe these results as the complete four-input CorrectionContext interface.",
+    "display": "Two short paragraphs beneath figure; enlargement uses same caption; local only, not deployed."
+  },
+  {
+    "area": "Household Tasks video summary",
+    "source": "To_the_Era_of_Agentic_Embodied_Intelligence_renew.pdf",
+    "pages": [
+      32,
+      33,
+      34
+    ],
+    "section": "5.4.1 Short-Horizon Tasks",
+    "tables": [
+      9,
+      10
+    ],
+    "figure": 12,
+    "type": "Two-sentence paraphrase beneath video carousel and controls; not a verbatim quotation",
+    "tasks": 12,
+    "household_settings": [
+      "study",
+      "bedroom",
+      "living room",
+      "kitchen",
+      "entryway"
+    ],
+    "trials_per_task_per_configuration": 20,
+    "macro_whole_task_success_percent": {
+      "A2_WLA_full": 57.92,
+      "pi_0_5": 26.67
+    },
+    "scope": "Separate policy trained for each task and configuration; macro success averages per-task whole-task completion rates. High-level feedback and test-time correction disabled. These are policy evaluation results, not the coffee recovery study.",
+    "display": "Matches coffee figure description typography; local only, not deployed."
   }
 ]

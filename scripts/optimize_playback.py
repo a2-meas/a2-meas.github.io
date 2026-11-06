@@ -14,7 +14,9 @@ manifest = json.loads(manifest_path.read_text())
 backup = ROOT / 'output/playback-original-web-assets'
 backup.mkdir(parents=True, exist_ok=True)
 (ROOT / 'assets/previews').mkdir(exist_ok=True)
-items = [*manifest['tasks'], *manifest['corrections'], manifest['coffee'], {'id': 'cover', **manifest['cover']}]
+# Cover encoding belongs to prepare_cover_media.py, which reads the current
+# source. Reusing the old playback backup here would restore an obsolete cover.
+items = [*manifest['tasks'], *manifest['corrections'], manifest['coffee']]
 
 def run(item):
     target = ROOT / item['src']
@@ -22,7 +24,7 @@ def run(item):
     if not original.exists():
         shutil.copy2(target, original)
     temporary = target.with_suffix('.optimized.mp4')
-    maximum = '1500k' if item['id'] == 'cover' else '1100k'
+    maximum = '1100k'
     command = [FFMPEG, '-hide_banner', '-loglevel', 'error', '-y', '-i', str(original),
                '-map', '0:v:0', '-map', '0:a?', '-vf', 'scale=1280:-2,fps=24',
                '-c:v', 'libx264', '-preset', 'fast', '-crf', '26', '-threads', '2',

@@ -5,6 +5,7 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 import pymupdf
 from action_model_layout import space_history_row, spaced_bounds
+from align_diagram_connectors import separate_connectors
 ROOT=Path(__file__).resolve().parent.parent
 OUT=ROOT/'assets/figures/method'; OUT.mkdir(exist_ok=True)
 ET.register_namespace('', 'http://www.w3.org/2000/svg')
@@ -119,4 +120,6 @@ for group,source,modules in GROUPS:
     records[-1]['zoom_asset']=zoom_asset
 records.sort(key=lambda item: [group[0] for group in GROUPS].index(item['group']))
 (OUT/'sources.json').write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n')
+for group, _, _ in GROUPS:
+ if not args.group or group==args.group: separate_connectors(group, update_html=False)
 print(f'Extracted {len(records)} original vector modules')

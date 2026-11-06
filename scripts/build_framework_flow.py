@@ -7,6 +7,7 @@ import re
 import xml.etree.ElementTree as E
 
 import pymupdf
+from align_diagram_connectors import separate_connectors
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / 'assets/figures/framework'
@@ -182,6 +183,7 @@ def main():
     assert count == 1, 'Framework target missing or ambiguous'
     html_path.write_text(html)
     (OUT / 'sources.json').write_text(json.dumps(records, ensure_ascii=False, indent=2) + '\n')
+    separate_connectors('framework')
     print('Framework: four original-vector stage groups, exact contours and synchronized peer cards')
 
 

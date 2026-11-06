@@ -185,9 +185,9 @@
   },
   {
     "id": "cover",
-    "source": "demo/封面-en.mp4",
-    "sourceBytes": 22520316,
-    "webBytes": 3171956,
+    "source": "demo/封面-en-v6.mp4",
+    "sourceBytes": 20013518,
+    "webBytes": 3118266,
     "src": "assets/videos/cover.mp4",
     "poster": "assets/cover/cover-start.jpg"
   }

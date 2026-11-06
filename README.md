@@ -19,10 +19,12 @@ The three coffee fallback buttons open a closable in-page player, including in l
 
 ## Current content
 
-- Cover film autoplays muted once; the larger translucent bubble title and full-video mask fade in at8seconds during the mosaic transition.
-  The project name sits above the complete paper title on a single line.
-  Playback holds on the final frame. Institutions and resource links sit below the film; contributors appear at the end.
-  Reduced-motion preference uses the mosaic still and title. Blocked autoplay offers a Play film button.
+- The complete cover film autoplays muted and loops continuously.
+  Each loop fades the entire video uniformly to black over0.6s, then fades
+  uniformly in from black over0.6s; the nine cells never transition separately.
+  The background uses a 2px blur. The solid-white title, affiliations and
+  Tech Report / Code / BibTeX links are visible from the first frame.
+  Reduced-motion preference shows the mosaic still. Blocked autoplay offers a Play film button.
 - Question, System, Model (action policy), Infra, Simulation, Real World, Authors, then Citation.
 - System contains the synchronized Framework plus correction interface, supervision and recovery.
   Model contains the original A²-WLA action-policy diagram.
@@ -122,8 +124,11 @@ See [HANDOFF.md](HANDOFF.md) for access-controlled preview and later public depl
 Design decisions and historical changes are recorded in `DESIGN.md`, `design-contract.md` and
 `implementation-handoff.md`. Some early historical entries describe superseded layouts.
 
-The cover source is `demo/封面-en.mp4`; regenerate it with `scripts/prepare_cover_media.py`
-when FFmpeg is installed. Nunito is included with its SIL Open Font License in `assets/fonts/`.
+The cover source is `demo/封面-en-v6.mp4`; regenerate it with `scripts/prepare_cover_media.py`
+when FFmpeg is installed. Google Sans Bold is self-hosted with its SIL Open Font License in `assets/fonts/`; the older Nunito asset is retained.
+The cover embeds a small Google Sans 700 WOFF2 subset in the render-blocking stylesheet,
+so its first visible title uses the final typeface without a fallback-font swap.
+Regenerate it with `scripts/prepare_cover_font.py` when fonttools and brotli are installed.
 On2026-11-04, nine obsolete or duplicate task-source copies were moved out of `demo/` to
 `output/demo-duplicates-2026-11-04/` with a SHA-256 manifest; they remain recoverable locally.
 Unique retired task sources were retained. These backups are excluded from every deployment.
@@ -131,7 +136,7 @@ Unique retired task sources were retained. These backups are excluded from every
 The published report is the author’s2026-11-04 renewed50-page version, with lossless
 PDF-structure compression for the Pages size limit. RoboTwin complete-system results
 are95.08 /95.02 /95.05. Coffee recovery uses the original PNG embedded on report p36,
-extracted without screenshots. The cover autoplays once and holds its final frame, including after leaving and returning to the hero.
+extracted without screenshots. The full cover loops continuously, with a 2px blur; title, affiliations and resource buttons are visible from the start. The v6 cover and fades are deployed on the access-controlled preview; the latest embedded-font fix is included in this source update and has not been redeployed to that preview.
 
 Performance: diagram previews are generated directly from original SVGs as lightweight WebP
 files; original vector assets remain available on enlargement. Full-duration low-bandwidth
@@ -139,3 +144,5 @@ gallery videos live in `assets/previews/`; opening a player selects the full720p
 pauses competing previews. Cover/media compression is reproducible with `scripts/optimize_playback.py`.
 The Cloudflare range adapter streams initial playback immediately and fills its internal
 range cache in the background. Its client responses remain private and uncached.
+
+For the organization root site, keep the repository name `a2-meas.github.io`. After the owner changes visibility, GitHub Pages still needs to be enabled separately in Settings → Pages, using `main` and `/ (root)` (or an explicitly configured publishing workflow). The static files and `.nojekyll` are ready for that root path.
