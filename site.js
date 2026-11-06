@@ -1,5 +1,47 @@
 (() => {
   'use strict';
+  const readingProgress = document.querySelector('.reading-progress-fill');
+  const sectionLinks = [...document.querySelectorAll('.site-header nav a[href^="#"]')];
+  const readingSections = [...new Set(sectionLinks.map(link => document.getElementById(link.hash.slice(1))).filter(Boolean))];
+  const mobileSectionLabel = document.querySelector('.mobile-nav-current');
+  const mobileSectionSummary = document.querySelector('.mobile-nav summary');
+  let currentReadingSection;
+  let readingProgressFrame = 0;
+  function updateReadingProgress() {
+    readingProgressFrame = 0;
+    const root = document.scrollingElement || document.documentElement;
+    const distance = root.scrollHeight - document.documentElement.clientHeight;
+    const fraction = distance > 0 ? Math.min(1, Math.max(0, root.scrollTop / distance)) : 0;
+    const sectionLine = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+    let activeSection = null;
+    readingSections.forEach(section => {
+      if (section.getBoundingClientRect().top <= sectionLine + 1) activeSection = section.id;
+    });
+    if (distance > 0 && root.scrollTop >= distance - 1) activeSection = readingSections.at(-1)?.id;
+    // Read positions first, then update the bar and both navigation variants together.
+    readingProgress.style.transform = `scaleX(${fraction})`;
+    if (activeSection !== currentReadingSection) {
+      currentReadingSection = activeSection;
+      sectionLinks.forEach(link => {
+        if (link.hash === `#${activeSection}`) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+      const activeLink = sectionLinks.find(link => link.hash === `#${activeSection}`);
+      const title = activeLink?.textContent.trim();
+      mobileSectionLabel.textContent = title || 'Sections';
+      mobileSectionSummary.classList.toggle('has-current-section', Boolean(title));
+      mobileSectionSummary.setAttribute('aria-label', title ? `Page sections, current section: ${title}` : 'Page sections');
+    }
+  }
+  function scheduleReadingProgress() {
+    if (!readingProgressFrame) readingProgressFrame = requestAnimationFrame(updateReadingProgress);
+  }
+  window.addEventListener('scroll', scheduleReadingProgress, { passive: true });
+  window.addEventListener('resize', scheduleReadingProgress);
+  window.addEventListener('pageshow', scheduleReadingProgress);
+  new ResizeObserver(scheduleReadingProgress).observe(document.body);
+  scheduleReadingProgress();
+
   const HIGHLIGHT_INTERVAL_MS = 1500;
   const METHOD_COMPLETE_HOLD_MS = 10000;
   const autoStartViewport = {
@@ -61,6 +103,24 @@
   const announcement = document.querySelector('#gallery-announcement');
   const mediaPlayers = new Set();
   let manifest;
+
+  // Give the small training previews a head start while reading Model.
+  // Keep native lazy loading as a fallback; do not add startup preloads.
+  const trainingPreviews = document.querySelectorAll('img[data-preload-from="model"]');
+  const trainingPreloadObserver = new IntersectionObserver(entries => {
+    if (!entries.some(entry => entry.isIntersecting)) return;
+    const priority = entries.some(entry => entry.target.id === 'infrastructure' && entry.isIntersecting) ? 'auto' : 'low';
+    trainingPreviews.forEach(image => {
+      image.fetchPriority = priority;
+      image.loading = 'eager';
+    });
+    trainingPreloadObserver.disconnect();
+  });
+  // Also cover direct navigation to Infra, bypassing the preceding section.
+  ['model', 'infrastructure'].forEach(id => {
+    const section = document.getElementById(id);
+    if (section) trainingPreloadObserver.observe(section);
+  });
 
   function el(tag, className, text) {
     const node = document.createElement(tag);
