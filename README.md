@@ -7,7 +7,7 @@
 AutoLab, School of Artificial Intelligence, Shanghai Jiao Tong University<br>
 Research Lab, Anyverse Dynamics
 
-[Project Website](https://a2-meas.github.io/) · [Tech Report](To_the_Era_of_Agentic_Embodied_Intelligence.pdf) · [Code & Releases](https://github.com/AutoLab-SAI-SJTU/A2MEAS) · [BibTeX](data/citation.bib)
+[Project Website](https://a2-meas.github.io/) · [Tech Report](https://arxiv.org/abs/2611.09124) · [Code & Releases](https://github.com/AutoLab-SAI-SJTU/A2MEAS) · [BibTeX](data/citation.bib)
 
 ### Overview
 
@@ -17,24 +17,24 @@ The project website presents the system and policy architecture, training infras
 
 ### Resources
 
-- [Technical report](To_the_Era_of_Agentic_Embodied_Intelligence.pdf): the complete report, including methods, experiments, and evaluation protocols.
+- [Technical report](https://arxiv.org/abs/2611.09124): the complete report, including methods, experiments, and evaluation protocols.
 - [Project website](https://a2-meas.github.io/): interactive method figures, experimental results, and robot demonstrations.
 - [Algorithm repository](https://github.com/AutoLab-SAI-SJTU/A2MEAS): the separate repository for research code and releases.
 
 ### Citation
 
 ```bibtex
-@techreport{liang2026agentic,
+@misc{liang2026eraagenticembodiedintelligence,
   title = {Toward the Era of Agentic Embodied Intelligence},
   author = {Chao Liang and Ke Chen and Fengxiaoxiao Li and
     Shibo Huang and Yufeng Sun and Zhaokai Yin and
     Jianhuan Lai and Haozhe Feng and Chenghuan Jia and
     Zhipeng Zhang},
-  institution = {AutoLab, School of Artificial Intelligence,
-    Shanghai Jiao Tong University and
-    Research Lab, Anyverse Dynamics},
   year = {2026},
-  type = {Technical Report}
+  eprint = {2611.09124},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.RO},
+  url = {https://arxiv.org/abs/2611.09124}
 }
 ```
 
