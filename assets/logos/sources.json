@@ -36,5 +36,27 @@
     ],
     "asset": "assets/logos/anyverse-dynamics.svg",
     "operation": "outer viewport crop only; original artwork preserved"
+  },
+  {
+    "id": "huggingface",
+    "source": "https://huggingface.co/front/assets/huggingface_logo-noborder.svg",
+    "asset": "assets/logos/huggingface.svg",
+    "operation": "official brand artwork preserved without modifications",
+    "displayBytes": 4634
+  },
+  {
+    "id": "arxiv",
+    "source": "https://raw.githubusercontent.com/arXiv/arxiv-browse/develop/browse/static/images/arxiv-logomark-small-white.svg",
+    "asset": "assets/logos/arxiv.svg",
+    "operation": "official brand artwork preserved without modifications",
+    "displayBytes": 1735
+  },
+  {
+    "id": "github",
+    "source": "https://brand.github.com/GitHub_Logos.zip",
+    "asset": "assets/logos/github.svg",
+    "operation": "official brand artwork preserved without modifications",
+    "displayBytes": 1559,
+    "archive_member": "GitHub Logos/SVG/GitHub_Invertocat_White.svg"
   }
 ]

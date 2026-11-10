@@ -87,7 +87,8 @@ sup { font-size: .6em; vertical-align: super; line-height: 0; }
 .resource-links { display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
 .resource-link { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; gap: 9px; background: var(--resource-bg); border: 0; border-radius: 999px; padding: 10px 22px; font-size: 14px; font-weight: 600; color: #ffffff; transition: background-color .18s ease; }
 .resource-link { white-space: nowrap; }
-.resource-link svg { width: 18px; height: 18px; flex-shrink: 0; }
+.resource-link svg, .resource-link .resource-icon { width: 18px; height: 18px; flex-shrink: 0; }
+.resource-link .resource-icon { object-fit: contain; }
 .resource-link:hover, .resource-link:focus-visible { background: var(--resource-hover); }
 .resource-link:focus-visible { outline: 2px solid #ffffff; outline-offset: 4px; }
 @media (max-width: 600px) {
@@ -401,7 +402,7 @@ figcaption a:hover, .source-note a:hover { color: var(--accent); }
   .anyverse-logo { height: 28px; }
   .resource-links { gap: 8px; margin-top: 22px; }
   .resource-link { font-size: 12px; padding: 10px 14px; gap: 7px; }
-  .resource-link svg { width: 15px; height: 15px; }
+  .resource-link svg, .resource-link .resource-icon { width: 15px; height: 15px; }
   .meet-link { font-size: 20px; margin-top: 60px; }
   .section { padding: 68px 24px; }
   .section-kicker { margin-bottom: 20px; }
